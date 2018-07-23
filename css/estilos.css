@@ -1,0 +1,57 @@
+body{
+    margin: 0;
+}
+.encabezado{
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: dodgerblue;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.workspace {
+    margin-left: 280px;
+}
+
+.navbar{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: auto;
+    top: 0;
+    left: 0;
+    background-color: lightslategrey;
+    overflow-x: hidden;
+    padding-top: 50px;
+}
+.navbar ul {
+    list-style: none;
+    width: 250px;
+    padding: 0;
+
+}
+.navbar ul li{
+    width: 90%;
+    height: 10px;
+    padding: 15px;
+    background-color: black;
+    text-align: center;
+    border: none;
+    border-bottom: white solid 1px;
+}
+.navbar ul li:hover{
+    background-color: #484848;
+}
+.navbar ul li a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+.pie{
+    background-color: black;
+    width: 100%;
+    height: 25px;
+}
