@@ -10,11 +10,20 @@ body{
     left: 0;
     background-color: dodgerblue;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.encabezado .logo{
+    width: 15%;
+    height: 50px;
+    background-color: black;
+    margin: 10px 30px 0 15px;
 }
 .workspace {
     margin-left: 280px;
 }
+
 
 .navbar{
     height: 100%;
@@ -44,11 +53,16 @@ body{
 }
 .navbar ul li:hover{
     background-color: #484848;
+
 }
 .navbar ul li a{
     text-decoration: none;
     color: white;
     text-align: center;
+    padding: 15px 40px 15px 40px;
+}
+.navbar ul li a:hover{
+    color: #000;
 }
 .pie{
     background-color: black;
