@@ -3,27 +3,29 @@ body{
 }
 
 .encabezado{
-    height: 50px;
+    height: 70px;
     width: 100%;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: dodgerblue;
-    overflow-x: hidden;
-    padding-bottom: 20px;
+    background-color: #d0d0d0;
     display: flex;
     align-items: center;
 }
 .encabezado .logo{
-    width: 15%;
-    height: 50px;
-    background-color: black;
-    margin: 10px 30px 0 15px;
+    width: 250px;
+    height: 100%;
+    margin: auto 10px auto 10px;
+
 }
 .workspace {
     margin: 100px 30px 30px 280px;
-    border: black solid 1px;
+    border: darkgray solid 1px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    overflow-x: hidden;
+    height: 597px;
 }
 
 .navbar{
@@ -33,40 +35,62 @@ body{
     z-index: auto;
     top: 0;
     left: 0;
-    background-color: lightslategrey;
-    overflow-x: hidden;
-    padding-top: 50px;
-}
-.navbar ul {
-    list-style: none;
-    width: 250px;
-    padding: 0;
-
-}
-.navbar ul li{
-    width: 90%;
-    height: 10px;
-    padding: 15px;
     background-color: black;
-    text-align: center;
-    border: none;
-    border-bottom: white solid 1px;
+    overflow-x: hidden;
+    padding-top: 20px;
+    padding-left: 5px;
 }
-.navbar ul li:hover{
-    background-color: #484848;
-
+#barra{
+    margin: 0;
+    margin-top: 50px ;
+    padding: 0;
+    float: left;
+    width: 100%;
+    text-align: right;
 }
-.navbar ul li a{
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    padding: 15px 40px 15px 40px;
-}
-.navbar ul li a:hover{
-    color: #000;
-}
-.pie{
+#barra li{
+    list-style: none;
     background-color: black;
     width: 100%;
-    height: 25px;
+    border-bottom: white solid 1px;
 }
+#barra li a{
+    display: block;
+    padding: 8px;
+    border-left: 4px solid white;
+    text-decoration: none;
+    color: white;
+}
+#barra li a:hover{
+    border-left: 4px solid cadetblue;
+    background-color: darkgray;
+    color: black;
+}
+#barra li ul{
+    padding: 0;
+    display: none;
+}
+#barra li:hover ul{
+    display: block;
+}
+#barra li:hover ul li{
+    background-color: black;
+}
+#barra li:hover ul li a{
+    color: white;
+}
+#barra li:hover ul li a:hover{
+    background-color: darkgray;
+    border-left: brown solid 4px;
+    color: black;
+}
+.pie{
+    background-color: #2a2a2a;
+    width: 100%;
+    height: 30px;
+}
+.pie p{
+    margin-left: 280px;
+    color: white;
+}
+
