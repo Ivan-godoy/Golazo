@@ -33,13 +33,12 @@
         </ul>
     </nav>
     <section class="contenedor">
-
-
+        <img src="img/fondo.png" alt="" class="fondo">
     </section>
 
 </section>
 <footer class="pie">
-    <p>Grupo Numero 1</p>
+    <p>Copyright&copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
 </footer>
 </body>
 </html>
