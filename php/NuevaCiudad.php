@@ -1,7 +1,20 @@
 <?php
 require_once '../conexion.php';
-$arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitro "
-    ." from arbrito", PDO::FETCH_ASSOC);
+$mensaje=[];
+if(!empty($_POST)){//Procesar el formulario
+    $nombre = $_POST['nom_ciudad'];
+    if (empty($nombre)){
+        $mensaje[] = "Todos los campos son Obligatorios!";
+    }
+    if(empty($mensaje)){
+        $filas_afectadas = $pdo->exec("INSERT INTO ciudad (nom_cuidad) VALUES ('{$nombre}')");
+        if ($filas_afectadas>= 1){
+            $mensaje[]= "La Ciudad Fue Creada";
+        }else{
+            $mensaje[]= "La Ciudad no fue Creada";
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,30 +51,29 @@ $arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitr
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Árbitros</h1>
-            <input type="submit" value="Nuevo Arbitro" onclick=" location = '../inicio.php'">
+            <h1>Creacion de Ciudad</h1>
+            <input type="submit" value="Volver" onclick=" location = 'ciudad.php'">
         </div>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Id_Arbitro</th>
-                <th>Nombre</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Eliminar</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!----- La infotmacion ----->
-            <?php foreach ($arbitros as $arbitro): ?>
-                <tr>
-                    <td><a href="detalle.php?codigo=<?php echo $arbitro['id_arbrito']?>"><?php echo $arbitro['id_arbrito']?></a></td>
-                    <td><?php echo $arbitro['nom_arbitro']?></td>
-                    <td><?php echo $arbitro['fecha_nacimiento_arbitro']?></td>
-                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle.php?codigo=<?php echo $arbitro['id_arbrito']?> &operacion=eliminar'"></td>
-                </tr>
-            <?php endforeach;?>
-            </tbody>
-        </table>
+        <form action="" method="post" id="formulario">
+            <div class="seccion">
+                <label for="nom_ciudad">Nombre de la Ciudad</label>
+                <input type="text" name="nom_ciudad" id="nom_ciudad">
+            </div>
+            <br>
+            <div class="botones">
+                <input type="submit" value="Registrar Ciudad">
+                <input type="reset" value="Limpiar">
+            </div>
+            <?php
+            if (!empty($mensaje)):
+                echo '<ul>';
+                foreach ($mensaje as $msj){
+                    echo "<li>{$msj}</li>";
+                }
+                echo '</ul>';
+            endif;
+            ?>
+        </form>
     </section>
 
 </section>

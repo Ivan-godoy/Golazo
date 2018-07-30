@@ -25,7 +25,7 @@ require_once 'conexion.php';
                     <li><a href="#"> sub 3 </a></li>
                 </ul>
             </li>
-            <li><a href="#"> Item de Navegación 3 </a></li>
+            <li><a href="php/ciudad.php"> Gestión de Ciudades </a></li>
             <li><a href="#"> Item de Navegación 4 </a></li>
             <li><a href="#"> Item de Navegación 5 </a></li>
             <li><a href="#"> Item de Navegación 6 </a></li>

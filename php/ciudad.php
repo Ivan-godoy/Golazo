@@ -1,7 +1,7 @@
 <?php
 require_once '../conexion.php';
-$arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitro "
-    ." from arbrito", PDO::FETCH_ASSOC);
+$ciudades = $pdo->query("Select * "
+    ." from ciudad", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,26 +38,24 @@ $arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitr
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Árbitros</h1>
-            <input type="submit" value="Nuevo Arbitro" onclick=" location = '../inicio.php'">
+            <h1>Tabla de Ciudades</h1>
+            <input type="submit" value="Nueva Ciudad" onclick=" location = 'NuevaCiudad.php'">
         </div>
         <table border="1">
             <thead>
             <tr>
-                <th>Id_Arbitro</th>
-                <th>Nombre</th>
-                <th>Fecha de Nacimiento</th>
+                <th>Codigo de la Ciudad</th>
+                <th>Nombre de la Ciudad</th>
                 <th>Eliminar</th>
             </tr>
             </thead>
             <tbody>
             <!----- La infotmacion ----->
-            <?php foreach ($arbitros as $arbitro): ?>
+            <?php foreach ($ciudades as $ciudad): ?>
                 <tr>
-                    <td><a href="detalle.php?codigo=<?php echo $arbitro['id_arbrito']?>"><?php echo $arbitro['id_arbrito']?></a></td>
-                    <td><?php echo $arbitro['nom_arbitro']?></td>
-                    <td><?php echo $arbitro['fecha_nacimiento_arbitro']?></td>
-                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle.php?codigo=<?php echo $arbitro['id_arbrito']?> &operacion=eliminar'"></td>
+                    <td><?php echo $ciudad['idciudad']?></td>
+                    <td><?php echo $ciudad['nom_cuidad']?></td>
+                    <td><input type="submit" value="Eliminar" onclick=" location = 'detalle.php?codigo=<?php echo $ciudad['idciudad']?> &operacion=eliminar'");?></td>
                 </tr>
             <?php endforeach;?>
             </tbody>
