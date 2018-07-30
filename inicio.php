@@ -1,10 +1,12 @@
 <?php
+require_once 'conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="img/icon.png">
     <title>Golazo</title>
 </head>
@@ -15,10 +17,10 @@
 <section class="workspace">
     <nav class="navbar">
         <ul id="barra">
-            <li><a href="#"> Inicio</a></li>
-            <li><a href="#"> Item de Navegación 2 </a>
+            <li><a href="inicio.php"> Inicio</a></li>
+            <li><a href="#"> Gestiones </a>
                 <ul>
-                    <li><a href="#"> sub 1</a></li>
+                    <li><a href="php/arbitro.php">Árbitros</a></li>
                     <li><a href="#"> sub 2 </a></li>
                     <li><a href="#"> sub 3 </a></li>
                 </ul>

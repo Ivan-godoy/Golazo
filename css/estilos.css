@@ -1,3 +1,9 @@
+*{
+    font-family: 'Kavivanar', cursive;
+    /*font-family: 'Do Hyeon', sans-serif;*/
+    font-weight: bold;
+}
+
 body{
     margin: 0;
 }
@@ -35,7 +41,6 @@ body{
     margin: auto;
     margin-top: 50px;
 }
-
 .navbar{
     height: 100%;
     width: 250px;
@@ -100,5 +105,51 @@ body{
 .pie p{
     margin-left: 280px;
     color: white;
+}
+.Arbitros{
+    width: 98%;
+    height: auto;
+    border-bottom: #5D6782 solid 1px;
+    margin: 0 10px 0 10px;
+    display: flex;
+    align-items: center;
+}
+.Arbitros h1{
+    padding: 0;
+    margin: 10px 0 0 30px;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+}
+input[type="submit"]{
+    margin-left: 730px;
+    height: 40px;
+    background-color: #142450;
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+}
+input[type="submit"]:hover{
+    background-color: #F57C21;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+table{
+    border-collapse: collapse;
+    align-items: center;
+    width: 95%;
+    margin: 10px auto auto auto;
+    border: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+table input[type="submit"]{
+    margin: 0;
+}
+table thead{
+    background-color: #5D6782;
+    color: white;
+}
+table tbody{
+    border: #142450 solid 1px;
 }
 
