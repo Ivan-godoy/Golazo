@@ -7,7 +7,7 @@ if(!empty($_POST)){//Procesar el formulario
         $mensaje[] = "Todos los campos son Obligatorios!";
     }
     if(empty($mensaje)){
-        $filas_afectadas = $pdo->exec("INSERT INTO ciudad (nom_cuidad) VALUES ('{$nombre}')");
+        $filas_afectadas = $pdo->exec("INSERT INTO ciudad (nom_ciudad) VALUES ('{$nombre}')");
         if ($filas_afectadas>= 1){
             $mensaje[]= "La Ciudad Fue Creada";
         }else{
@@ -28,16 +28,17 @@ if(!empty($_POST)){//Procesar el formulario
 <body>
 <header class="encabezado">
     <img src="../img/golazo.png" alt="" class="logo">
+    <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
 </header>
 <section class="workspace">
     <nav class="navbar">
         <ul id="barra">
             <li><a href="../inicio.php"> Inicio</a></li>
-            <li><a href="#"> Gestiones </a>
+            <li><a href="#"> Creación de </a>
                 <ul>
-                    <li><a href="arbitro.php"> Árbitros</a></li>
-                    <li><a href="#"> sub 2 </a></li>
-                    <li><a href="#"> sub 3 </a></li>
+                    <li><a href="arbitro.php">Árbitros</a></li>
+                    <li><a href="entrenador.php"> Entrenador </a></li>
+                    <li><a href="jugador.php"> Jugador </a></li>
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
@@ -78,7 +79,7 @@ if(!empty($_POST)){//Procesar el formulario
 
 </section>
 <footer class="pie">
-    <p>Copyright&copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
+    <p>Copyright &copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
 </footer>
 </body>
 </html>

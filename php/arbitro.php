@@ -1,7 +1,7 @@
 <?php
 require_once '../conexion.php';
-$arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitro "
-    ." from arbrito", PDO::FETCH_ASSOC);
+$arbitros = $pdo->query("Select id_arbitro, nom_arbitro, fecha_nacimiento_arbitro "
+    ." from arbitro", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,16 +15,17 @@ $arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitr
 <body>
 <header class="encabezado">
     <img src="../img/golazo.png" alt="" class="logo">
+    <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
 </header>
 <section class="workspace">
     <nav class="navbar">
         <ul id="barra">
             <li><a href="../inicio.php"> Inicio</a></li>
-            <li><a href="#"> Gestiones </a>
+            <li><a href="#"> Creación de  </a>
                 <ul>
-                    <li><a href="arbitro.php"> Árbitros</a></li>
-                    <li><a href="#"> sub 2 </a></li>
-                    <li><a href="#"> sub 3 </a></li>
+                    <li><a href="arbitro.php">Árbitros</a></li>
+                    <li><a href="entrenador.php"> Entrenador </a></li>
+                    <li><a href="jugador.php"> Jugador </a></li>
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
@@ -54,10 +55,10 @@ $arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitr
             <!----- La infotmacion ----->
             <?php foreach ($arbitros as $arbitro): ?>
                 <tr>
-                    <td><a href="detalle.php?codigo=<?php echo $arbitro['id_arbrito']?>"><?php echo $arbitro['id_arbrito']?></a></td>
+                    <td><a href="detalle.php?codigo=<?php echo $arbitro['id_arbitro']?>"><?php echo $arbitro['id_arbitro']?></a></td>
                     <td><?php echo $arbitro['nom_arbitro']?></td>
                     <td><?php echo $arbitro['fecha_nacimiento_arbitro']?></td>
-                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle.php?codigo=<?php echo $arbitro['id_arbrito']?> &operacion=eliminar'"></td>
+                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle.php?codigo=<?php echo $arbitro['id_arbitro']?> &operacion=eliminar'"></td>
                 </tr>
             <?php endforeach;?>
             </tbody>
@@ -66,7 +67,7 @@ $arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitr
 
 </section>
 <footer class="pie">
-    <p>Copyright&copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
+    <p>Copyright &copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
 </footer>
 </body>
 </html>

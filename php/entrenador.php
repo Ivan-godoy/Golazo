@@ -1,7 +1,7 @@
 <?php
 require_once '../conexion.php';
-$ciudades = $pdo->query("Select * "
-    ." from ciudad", PDO::FETCH_ASSOC);
+$arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitro "
+    ." from arbrito", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,13 +15,12 @@ $ciudades = $pdo->query("Select * "
 <body>
 <header class="encabezado">
     <img src="../img/golazo.png" alt="" class="logo">
-    <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
 </header>
 <section class="workspace">
     <nav class="navbar">
         <ul id="barra">
             <li><a href="../inicio.php"> Inicio</a></li>
-            <li><a href="#"> Creación de </a>
+            <li><a href="#"> Creación de  </a>
                 <ul>
                     <li><a href="arbitro.php">Árbitros</a></li>
                     <li><a href="entrenador.php"> Entrenador </a></li>
@@ -39,24 +38,26 @@ $ciudades = $pdo->query("Select * "
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Ciudades</h1>
-            <input type="submit" value="Nueva Ciudad" onclick=" location = 'NuevaCiudad.php'">
+            <h1>Tabla de Árbitros</h1>
+            <input type="submit" value="Nuevo Arbitro" onclick=" location = '../inicio.php'">
         </div>
         <table border="1">
             <thead>
             <tr>
-                <th>Codigo de la Ciudad</th>
-                <th>Nombre de la Ciudad</th>
+                <th>Id_Arbitro</th>
+                <th>Nombre</th>
+                <th>Fecha de Nacimiento</th>
                 <th>Eliminar</th>
             </tr>
             </thead>
             <tbody>
             <!----- La infotmacion ----->
-            <?php foreach ($ciudades as $ciudad): ?>
+            <?php foreach ($arbitros as $arbitro): ?>
                 <tr>
-                    <td><?php echo $ciudad['id_ciudad']?></td>
-                    <td><?php echo $ciudad['nom_ciudad']?></td>
-                    <td><input type="submit" value="Eliminar" onclick=" location = 'detalle_ciudad.php?codigo=<?php echo $ciudad['id_ciudad']?> &operacion=eliminar'");?></td>
+                    <td><a href="detalle.php?codigo=<?php echo $arbitro['id_arbrito']?>"><?php echo $arbitro['id_arbrito']?></a></td>
+                    <td><?php echo $arbitro['nom_arbitro']?></td>
+                    <td><?php echo $arbitro['fecha_nacimiento_arbitro']?></td>
+                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle.php?codigo=<?php echo $arbitro['id_arbrito']?> &operacion=eliminar'"></td>
                 </tr>
             <?php endforeach;?>
             </tbody>
@@ -65,7 +66,7 @@ $ciudades = $pdo->query("Select * "
 
 </section>
 <footer class="pie">
-    <p>Copyright &copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
+    <p>Copyright&copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
 </footer>
 </body>
 </html>
