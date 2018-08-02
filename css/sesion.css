@@ -23,7 +23,7 @@ body:before{
 }
 .loginbox{
     width: 320px;
-    height: 420px;
+    height: auto;
     background: #ffffff;
     color: #000000;
     top: 50%;

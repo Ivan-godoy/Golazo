@@ -27,8 +27,8 @@ if(!empty($_POST)){//Procesar el formulario
 </head>
 <body>
 <header class="encabezado">
-    <img src="../img/golazo.png" alt="" class="logo">
-    <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
+    <img src="../img/golazo.png" alt="" class="logo" onclick=" location = '../inicio.php'">
+    <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
     <nav class="navbar">

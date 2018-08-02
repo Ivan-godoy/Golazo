@@ -1,6 +1,6 @@
 <?php
 require_once '../conexion.php';
-$arbitros = $pdo->query("Select id_arbitro, nom_arbitro, fecha_nacimiento_arbitro "
+$arbitros = $pdo->query("Select id_arbitro, nom_arbitro, fecha_nacimeinto_arbitro "
     ." from arbitro", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -55,10 +55,10 @@ $arbitros = $pdo->query("Select id_arbitro, nom_arbitro, fecha_nacimiento_arbitr
             <!----- La infotmacion ----->
             <?php foreach ($arbitros as $arbitro): ?>
                 <tr>
-                    <td><a href="detalle.php?codigo=<?php echo $arbitro['id_arbitro']?>"><?php echo $arbitro['id_arbitro']?></a></td>
+                    <td><a href="detalle_ciudad.php?codigo=<?php echo $arbitro['id_arbitro']?>"><?php echo $arbitro['id_arbitro']?></a></td>
                     <td><?php echo $arbitro['nom_arbitro']?></td>
                     <td><?php echo $arbitro['fecha_nacimiento_arbitro']?></td>
-                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle.php?codigo=<?php echo $arbitro['id_arbitro']?> &operacion=eliminar'"></td>
+                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle_ciudad.php?codigo=<?php echo $arbitro['id_arbitro']?> &operacion=eliminar'"></td>
                 </tr>
             <?php endforeach;?>
             </tbody>
