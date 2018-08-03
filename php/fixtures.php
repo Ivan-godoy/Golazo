@@ -1,24 +1,27 @@
 <?php
-$equipos = ["olimpia", "motagua","vida","madrid","psg","Juventus","Leumin", "Kebel"];
+require '../conexion.php';
+$equipos1 = $pdo->query("SELECT id_equipos"
+    ." FROM equipos",PDO::FETCH_ASSOC);
+$equipos = [];
+foreach ($equipos1 as $e){
+    $equipos[] = $e['id_equipos'];
+}
+
 $partidos = [];
 $num_euipos = count($equipos);
 $num_semanas = count($equipos)-1;
 $mitad_equipos = ($num_euipos-1)/2;
 
-shuffle($partidos);
-
 for($x=0;$x<$num_semanas;$x++){
-    echo "JORNADA ".($x+1);
-    echo "<br>";
-    for($i=0;$i<$mitad_equipos;$i++){
+     for($i=0;$i<$mitad_equipos;$i++){
         $equipoLocal = $equipos[$mitad_equipos - $i];
         $equipoVisita = $equipos[$mitad_equipos + $i + 1];
         $resultado[$equipoLocal][$x] = $equipoVisita;
         $resultado[$equipoVisita][$x] = $equipoLocal;
+        $guardar = $pdo->exec("INSERT INTO fixture(fecha, equipo_local, equipo_visitante, Id_temporada) "
+            ." VALUES ('2018-05-12','{$resultado[$equipoLocal][$x]}','{$resultado[$equipoVisita][$x]}',1)");
         $partidos[] = [$resultado[$equipoLocal][$x],$resultado[$equipoVisita][$x]];
-        echo $resultado[$equipoLocal][$x]. "VS". $resultado[$equipoVisita][$x]. "<br>";
-    }
-    echo "<br>";
+     }
     $temporal = $equipos[1];
     for($i = 1;$i<$num_euipos-1;$i++){
         $equipos[$i] =$equipos[$i+1];
@@ -26,16 +29,9 @@ for($x=0;$x<$num_semanas;$x++){
     $equipos[$num_euipos-1] = $temporal;
 }
 $contador = $mitad_equipos+1;
-for($x=0;$x<count($partidos);$x++){
-    if($contador < $mitad_equipos-1){
-        echo $partidos[$x][1]. "VS". $partidos[$x][0]. "<br>";
-        $contador++;
-    }else{
-        $contador = 0;
-        echo "<br>";
-        echo "JORNADA".($num_euipos++);
-        echo "<br>";
-        echo $partidos[$x][1]. "VS". $partidos[$x][0]. "<br>";
-    }
+for($x=0;$x<count($partidos);$x++) {
+    echo $partidos[$x][1] . "VS" . $partidos[$x][0] . "<br>";
+    $guardar = $pdo->exec("INSERT INTO fixture(fecha, equipo_local, equipo_visitante, Id_temporada) "
+        . " VALUES ('2018-05-12','{$partidos[$x][1]}','{$partidos[$x][0]}',1)");
 }
 ?>
