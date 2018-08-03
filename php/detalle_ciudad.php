@@ -10,7 +10,7 @@ if (isset($_GET['operacion']) && $_GET['operacion'] == 'eliminar'){
     $regresion = $pdo->exec("ALTER TABLE ciudad AUTO_INCREMENT = 1");
     echo $filas_afectadas;
     $mensaje = "Se elimino la Ciudad";
-    header("Location:detalle.php");
+    header("Location:detalle_ciudad.php");
     exit;
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 require_once '../conexion.php';
-$ciudades = $pdo->query("Select * "
-    ." from ciudad", PDO::FETCH_ASSOC);
+$temporadas = $pdo->query("Select * "
+    ." from temporada", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,33 +32,33 @@ $ciudades = $pdo->query("Select * "
             <li><a href="#"> Item de Navegación 4 </a></li>
             <li><a href="#"> Item de Navegación 5 </a></li>
             <li><a href="#"> Item de Navegación 6 </a></li>
-            <li><a href="#"> Item de Navegación 7 </a></li>
+            <li><a href="temporada.php"> Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
 
         </ul>
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Ciudades</h1>
-            <input type="submit" value="Nueva Ciudad" onclick=" location = 'NuevaCiudad.php'">
+            <h1>Tabla de Temporada</h1>
+            <input type="submit" value="Nueva Temporada" onclick=" location = 'NuevaTemporada.php'">
         </div>
         <table border="1">
-            <thead>
-            <tr>
-                <th>Codigo de la Ciudad</th>
-                <th>Nombre de la Ciudad</th>
-                <th>Eliminar</th>
-            </tr>
-            </thead>
             <tbody>
+                <div class="temporadas">
             <!----- La infotmacion ----->
-            <?php foreach ($ciudades as $ciudad): ?>
-                <tr>
-                    <td><?php echo $ciudad['id_ciudad']?></td>
-                    <td><?php echo $ciudad['nom_ciudad']?></td>
-                    <td><input type="submit" value="Eliminar" onclick=" location = 'detalle_ciudad.php?codigo=<?php echo $ciudad['id_ciudad']?> &operacion=eliminar'"></td>
-                </tr>
+            <?php foreach ($temporadas as $temporada): ?>
+
+                <div class="contentemporada">
+                    <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_temporada.php?codigo=<?php echo $temporada['id_temporada']?> &operacion=eliminar'"></div>
+                    <img src="" alt="">
+                    <div class="fechas"><?php echo "Inicio " . $temporada['fecha_inicio'] . " - " ."Final ".$temporada['fecha_final']?></div>
+                </div>
+                <?php if (count($temporada) % 4 === 0): ?>
+                    <?php echo "<br>" ?>
+                <?php endif; ?>
+
             <?php endforeach;?>
+                </div>
             </tbody>
         </table>
     </section>

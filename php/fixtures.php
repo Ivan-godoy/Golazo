@@ -1,12 +1,14 @@
 <?php
-$equipos = ["olimpia", "motagua","vida","madrid","psg","Juventus"];
+$equipos = ["olimpia", "motagua","vida","madrid","psg","Juventus","Leumin", "Kebel"];
 $partidos = [];
 $num_euipos = count($equipos);
 $num_semanas = count($equipos)-1;
 $mitad_equipos = ($num_euipos-1)/2;
 
+shuffle($partidos);
+
 for($x=0;$x<$num_semanas;$x++){
-    echo "JORNADA".($x+1);
+    echo "JORNADA ".($x+1);
     echo "<br>";
     for($i=0;$i<$mitad_equipos;$i++){
         $equipoLocal = $equipos[$mitad_equipos - $i];
