@@ -198,19 +198,22 @@ table tbody{
 .temporadas{
     width: 800px;
     height: auto;
-    margin: 5%;
+    margin: 2%;
     display: inline-block;
+    font-size: 125%;
 }
 .contentemporada{
     width: 800px;
-    height: 100px;
+    height: auto;
     background-color: #142450;
     color: white;
     margin: 2%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .temporadas .contentemporada input[type="submit"]{
-    margin: 0;
-
+    margin: 2% 2% 0 90%;
+    border: 1px solid white;
 }
 
 .botones{

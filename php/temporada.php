@@ -50,8 +50,8 @@ $temporadas = $pdo->query("Select * "
 
                 <div class="contentemporada">
                     <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_temporada.php?codigo=<?php echo $temporada['id_temporada']?> &operacion=eliminar'"></div>
-                    <img src="" alt="">
-                    <div class="fechas"><?php echo "Inicio " . $temporada['fecha_inicio'] . " - " ."Final ".$temporada['fecha_final']?></div>
+                    <img src="../img/temporada.png" alt="" width="50%" height="50%">
+                    <div class="fechas"><?php echo "Inicio " . $temporada['fecha_inicio'] . " / " ."Final ".$temporada['fecha_final']?></div>
                 </div>
                 <?php if (count($temporada) % 4 === 0): ?>
                     <?php echo "<br>" ?>
