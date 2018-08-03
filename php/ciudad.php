@@ -32,7 +32,7 @@ $ciudades = $pdo->query("Select * "
             <li><a href="#"> Item de Navegación 4 </a></li>
             <li><a href="#"> Item de Navegación 5 </a></li>
             <li><a href="#"> Item de Navegación 6 </a></li>
-            <li><a href="#"> Item de Navegación 7 </a></li>
+            <li><a href="temporada.php"> Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
 
         </ul>
