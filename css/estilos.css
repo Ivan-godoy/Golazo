@@ -180,8 +180,14 @@ table input[type="submit"]{
     margin: 0;
 }
 input[type="date"]{
-    width: 200px;
-    height: 40px;
+    height: 30px;
+    width: 300px;
+    border: none;
+    border-bottom: #142450 solid 1px;
+}
+select{
+    height: 30px;
+    width: 300px;
     border: none;
     border-bottom: #142450 solid 1px;
 }
@@ -194,7 +200,9 @@ table tbody{
 }
 #formulario{
     margin: 70px auto auto auto;
+    justify-content: flex-start;
 }
+
 .temporadas{
     width: 800px;
     height: auto;

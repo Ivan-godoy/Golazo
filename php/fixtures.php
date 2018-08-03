@@ -18,8 +18,8 @@ for($x=0;$x<$num_semanas;$x++){
         $equipoVisita = $equipos[$mitad_equipos + $i + 1];
         $resultado[$equipoLocal][$x] = $equipoVisita;
         $resultado[$equipoVisita][$x] = $equipoLocal;
-        $guardar = $pdo->exec("INSERT INTO fixture(fecha, equipo_local, equipo_visitante, Id_temporada) "
-            ." VALUES ('2018-05-12','{$resultado[$equipoLocal][$x]}','{$resultado[$equipoVisita][$x]}',1)");
+        $guardar = $pdo->exec("INSERT INTO fixture(equipo_local, equipo_visitante, Id_temporada) "
+            ." VALUES ('{$resultado[$equipoLocal][$x]}','{$resultado[$equipoVisita][$x]}',1)");
         $partidos[] = [$resultado[$equipoLocal][$x],$resultado[$equipoVisita][$x]];
      }
     $temporal = $equipos[1];
@@ -30,8 +30,7 @@ for($x=0;$x<$num_semanas;$x++){
 }
 $contador = $mitad_equipos+1;
 for($x=0;$x<count($partidos);$x++) {
-    echo $partidos[$x][1] . "VS" . $partidos[$x][0] . "<br>";
-    $guardar = $pdo->exec("INSERT INTO fixture(fecha, equipo_local, equipo_visitante, Id_temporada) "
-        . " VALUES ('2018-05-12','{$partidos[$x][1]}','{$partidos[$x][0]}',1)");
+    $guardar = $pdo->exec("INSERT INTO fixture(equipo_local, equipo_visitante, Id_temporada) "
+        . " VALUES ('{$partidos[$x][1]}','{$partidos[$x][0]}',1)");
 }
 ?>
