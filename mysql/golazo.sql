@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: golazo
+-- Host: localhost    Database: golazo
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.32-MariaDB
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,21 +23,15 @@ DROP TABLE IF EXISTS `amonestaciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `amonestaciones` (
-  `id_amonestaciones` int(11) NOT NULL AUTO_INCREMENT,
-  `id_Partido` int(11) NOT NULL,
-  `id_fix` int(11) NOT NULL,
-  `id_ficha_jug` int(11) NOT NULL,
-  `id_amonestacion` int(11) NOT NULL,
-  PRIMARY KEY (`id_amonestaciones`),
-  KEY `amon_a_partidoJugado_idx` (`id_Partido`),
-  KEY `amon_a_fixture_idx` (`id_fix`),
-  KEY `amon_a_fichaJu_idx` (`id_ficha_jug`),
-  KEY `amon_a_tipoamon_idx` (`id_amonestacion`),
-  CONSTRAINT `amon_a_fichaJu` FOREIGN KEY (`id_ficha_jug`) REFERENCES `ficha_jugador` (`id_ficha`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `amon_a_fixture` FOREIGN KEY (`id_fix`) REFERENCES `fixture` (`id_fixture`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `amon_a_partidoJugado` FOREIGN KEY (`id_Partido`) REFERENCES `partido_jugado` (`id_partido_jugado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `amon_a_tipoamon` FOREIGN KEY (`id_amonestacion`) REFERENCES `tipo_amonestacion` (`id_tipo_amonestacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='			';
+  `id_partidos_jug` int(11) NOT NULL,
+  `id_jugadore_fk` int(11) NOT NULL,
+  `id_equipos_fk` int(11) NOT NULL,
+  `id_amonestaciones` int(11) NOT NULL,
+  KEY `amonestaciones_tipoamonestaciones_idx` (`id_amonestaciones`),
+  KEY `amonestacion_encueuntro_fk_idx` (`id_partidos_jug`,`id_jugadore_fk`,`id_equipos_fk`),
+  CONSTRAINT `amonestacion_encueuntro_fk` FOREIGN KEY (`id_partidos_jug`, `id_jugadore_fk`, `id_equipos_fk`) REFERENCES `encuentro_jugador` (`id_partidos_jugados`, `id_Jugadores`, `id_Equipos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `amonestaciones_tipoamonestaciones` FOREIGN KEY (`id_amonestaciones`) REFERENCES `tipo_amonestacion` (`id_tipo_amonestacion`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,8 +93,34 @@ CREATE TABLE `ciudad` (
 
 LOCK TABLES `ciudad` WRITE;
 /*!40000 ALTER TABLE `ciudad` DISABLE KEYS */;
-INSERT INTO `ciudad` VALUES (1,'La Ceiba'),(2,'San Pedro Sula');
 /*!40000 ALTER TABLE `ciudad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `encuentro_jugador`
+--
+
+DROP TABLE IF EXISTS `encuentro_jugador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `encuentro_jugador` (
+  `id_partidos_jugados` int(11) NOT NULL,
+  `id_Jugadores` int(11) NOT NULL,
+  `id_Equipos` int(11) NOT NULL,
+  PRIMARY KEY (`id_partidos_jugados`,`id_Jugadores`,`id_Equipos`),
+  KEY `encuentro_equipo_jugador_fk_idx` (`id_Equipos`,`id_Jugadores`),
+  CONSTRAINT `encuentro_equipo_jugador_fk` FOREIGN KEY (`id_Equipos`, `id_Jugadores`) REFERENCES `equipo_jugador` (`id_equipos`, `id_jugadores`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `encuentro_jugador_fk` FOREIGN KEY (`id_partidos_jugados`) REFERENCES `partido_jugado` (`id_partido_jugado`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `encuentro_jugador`
+--
+
+LOCK TABLES `encuentro_jugador` WRITE;
+/*!40000 ALTER TABLE `encuentro_jugador` DISABLE KEYS */;
+/*!40000 ALTER TABLE `encuentro_jugador` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -145,11 +165,12 @@ CREATE TABLE `equipo` (
   `nom_equipo` varchar(45) NOT NULL,
   `fecha_fundacion` date NOT NULL,
   `esquema_habitual` varchar(45) NOT NULL,
+  `logo` varchar(45) DEFAULT NULL,
   `id_ciudad` int(11) NOT NULL,
   PRIMARY KEY (`id_equipo`),
   KEY `equipo_a_ciudad_idx` (`id_ciudad`),
   CONSTRAINT `equipo_a_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,6 +180,32 @@ CREATE TABLE `equipo` (
 LOCK TABLES `equipo` WRITE;
 /*!40000 ALTER TABLE `equipo` DISABLE KEYS */;
 /*!40000 ALTER TABLE `equipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `equipo_jugador`
+--
+
+DROP TABLE IF EXISTS `equipo_jugador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `equipo_jugador` (
+  `id_equipos` int(11) NOT NULL,
+  `id_jugadores` int(11) NOT NULL,
+  PRIMARY KEY (`id_equipos`,`id_jugadores`),
+  KEY `jugador_jugador_fk_idx` (`id_jugadores`),
+  CONSTRAINT `equipo_jugador_fk` FOREIGN KEY (`id_equipos`) REFERENCES `equipo` (`id_equipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `jugador_jugador_fk` FOREIGN KEY (`id_jugadores`) REFERENCES `jugador` (`id_jugador`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `equipo_jugador`
+--
+
+LOCK TABLES `equipo_jugador` WRITE;
+/*!40000 ALTER TABLE `equipo_jugador` DISABLE KEYS */;
+/*!40000 ALTER TABLE `equipo_jugador` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -189,34 +236,6 @@ LOCK TABLES `estadios` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ficha_jugador`
---
-
-DROP TABLE IF EXISTS `ficha_jugador`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ficha_jugador` (
-  `id_ficha` int(11) NOT NULL AUTO_INCREMENT,
-  `id_equipo` int(11) NOT NULL,
-  `id_jugador` int(11) NOT NULL,
-  PRIMARY KEY (`id_ficha`),
-  KEY `id-equipos_idx` (`id_equipo`),
-  KEY `ficha_a_jugador_idx` (`id_jugador`),
-  CONSTRAINT `ficha_a_equipo` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id_equipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ficha_a_jugador` FOREIGN KEY (`id_jugador`) REFERENCES `jugador` (`id_jugador`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ficha_jugador`
---
-
-LOCK TABLES `ficha_jugador` WRITE;
-/*!40000 ALTER TABLE `ficha_jugador` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ficha_jugador` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `fixture`
 --
 
@@ -225,7 +244,7 @@ DROP TABLE IF EXISTS `fixture`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fixture` (
   `id_fixture` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` date NOT NULL,
+  `fecha` date DEFAULT NULL,
   `equipo_local` int(11) NOT NULL,
   `equipo_visitante` int(11) NOT NULL,
   `id_temporada` int(11) NOT NULL,
@@ -256,18 +275,12 @@ DROP TABLE IF EXISTS `goles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `goles` (
-  `id_goles` int(11) NOT NULL AUTO_INCREMENT,
-  `id_partido` int(11) NOT NULL,
-  `id_fixture` int(11) NOT NULL,
-  `id_ficha_jugador` int(11) NOT NULL,
-  PRIMARY KEY (`id_goles`),
-  KEY `goles_a_partidoJugado_idx` (`id_partido`),
-  KEY `goles_a_fix_idx` (`id_fixture`),
-  KEY `goles_a_fichaJug_idx` (`id_ficha_jugador`),
-  CONSTRAINT `goles_a_fichaJug` FOREIGN KEY (`id_ficha_jugador`) REFERENCES `ficha_jugador` (`id_ficha`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `goles_a_fix` FOREIGN KEY (`id_fixture`) REFERENCES `fixture` (`id_fixture`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `goles_a_partidoJugado` FOREIGN KEY (`id_partido`) REFERENCES `partido_jugado` (`id_partido_jugado`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_partido_jugados_fk` int(11) NOT NULL,
+  `id_jugadores_fk` int(11) NOT NULL,
+  `id_equipos_fk` int(11) NOT NULL,
+  KEY `goles_encuentrojugador_fk_idx` (`id_partido_jugados_fk`,`id_jugadores_fk`,`id_equipos_fk`),
+  CONSTRAINT `goles_encuentrojugador_fk` FOREIGN KEY (`id_partido_jugados_fk`, `id_jugadores_fk`, `id_equipos_fk`) REFERENCES `encuentro_jugador` (`id_partidos_jugados`, `id_Jugadores`, `id_Equipos`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -433,7 +446,7 @@ CREATE TABLE `temporada` (
   `fecha_inicio` date NOT NULL,
   `fecha_final` date NOT NULL,
   PRIMARY KEY (`id_temporada`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -493,7 +506,6 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'root','root','root','root','root');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -506,4 +518,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-01 22:27:38
+-- Dump completed on 2018-08-04  0:15:53

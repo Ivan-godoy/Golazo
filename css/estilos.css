@@ -128,13 +128,20 @@ body{
     font-weight: bold;
 }
 input[type="submit"]{
-    margin-left: 730px;
+     margin-left: 730px;
+     height: 40px;
+     background-color: #142450;
+     color: white;
+     border: none;
+     border-radius: 5px;
+ }
+input[type="file"]{
+    background: none;
     height: 40px;
     background-color: #142450;
     color: white;
     border: none;
     border-radius: 5px;
-
 }
 input[type="reset"]{
     margin-left: 40px;
@@ -161,6 +168,10 @@ input[type="text"]:focus{
     background-color: #e6ebf7;
 }
 input[type="submit"]:hover{
+    background-color: #F57C21;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+input[type="file"]:hover{
     background-color: #F57C21;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -227,4 +238,23 @@ table tbody{
 .botones{
     display: inline-flex;
 }
-
+.equipos{
+    width: 800px;
+    height: auto;
+    margin: auto auto auto 25%;
+    display: inline-block;
+    font-size: 125%;
+}
+.equipos .contequipo input[type="submit"]{
+    margin: 2% 2% 0 80%;
+    border: 1px solid white;
+}
+.contequipo{
+    width: 400px;
+    height: auto;
+    background-color: #142450;
+    color: white;
+    margin: 2%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

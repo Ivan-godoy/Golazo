@@ -42,8 +42,7 @@ $temporadas = $pdo->query("Select * "
             <h1>Tabla de Temporada</h1>
             <input type="submit" value="Nueva Temporada" onclick=" location = 'NuevaTemporada.php'">
         </div>
-        <table border="1">
-            <tbody>
+
                 <div class="temporadas">
             <!----- La infotmacion ----->
             <?php foreach ($temporadas as $temporada): ?>
@@ -53,14 +52,10 @@ $temporadas = $pdo->query("Select * "
                     <img src="../img/temporada.png" alt="" width="50%" height="50%">
                     <div class="fechas"><?php echo "Inicio " . $temporada['fecha_inicio'] . " / " ."Final ".$temporada['fecha_final']?></div>
                 </div>
-                <?php if (count($temporada) % 4 === 0): ?>
-                    <?php echo "<br>" ?>
-                <?php endif; ?>
 
             <?php endforeach;?>
                 </div>
-            </tbody>
-        </table>
+
     </section>
 
 </section>

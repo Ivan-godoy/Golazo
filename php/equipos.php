@@ -1,6 +1,6 @@
 <?php
 require_once '../conexion.php';
-$temporadas = $pdo->query("Select * "
+$equipo = $pdo->query("Select * "
     ." from equipo", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -39,28 +39,23 @@ $temporadas = $pdo->query("Select * "
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Temporada</h1>
+            <h1>Equipos</h1>
             <input type="submit" value="Nueva Equipo" onclick=" location = 'NuevoEquipo.php'">
         </div>
-        <table border="1">
-            <tbody>
-            <div class="temporadas">
-                <!----- La infotmacion ----->
-                <?php foreach ($temporadas as $temporada): ?>
 
-                    <div class="contentemporada">
-                        <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_temporada.php?codigo=<?php echo $temporada['id_temporada']?> &operacion=eliminar'"></div>
-                        <img src="../img/temporada.png" alt="" width="50%" height="50%">
-                        <div class="fechas"><?php echo "Inicio " . $temporada['fecha_inicio'] . " / " ."Final ".$temporada['fecha_final']?></div>
+            <div class="equipos">
+                <!----- La infotmacion ----->
+                <?php foreach ($equipo as $equi): ?>
+
+                    <div class="contequipo">
+                        <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_equipo.php?codigo=<?php echo $equi['id_equipo']?> &operacion=eliminar'"></div>
+                        <img src="<?php echo "img_equipo/". $equi['logo']?>" alt="" width="25%" height="25%">
+                        <div class="fechas"><?php echo "Nombre del Equipo: " . $equi['nom_equipo'] . "<br>" ."Fecha de Fundación: ".$equi['fecha_fundacion'] . "<br>" ."Esquema Habitual: " .$equi['esquema_habitual']?></div>
                     </div>
-                    <?php if (count($temporada) % 4 === 0): ?>
-                        <?php echo "<br>" ?>
-                    <?php endif; ?>
 
                 <?php endforeach;?>
             </div>
-            </tbody>
-        </table>
+
     </section>
 
 </section>

@@ -3,25 +3,24 @@ require_once '../conexion.php';
 $mensaje=[];
 $ciudades = $pdo->query("Select * "
     ." from ciudad", PDO::FETCH_ASSOC);
-if(!empty($_POST)){//Procesar el formulario
+if(!empty($_POST)) {//Procesar el formulario
     $nom_equipo = $_POST['nom_equipo'];
     $fecha_fundacion = $_POST['fecha_fundacion'];
     $esquema = $_POST['esquema'];
-    $archivos = $_FILES['imagen'];
+    $logo = $_FILES['logo'];
     define('TAM_MAX', 1048576);
-    $partes = explode('.', $archivos['name']);
+    $partes = explode('.', $logo['name']);
     $extension = $partes[count($partes)-1];
     $nombre_generado = time() . '_' .mt_rand(1000, 2000). '.' . $extension;
-
-    if ($archivos['error'] === 0){
-        $resultado =  move_uploaded_file($archivos['tmp_name'], 'img_equipo/'.$nombre_generado);
+    if ($logo['error'] === 0){
+        $resultado =  move_uploaded_file($logo['tmp_name'], 'img_equipo/'.$nombre_generado);
     }
     $id_ciudad = $_POST['ciudades'];
     if (empty($nom_equipo_) && empty($fecha_fundacion) && empty($esquema) && empty($id_ciudad)){
         $mensaje[] = "Solo puede dejar libre la imagen a Subir!";
     }
     if(empty($mensaje)){
-        $filas_afectadas = $pdo->exec("INSERT INTO equipo (nom_equipo, fecha_fundacion, esquema_habitual, logo, id_ciudad) VALUES ('{$nom_equipo}', '{$fecha_fundacion}', '{$esquema}', '{$nombre_generado}', 1)");
+        $filas_afectadas = $pdo->exec("INSERT INTO equipo (nom_equipo, fecha_fundacion, esquema_habitual, logo, id_ciudad) VALUES ('{$nom_equipo}', '{$fecha_fundacion}', '{$esquema}' ,'{$nombre_generado}', '{$id_ciudad}')");
         if ($filas_afectadas>= 1){
             $mensaje[]= "El equipo Fue Creado";
         }else{
@@ -68,7 +67,7 @@ if(!empty($_POST)){//Procesar el formulario
             <h1>Creacion de Equipo</h1>
             <input type="submit" value="Volver" onclick=" location = 'equipos.php'">
         </div>
-        <form action="" method="post" id="formulario">
+        <form action="" method="post" id="formulario" enctype="multipart/form-data">
             <div class="seccion">
                 <label for="nom_equipo">Nombre del Equipo</label>
                 <input type="text" name="nom_equipo" id="nom_equipo">
@@ -85,15 +84,15 @@ if(!empty($_POST)){//Procesar el formulario
             </div>
             <br>
             <div class="seccion">
-                <label for="imagen"> Logo del Equipo</label>
-                <input type="file" name="imagen" id="imagen" accept="image/*" >
+                <label for="logo"> Logo del Equipo</label>
+                <input type="file" name="logo" id="logo" accept="image/*" value="">
             </div>
             <br>
             <div class="seccion">
-                <label for="ciudades"> Ciudad de Equipo<?php echo var_dump($archivos)?></label>
+                <label for="ciudades"> Ciudad de Equipo</label>
                 <select name="ciudades" id="ciudades">
                     <?php foreach ($ciudades as $ciudad):?>
-                        <option value="<?php $ciudad['id_ciudad']?>"><?php echo $ciudad['nom_ciudad']?></option>
+                        <option value="<?php echo $ciudad['id_ciudad']?>"><?php echo $ciudad['nom_ciudad']?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -102,6 +101,7 @@ if(!empty($_POST)){//Procesar el formulario
                 <input type="submit" value="Registrar Equipo">
                 <input type="reset" value="Limpiar">
             </div>
+            <br>
             <?php
             if (!empty($mensaje)):
                 echo '<ul>';
