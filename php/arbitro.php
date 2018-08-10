@@ -25,7 +25,6 @@ $arbitros = $pdo->query("Select id_arbitro, nom_arbitro, fecha_nacimeinto_arbitr
                 <ul>
                     <li><a href="arbitro.php">Árbitros</a></li>
                     <li><a href="entrenador.php"> Entrenador </a></li>
-                    <li><a href="jugador.php"> Jugador </a></li>
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>

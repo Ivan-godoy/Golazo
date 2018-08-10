@@ -1,7 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: igodo
- * Date: 7/8/2018
- * Time: 11:21
- */
+require_once '../conexion.php';
+if (!isset($_GET['codigo'])) {
+    header("Location: equipos.php");
+    exit;
+}
+$idequipo = $_GET["codigo"];
+if (isset($_GET['operacion']) && $_GET['operacion'] == 'eliminar'){
+    $filas_afectadas = $pdo->exec("DELETE FROM equipo WHERE id_equipo = '{$idequipo}'");
+    $regresion = $pdo->exec("ALTER TABLE equipo AUTO_INCREMENT = 1");
+    echo $filas_afectadas;
+    $mensaje = "Se Elimino el Equipo";
+    header("Location:detalle_equipo.php");
+    exit;
+}
+?>

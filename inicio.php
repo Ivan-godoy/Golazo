@@ -23,7 +23,6 @@ require_once 'conexion.php';
                 <ul>
                     <li><a href="php/arbitro.php">Árbitros</a></li>
                     <li><a href="php/entrenador.php"> Entrenador </a></li>
-                    <li><a href="php/jugador.php"> Jugador </a></li>
                 </ul>
             </li>
             <li><a href="php/ciudad.php"> Gestión de Ciudades </a></li>

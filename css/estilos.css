@@ -135,14 +135,7 @@ input[type="submit"]{
      border: none;
      border-radius: 5px;
  }
-input[type="file"]{
-    background: none;
-    height: 40px;
-    background-color: #142450;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
+
 input[type="reset"]{
     margin-left: 40px;
     height: 40px;
@@ -171,10 +164,7 @@ input[type="submit"]:hover{
     background-color: #F57C21;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-input[type="file"]:hover{
-    background-color: #F57C21;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+
 input[type="reset"]:hover{
     background-color: #F57C21;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -196,6 +186,12 @@ input[type="date"]{
     border: none;
     border-bottom: #142450 solid 1px;
 }
+input[type="number"]{
+    height: 30px;
+    width: 200px;
+    border: none;
+    border-bottom: #142450 solid 1px;
+}
 select{
     height: 30px;
     width: 300px;
@@ -211,7 +207,7 @@ table tbody{
 }
 #formulario{
     margin: 70px auto auto auto;
-    justify-content: flex-start;
+    width: 80%;
 }
 
 .temporadas{
@@ -239,22 +235,28 @@ table tbody{
     display: inline-flex;
 }
 .equipos{
-    width: 800px;
+    max-width: 960px;
+    width: 90%;
     height: auto;
-    margin: auto auto auto 25%;
-    display: inline-block;
     font-size: 125%;
+    margin: auto;
+    margin-left: 15%;
+    margin-top: 5%;
+    display: flex;
+    flex-flow: row wrap;
 }
 .equipos .contequipo input[type="submit"]{
-    margin: 2% 2% 0 80%;
+    margin: 2% 2% 0 70%;
     border: 1px solid white;
 }
+
+
 .contequipo{
-    width: 400px;
+    width: 300px;
     height: auto;
-    background-color: #142450;
-    color: white;
-    margin: 2%;
+    background-color: transparent;
+    color: black;
+    margin: 5%;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
