@@ -29,8 +29,6 @@ $equipo = $pdo->query("Select * "
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
             <li><a href="equipos.php"> Gestión de Equipos </a></li>
-            <li><a href="#"> Item de Navegación 5 </a></li>
-            <li><a href="#"> Item de Navegación 6 </a></li>
             <li><a href="temporada.php"> Gestión de Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
 
@@ -45,7 +43,6 @@ $equipo = $pdo->query("Select * "
             <div class="equipos">
                 <!----- La infotmacion ----->
                 <?php foreach ($equipo as $equi): ?>
-
                     <div class="contequipo">
                         <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_equipo.php?codigo=<?php echo $equi['id_equipo']?> &operacion=eliminar'"></div>
                         <img src="<?php echo "img_equipo/". $equi['logo']?>" alt="" width="60%" height="70%" style="margin-top: -100px" onclick="location='jugadores.php?codigo=<?php echo $equi['id_equipo']?>'">

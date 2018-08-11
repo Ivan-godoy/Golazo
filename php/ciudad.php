@@ -28,10 +28,8 @@ $ciudades = $pdo->query("Select * "
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
-            <li><a href="#"> Item de Navegación 4 </a></li>
-            <li><a href="#"> Item de Navegación 5 </a></li>
-            <li><a href="#"> Item de Navegación 6 </a></li>
-            <li><a href="temporada.php"> Temporada </a></li>
+            <li><a href="equipos.php"> Gestión de Equipos </a></li>
+            <li><a href="temporada.php"> Gestión de Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
 
         </ul>

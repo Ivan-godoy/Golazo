@@ -10,7 +10,7 @@ $equipo = $pdo->query("Select * "
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Jugadores</title>
+    <title>Golazo-Jugadores-Por-Equipos</title>
 </head>
 <body>
 <header class="encabezado">
@@ -29,8 +29,6 @@ $equipo = $pdo->query("Select * "
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
             <li><a href="equipos.php"> Gestión de Equipos </a></li>
-            <li><a href="#"> Item de Navegación 5 </a></li>
-            <li><a href="#"> Item de Navegación 6 </a></li>
             <li><a href="temporada.php"> Gestión de Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
 

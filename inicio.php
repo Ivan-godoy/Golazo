@@ -27,11 +27,8 @@ require_once 'conexion.php';
             </li>
             <li><a href="php/ciudad.php"> Gestión de Ciudades </a></li>
             <li><a href="php/equipos.php"> Gestión de Equipos </a></li>
-            <li><a href="#"> Item de Navegación 5 </a></li>
-            <li><a href="#"> Item de Navegación 6 </a></li>
             <li><a href="php/temporada.php"> Gestión de Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
-
         </ul>
     </nav>
     <section class="contenedor">
