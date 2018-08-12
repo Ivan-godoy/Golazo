@@ -1,32 +1,42 @@
 <?php
 require_once '../conexion.php';
+if (!isset($_GET['codigo'])) {
+    header("Location: NuevoJugador.php");
+    exit;
+}
+$idequipo = $_GET["codigo"];
 $mensaje=[];
-$ciudades = $pdo->query("Select * "
-    ." from ciudad", PDO::FETCH_ASSOC);
+$posicion = $pdo->query("Select * "
+    ." from pos_jugador", PDO::FETCH_ASSOC);
 if(!empty($_POST)) {//Procesar el formulario
-    $nom_equipo = $_POST['nom_equipo'];
-    $fecha_fundacion = $_POST['fecha_fundacion'];
-    $esquema = $_POST['esquema'];
-    $logo = $_FILES['logo'];
+    $nomb_jugador = $_POST['nomb_equipo'];
+    $lugar_nacimiento_jugador = $_POST['lugar_nacimiento_jugador'];
+    $nacionalidad_jugador = $_POST['nacionalidad_jugador'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $peso_jugador = $_POST['peso_jugador'];
+    $estatura_jugador = $_POST['estatura_jugador'];
+    $foto_jugador = $_FILES['foto_jugador'];
     define('TAM_MAX', 1048576);
-    $partes = explode('.', $logo['name']);
+    $partes = explode('.', $foto_jugador['name']);
     $extension = $partes[count($partes)-1];
     $nombre_generado = time() . '_' .mt_rand(1000, 2000). '.' . $extension;
-    if ($logo['error'] === 0){
-        $resultado =  move_uploaded_file($logo['tmp_name'], 'img_equipo/'.$nombre_generado);
+    if ($foto_jugador['error'] === 0){
+        $resultado =  move_uploaded_file($foto_jugador['tmp_name'], 'img_jugadores/'.$nombre_generado);
     }
-    $id_ciudad = $_POST['ciudades'];
-    if (empty($nom_equipo_) && empty($fecha_fundacion) && empty($esquema) && empty($id_ciudad)){
-        $mensaje[] = "Solo puede dejar libre la imagen a Subir!";
+    $id_posicion_jugador = $_POST['id_posicion_jugador'];
+    if (empty($nomb_jugador) && empty($lugar_nacimiento_jugador) && empty($nacionalidad_jugador) && empty($fecha_nacimiento) && empty($peso_jugador) && empty($estatura_jugador) && empty($id_posicion_jugador)){
+        $mensaje[] = "Solo puede dejar libre la Foto del jugador para Subir!";
     }
     if(empty($mensaje)){
-        $filas_afectadas = $pdo->exec("INSERT INTO equipo (nom_equipo, fecha_fundacion, esquema_habitual, logo, id_ciudad) VALUES ('{$nom_equipo}', '{$fecha_fundacion}', '{$esquema}' ,'{$nombre_generado}', '{$id_ciudad}')");
+        $filas_afectadas = $pdo->exec("INSERT INTO jugador (nomb_jugador, lugar_nacimiento_jugador, nacionalidad_jugador, fecha_nacimiento, peso_jugador, estatura_jugador, foto_jugador, id_posicion_jugador) VALUES ('{$nomb_jugador}', '{$lugar_nacimiento_jugador}', '{$nacionalidad_jugador}' ,'{$fecha_nacimiento}', '{$peso_jugador}', '{$estatura_jugador}', '{$nombre_generado}', '{$id_posicion_jugador}')");
+        $idjugador = $pdo->exec("select * FROM golazo.jugador order by id_jugador desc limit 1");
         if ($filas_afectadas>= 1){
-            $mensaje[]= "El equipo Fue Creado";
+            $mensaje[]= "El Jugador Fue Creado".$idjugador;
         }else{
-            $mensaje[]= "El equipo no fue Creado";
+            $mensaje[]= "El Jugador no fue Creado";
         }
     }
+   $equipo_jugador = $pdo->exec("INSERT INTO equipo_jugador (id_equipos, id_jugadores, estado) VALUES ('{$idequipo}', , 1)");
 }
 ?>
 <!DOCTYPE html>
@@ -67,17 +77,17 @@ if(!empty($_POST)) {//Procesar el formulario
         <form action="" method="post" id="formulario" enctype="multipart/form-data">
             <div class="seccion">
                 <label for="nomb_jugador">Nombre Completo del Jugador</label>
-                <input type="text" name="nom_equipo" id="nomb_jugador">
+                <input type="text" name="nomb_equipo" id="nomb_jugador">
             </div>
             <br>
             <div class="seccion">
-                <label for="nacimiento_jugador">Lugar de nacimiento del Jugador</label>
-                <input type="text" name="nom_equipo" id="nacimiento_jugador">
+                <label for="lugar_nacimiento_jugador">Lugar de nacimiento del Jugador</label>
+                <input type="text" name="lugar_nacimiento_jugador" id="lugar_nacimiento_jugador">
             </div>
             <br>
             <div class="seccion">
-                <label for="nacionalidad">Nacionalidad del Jugador</label>
-                <select name="OS" id="nacionalidad">
+                <label for="nacionalidad_jugador">Nacionalidad del Jugador</label>
+                <select name="nacionalidad_jugador" id="nacionalidad_jugador">
                     <option value="NAMIBIANA">NAMIBIANA</option>
                     <option value="ANGOLESA">ANGOLESA</option>
                     <option value="ARGELIANA">ARGELIANA</option>
@@ -255,7 +265,7 @@ if(!empty($_POST)) {//Procesar el formulario
             <br>
             <div class="seccion">
                 <label for="fecha_nacimineto">Fecha de Nacimiento</label>
-                <input type="date" name="fecha_fundacion" id="fecha_nacimineto">
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimineto">
             </div>
             <br>
             <div class="seccion">
@@ -265,26 +275,26 @@ if(!empty($_POST)) {//Procesar el formulario
             </div>
             <br>
             <div class="seccion">
-                <label for="estatura_jugador">Peso del Jugador</label>
+                <label for="estatura_jugador">Estatura del Jugador</label>
                 <input type="number" step="0.01" name="estatura_jugador" id="estatura_jugador" placeholder="165.5">
                 <label for="estatura_jugador">m</label>
             </div>
             <div class="seccion" style="margin-top: 20px">
-                <label for="foto"> Foto del jugador</label>
-                <input type="file" name="foto" id="foto" accept="image/*" value="">
+                <label for="foto_jugador"> Foto del jugador</label>
+                <input type="file" name="foto_jugador" id="foto_jugador" accept="image/*" value="">
             </div>
             <br>
             <div class="seccion">
-                <label for="ciudades"> Ciudad de Equipo</label>
-                <select name="ciudades" id="ciudades">
-                    <?php foreach ($ciudades as $ciudad):?>
-                        <option value="<?php echo $ciudad['id_ciudad']?>"><?php echo $ciudad['nom_ciudad']?></option>
+                <label for="id_posicion_jugador"> Posicion en la que Juega</label>
+                <select name="id_posicion_jugador" id="id_posicion_jugador">
+                    <?php foreach ($posicion as $pos):?>
+                        <option value="<?php echo $pos['id_pos_jugador']?>"><?php echo $pos['descripcion']?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <br>
             <div class="botones">
-                <input type="submit" value="Registrar Equipo">
+                <input type="submit" value="Registrar Jugador">
                 <input type="reset" value="Limpiar">
             </div>
             <br>

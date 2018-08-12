@@ -6,7 +6,7 @@ if (!isset($_GET['codigo'])) {
 }
 $idtemporada = $_GET["codigo"];
 $fixture = $pdo->query("Select * "
-    ." from fixture WHERE id_temporada = $idtemporada", PDO::FETCH_ASSOC);
+    ." from encuentros WHERE id_temporada = $idtemporada", PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ $fixture = $pdo->query("Select * "
     <section class="contenedor">
         <div class="general">
             <h1>Fixture</h1>
-            <input type="submit" value="Crear Fixture" onclick=" location = 'fixtures.php?codigo=<?php echo $idtemporada?>'">
+            <input type="submit" value="Crear Fixture" onclick=" location = 'fixtures.php?codigo=<?php echo $idtemporada?> &operacion=crear'">
             <input type="submit" value="Volver" onclick=" location = 'temporada.php'" style="margin: 1%">
         </div>
         <table border="1">
@@ -52,15 +52,17 @@ $fixture = $pdo->query("Select * "
                 <th>Equipo Local</th>
                 <th>VS</th>
                 <th>Equipo Visitante</th>
+                <th>Establecer Fecha</th>
             </tr>
             </thead>
             <tbody>
             <!----- La infotmacion ----->
             <?php foreach ($fixture as $fix): ?>
                 <tr>
-                    <td><?php echo $fix['equipo_local']?></td>
+                    <td><?php echo $fix['nombre_equipo_local']?></td>
                     <td><?php echo 'VS'?></td>
-                    <td><?php echo $fix['equipo_visitante']?></td>
+                    <td><?php echo $fix['nombre_equipo_visita']?></td>
+                    <td><form action="" method="post"><input type="date" style="width: 25%; margin: 0;" id="fecha"><input type="submit" value="Agregar Fecha"></form></td>
                 </tr>
             <?php endforeach;?>
             </tbody>
@@ -68,7 +70,7 @@ $fixture = $pdo->query("Select * "
     </section>
 
 </section>
-<footer class="pie">
+<footer class="pie" style="width: 1536px">
     <p>Copyright &copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
 </footer>
 </body>

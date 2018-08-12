@@ -1,7 +1,12 @@
 <?php
 require_once '../conexion.php';
+if (!isset($_GET['codigo'])) {
+    header("Location: jugadores.php");
+    exit;
+}
+$idequipo = $_GET["codigo"];
 $equipo = $pdo->query("Select * "
-    ." from jugador", PDO::FETCH_ASSOC);
+    ." from jugador ", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +42,7 @@ $equipo = $pdo->query("Select * "
     <section class="contenedor">
         <div class="general">
             <h1>Jugadores</h1>
-            <input type="submit" value="Nuevo Jugador" onclick=" location = 'NuevoJugador.php'">
+            <input type="submit" value="Nuevo Jugador" onclick=" location = 'NuevoJugador.php?codigo=<?php echo $idequipo?>'">
             <input type="submit" value="Volver" onclick=" location = 'equipos.php'" style="margin-left: 10px">
         </div>
             <p>Pito</p>
