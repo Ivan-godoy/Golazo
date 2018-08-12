@@ -52,7 +52,7 @@ $fixture = $pdo->query("Select * "
                 <th>Equipo Local</th>
                 <th>VS</th>
                 <th>Equipo Visitante</th>
-                <th>Establecer Fecha</th>
+                <th>Fecha</th>
             </tr>
             </thead>
             <tbody>
@@ -62,7 +62,8 @@ $fixture = $pdo->query("Select * "
                     <td><?php echo $fix['nombre_equipo_local']?></td>
                     <td><?php echo 'VS'?></td>
                     <td><?php echo $fix['nombre_equipo_visita']?></td>
-                    <td><form action="" method="post"><input type="date" style="width: 25%; margin: 0;" id="fecha"><input type="submit" value="Agregar Fecha"></form></td>
+<!--                    <td><form action="" method="post"><input type="date" style="width: 25%; margin: 0;" id="fecha"><input type="submit" value="Agregar Fecha"></form></td>-->
+                    <td><?php echo $fix['fecha']?></td>
                 </tr>
             <?php endforeach;?>
             </tbody>
