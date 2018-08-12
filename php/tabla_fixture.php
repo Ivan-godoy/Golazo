@@ -1,7 +1,7 @@
 <?php
 require_once '../conexion.php';
-$temporadas = $pdo->query("Select * "
-    ." from temporada", PDO::FETCH_ASSOC);
+$fixture = $pdo->query("Select * "
+    ." from fixture", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@ $temporadas = $pdo->query("Select * "
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Temporada</title>
+    <title>Golazo-Fixture</title>
 </head>
 <body>
 <header class="encabezado">
@@ -36,23 +36,29 @@ $temporadas = $pdo->query("Select * "
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Temporada</h1>
-            <input type="submit" value="Nueva Temporada" onclick=" location = 'NuevaTemporada.php'">
+            <h1>Fixture</h1>
+            <input type="submit" value="Crear Fixture" onclick=" location = 'fixtures.php'">
+            <input type="submit" value="Volver" onclick=" location = 'temporada.php'" style="margin: 1%">
         </div>
-
-                <div class="temporadas">
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Equipo Local</th>
+                <th>VS</th>
+                <th>Equipo Visitante</th>
+            </tr>
+            </thead>
+            <tbody>
             <!----- La infotmacion ----->
-            <?php foreach ($temporadas as $temporada): ?>
-
-                <div class="contentemporada">
-                    <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_temporada.php?codigo=<?php echo $temporada['id_temporada']?> &operacion=eliminar'"></div>
-                    <img src="../img/temporada.png" alt="" width="50%" height="50%" onclick="location = 'tabla_fixture.php?codigo=<?php echo $temporada['id_temporada']?>'">
-                    <div class="fechas"><?php echo "Inicio " . $temporada['fecha_inicio'] . " / " ."Final ".$temporada['fecha_final']?></div>
-                </div>
-
+            <?php foreach ($fixture as $fix): ?>
+                <tr>
+                    <td><?php echo $fix['equipo_local']?></td>
+                    <td><?php echo 'VS'?></td>
+                    <td><?php echo $fix['equipo_visitante']?></td>
+                </tr>
             <?php endforeach;?>
-                </div>
-
+            </tbody>
+        </table>
     </section>
 
 </section>
