@@ -1,12 +1,12 @@
 <?php
-require '../conexion.php';
-if (isset($_GET['codigo'])) {
-    header("Location: fixtures.php");
+require_once '../conexion.php';
+if (!isset($_GET['codigo'])) {
+    header("Location: tabla_fixture.php");
     exit;
 }
 $idtemporada = $_GET["codigo"];
-echo $idtemporada;
-$equipos1 = $pdo->query("SELECT id_equipo FROM equipo",PDO::FETCH_ASSOC);
+if(isset($idtemporada)){
+    $equipos1 = $pdo->query("SELECT id_equipo FROM equipo",PDO::FETCH_ASSOC);
 $fix = $pdo->query("SELECT * FROM fixture",PDO::FETCH_ASSOC);
 $equipos = [];
 foreach ($equipos1 as $e){
@@ -39,9 +39,7 @@ for($x=0;$x<count($partidos);$x++) {
     $guardar = $pdo->exec("INSERT INTO fixture(equipo_local, equipo_visitante, Id_temporada) "
         . " VALUES ('{$partidos[$x][1]}','{$partidos[$x][0]}','{$idtemporada}')");
 }
-?>
-<?php
-foreach ($fix as $f){
-    echo $f;
+header("Location: fixtures.php");
+exit;
 }
 ?>

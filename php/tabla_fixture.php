@@ -1,8 +1,14 @@
 <?php
 require_once '../conexion.php';
+if (!isset($_GET['codigo'])) {
+    header("Location: tabla_fixture.php");
+    exit;
+}
+$idtemporada = $_GET["codigo"];
 $fixture = $pdo->query("Select * "
-    ." from fixture", PDO::FETCH_ASSOC);
+    ." from fixture WHERE id_temporada = $idtemporada", PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +43,7 @@ $fixture = $pdo->query("Select * "
     <section class="contenedor">
         <div class="general">
             <h1>Fixture</h1>
-            <input type="submit" value="Crear Fixture" onclick=" location = 'fixtures.php'">
+            <input type="submit" value="Crear Fixture" onclick=" location = 'fixtures.php?codigo=<?php echo $idtemporada?>'">
             <input type="submit" value="Volver" onclick=" location = 'temporada.php'" style="margin: 1%">
         </div>
         <table border="1">
