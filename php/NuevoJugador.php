@@ -6,6 +6,7 @@ if (!isset($_GET['codigo'])) {
 }
 $idequipo = $_GET["codigo"];
 $mensaje=[];
+$id=[];
 $posicion = $pdo->query("Select * "
     ." from pos_jugador", PDO::FETCH_ASSOC);
 if(!empty($_POST)) {//Procesar el formulario
@@ -24,20 +25,25 @@ if(!empty($_POST)) {//Procesar el formulario
         $resultado =  move_uploaded_file($foto_jugador['tmp_name'], 'img_jugadores/'.$nombre_generado);
     }
     $id_posicion_jugador = $_POST['id_posicion_jugador'];
-    if (empty($nomb_jugador) && empty($lugar_nacimiento_jugador) && empty($nacionalidad_jugador) && empty($fecha_nacimiento) && empty($peso_jugador) && empty($estatura_jugador) && empty($id_posicion_jugador)){
-        $mensaje[] = "Solo puede dejar libre la Foto del jugador para Subir!";
+    if (empty($nomb_jugador) || empty($lugar_nacimiento_jugador) || empty($nacionalidad_jugador) || empty($fecha_nacimiento) || empty($peso_jugador) || empty($estatura_jugador) || empty($id_posicion_jugador)){
+        $mensaje[] = "Solo puede dejar libre la Foto del jugador para Ingresar lo !";
     }
     if(empty($mensaje)){
         $filas_afectadas = $pdo->exec("INSERT INTO jugador (nomb_jugador, lugar_nacimiento_jugador, nacionalidad_jugador, fecha_nacimiento, peso_jugador, estatura_jugador, foto_jugador, id_posicion_jugador) VALUES ('{$nomb_jugador}', '{$lugar_nacimiento_jugador}', '{$nacionalidad_jugador}' ,'{$fecha_nacimiento}', '{$peso_jugador}', '{$estatura_jugador}', '{$nombre_generado}', '{$id_posicion_jugador}')");
-        $idjugador = $pdo->exec("select * FROM golazo.jugador order by id_jugador desc limit 1");
         if ($filas_afectadas>= 1){
-            $mensaje[]= "El Jugador Fue Creado".$idjugador;
+            $mensaje[]= "El Jugador Fue Creado";
+            $idjugador = $pdo->query("select id_jugador FROM golazo.jugador order by id_jugador desc limit 1");
+            foreach ($idjugador as $idj){
+                $id[] = $idj[$idjugador];
+            }
+            $equipo_jugador = $pdo->exec("INSERT INTO equipo_jugador (id_equipos, id_jugadores, estado) VALUES ('{$idequipo}','{$idj[0]}', '1')");
+
         }else{
             $mensaje[]= "El Jugador no fue Creado";
         }
     }
-   $equipo_jugador = $pdo->exec("INSERT INTO equipo_jugador (id_equipos, id_jugadores, estado) VALUES ('{$idequipo}', , 1)");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +78,7 @@ if(!empty($_POST)) {//Procesar el formulario
     <section class="contenedor">
         <div class="general">
             <h1>Creacion Jugador</h1>
-            <input type="submit" value="Volver" onclick=" location = 'jugadores.php'">
+            <input type="submit" value="Volver" onclick=" location = 'equipos.php'">
         </div>
         <form action="" method="post" id="formulario" enctype="multipart/form-data">
             <div class="seccion">
@@ -305,6 +311,7 @@ if(!empty($_POST)) {//Procesar el formulario
                     echo "<li>{$msj}</li>";
                 }
                 echo '</ul>';
+
             endif;
             ?>
         </form>
