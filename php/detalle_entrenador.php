@@ -4,13 +4,13 @@ if (!isset($_GET['codigo'])) {
     header("Location: entrenador.php");
     exit;
 }
-$idarbitro = $_GET["codigo"];
+$identrenador = $_GET["codigo"];
 if (isset($_GET['operacion']) && $_GET['operacion'] == 'eliminar'){
-    $filas_afectadas = $pdo->exec("DELETE FROM arbitro WHERE id_arbitro = '{$idarbitro}'");
-    $regresion = $pdo->exec("ALTER TABLE arbitro AUTO_INCREMENT = 1");
+    $filas_afectadas = $pdo->exec("DELETE FROM entrenador WHERE id_entrenador= '{$identrenador}'");
+    $regresion = $pdo->exec("ALTER TABLE entrenador AUTO_INCREMENT = 1");
     echo $filas_afectadas;
     $mensaje = "Se Elimino el Equipo";
-    header("Location:detalle_arbitro.php");
+    header("Location:detalle_entrenador.php");
     exit;
 }
 ?>

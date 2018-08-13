@@ -61,10 +61,10 @@ $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", P
         </div>
         <div class="equipos" style="margin-left: 10%">
             <!----- La infotmacion ----->
-            <?php foreach ($jugadores as $equi): ?>
+            <?php foreach ($jugadores as $juga): ?>
                 <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px;">
-                <img src="<?php echo "img_jugadores/".$equi['foto_arbitro']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
-                <div style="margin-left: 20%;text-align: right"><?php echo"Nombre: ". $equi['nomb_arbitro'] . "<br>" ."Jugadores". "<br>". "POSICION"?></div>
+                <img src="<?php echo "img_jugadores/".$juga['foto_jugador']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
+                <div style="margin-left: 20%;text-align: right"><?php echo"Nombre: ". $juga['nomb_jugador'] . "<br>" ."Jugadores". "<br>". "POSICION"?></div>
                 </div>
 
             <?php endforeach;?>

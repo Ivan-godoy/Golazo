@@ -3,31 +3,31 @@ require_once '../conexion.php';
 
 $mensaje=[];
 $id=[];
-$posicion = $pdo->query("Select * from pos_arbitro", PDO::FETCH_ASSOC);
+$equipo = $pdo->query("Select * from equipo", PDO::FETCH_ASSOC);
 if(!empty($_POST)) {//Procesar el formulario
-    $nom_arbitro = $_POST['nom_arbitro'];
-    $nacionalidad_arbitro = $_POST['nacionalidad_arbitro'];
-    $lugar_nacimiento_arbitro = $_POST['lugar_nacimiento_arbitro'];
-    $fecha_nacimiento_arbitro = $_POST['fecha_nacimiento_arbitro'];
-    $foto_arbitro = $_FILES['foto_arbitro'];
+    $nom_entrenador = $_POST['nom_entrenador'];
+    $nacionalidad_entrenador = $_POST['nacionalidad_entrenador'];
+    $lugar_nacimiento_entrenador = $_POST['lugar_nacimiento_entrenador'];
+    $fecha_nacimiento_entrenador = $_POST['fecha_nacimiento_entrenador'];
+    $foto_entrenador = $_FILES['foto_entrenador'];
     define('TAM_MAX', 1048576);
-    $partes = explode('.', $foto_arbitro['name']);
+    $partes = explode('.', $foto_entrenador['name']);
     $extension = $partes[count($partes)-1];
     $nombre_generado = time() . '_' .mt_rand(1000, 2000). '.' . $extension;
-    if ($foto_arbitro['error'] === 0){
-        $resultado =  move_uploaded_file($foto_arbitro['tmp_name'], 'img_arbitros/'.$nombre_generado);
+    if ($foto_entrenador['error'] === 0){
+        $resultado =  move_uploaded_file($foto_entrenador['tmp_name'], 'img_entrenador/'.$nombre_generado);
     }
-    $id_posicion_arbitro = $_POST['id_posicion_arbitro'];
-    if(empty($nom_arbitro) || empty($lugar_nacimiento_arbitro) || empty($nacionalidad_arbitro) || empty($fecha_nacimiento_arbitro)  || empty($id_posicion_arbitro )){
+    $id_equipo = $_POST['id_equipo'];
+    if(empty($nom_entrenador) || empty($nacionalidad_entrenador) || empty($lugar_nacimiento_entrenador) || empty($fecha_nacimiento_entrenador)  || empty($id_equipo)){
         $mensaje[] = "verifique que todos los campos esten llenos";
     }
     if(empty($mensaje)){
-        $filas_afectadas = $pdo->exec("INSERT INTO arbitro (nom_arbitro, nacionalidad_arbitro, lugar_nacimiento_arbitro, fecha_nacimeinto_arbitro, foto_arbitro, id_posicion_arbitro) VALUES ('{$nom_arbitro}', '{$nacionalidad_arbitro}', '{$lugar_nacimiento_arbitro}','{$fecha_nacimiento_arbitro}', '{$nombre_generado}', '{$id_posicion_arbitro}')");
+        $filas_afectadas = $pdo->exec("INSERT INTO entrenador (nom_entrenador, nacionalidad_entrenador, lugar_nacimiento_entrenador, fecha_nacimiento_entrenador, foto_entrenador, id_equipo) VALUES ('{$nom_entrenador}', '{$nacionalidad_entrenador}', '{$lugar_nacimiento_entrenador}','{$fecha_nacimiento_entrenador}', '{$nombre_generado}', '{$id_equipo}')");
         if ($filas_afectadas>= 1){
-            $mensaje[]= "El Arbitro Fue Creado";
+            $mensaje[]= "El Entrenador Fue Creado";
 
         }else{
-            $mensaje[]= "El Árbitro no fue Creado";
+            $mensaje[]= "El Entrenador no fue Creado";
         }
     }
 }
@@ -40,7 +40,7 @@ if(!empty($_POST)) {//Procesar el formulario
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Arbitros</title>
+    <title>Golazo-Creacion-Entrenador</title>
 </head>
 <body>
 <header class="encabezado">
@@ -66,18 +66,18 @@ if(!empty($_POST)) {//Procesar el formulario
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Creacion de Arbitros</h1>
+            <h1>Creacion de Entrenador</h1>
             <input type="submit" value="Volver" onclick=" location = 'entrenador.php'">
         </div>
         <form action="" method="post" id="formulario" enctype="multipart/form-data">
             <table style="border: black solid 1px; margin-top: -80px; width: 60%">
                 <tr style="height: 50px">
-                    <td><label for="nom_arbitro" style="margin: 0; padding: 0;">Nombre Completo del Arbitro</label></td>
-                    <td><input type="text" name="nom_arbitro" id="nom_arbitro" style="margin: 0; padding: 0;"></td>
+                    <td><label for="nom_entrenador" style="margin: 0; padding: 0;">Nombre Completo del Entrenador</label></td>
+                    <td><input type="text" name="nom_entrenador" id="nom_entrenador" style="margin: 0; padding: 0;"></td>
                 </tr>
                 <tr style="height: 50px">
-                    <td><label for="nacionalidad_arbitro" style="margin: 0; padding: 0;">Nacionalidad del Arbitro</label></td>
-                    <td><select name="nacionalidad_arbitro" id="nacionalidad_arbitro">
+                    <td><label for="nacionalidad_entrenador" style="margin: 0; padding: 0;">Nacionalidad del Entrenador</label></td>
+                    <td><select name="nacionalidad_entrenador" id="nacionalidad_entrenador">
                             <option value="NAMIBIANA">NAMIBIANA</option>
                             <option value="ANGOLESA">ANGOLESA</option>
                             <option value="ARGELIANA">ARGELIANA</option>
@@ -253,28 +253,29 @@ if(!empty($_POST)) {//Procesar el formulario
                         </select></td>
                 </tr>
                 <tr style="height: 50px">
-                    <td><label for="lugar_nacimiento_arbitro" style="margin: 0; padding: 0;">Lugar de nacimiento del Arbitro</label></td>
-                    <td><input type="text" name="lugar_nacimiento_arbitro" id="lugar_nacimiento_arbitro"></td>
+                    <td><label for="lugar_nacimiento_entrenador" style="margin: 0; padding: 0;">Lugar de nacimiento del Entrenador</label></td>
+                    <td><input type="text" name="lugar_nacimiento_entrenador" id="lugar_nacimiento_entrenador"></td>
                 </tr>
                 <tr style="height: 50px">
-                    <td><label for="fecha_nacimineto_arbitro" style="margin: 0; padding: 0; ">Fecha de Nacimiento</label></td>
-                    <td><input type="date" name="fecha_nacimiento_arbitro" id="fecha_nacimineto_arbitro"></td>
+                    <td><label for="fecha_nacimineto_entrenador" style="margin: 0; padding: 0; ">Fecha de Nacimiento</label></td>
+                    <td><input type="date" name="fecha_nacimiento_entrenador" id="fecha_nacimineto_entrenador"></td>
                 </tr>
                 <tr style="height: 50px">
-                    <td><label for="foto_arbitro" style="margin: 0; padding: 0; "> Foto del Arbitro</label></td>
-                    <td><input type="file" name="foto_arbitro" id="foto_arbitro" accept="image/*" value=""></td>
+                    <td><label for="foto_entrenador" style="margin: 0; padding: 0; "> Foto del Entrenador</label></td>
+                    <td><input type="file" name="foto_entrenador" id="foto_entrenador" accept="image/*" value=""></td>
                 </tr>
                 <br>
                 <tr style="height: 50px">
-                    <td><label for="id_posicion_arbitro" style="margin: 0; padding: 0; "> Posicion en la que Juega</label></td>
-                    <td><select name="id_posicion_arbitro" id="id_posicion_arbitro">
-                            <?php foreach ($posicion as $pos):?>
-                                <option value="<?php echo $pos['id_pos_arbitro']?>"><?php echo $pos['Descripcion']?></option>
+                    <td><label for="id_equipo" style="margin: 0; padding: 0; "> Equipo que Entrenara</label></td>
+                    <td><select name="id_equipo" id="id_equipo">
+                            <?php foreach ($equipo as $equi):?>
+                                <option value="<?php echo $equi['id_equipo']?>"><?php echo $equi['nom_equipo']?></option>
                             <?php endforeach; ?>
                         </select></td>
                 </tr>
                 <tr style="height: 50px">
-                    <td colspan="2"><input type="submit" value="Registrar Arbitro">
+                    <td colspan="2">
+                        <input type="submit" value="Registrar Entrenador">
                         <input type="reset" value="Limpiar"></td>
                 </tr>
             </table>

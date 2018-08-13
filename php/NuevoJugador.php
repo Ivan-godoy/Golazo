@@ -10,14 +10,14 @@ $id=[];
 $posicion = $pdo->query("Select * "
     ." from pos_jugador", PDO::FETCH_ASSOC);
 if(!empty($_POST)) {//Procesar el formulario
-    $nomb_jugador = $_POST['nomb_equipo'];
+    $nomb_jugador = $_POST['nomb_jugador'];
     $dorsal = $_POST['numero'];
-    $lugar_nacimiento_jugador = $_POST['lugar_nacimiento_arbitro'];
-    $nacionalidad_jugador = $_POST['nacionalidad_arbitro'];
-    $fecha_nacimiento = $_POST['fecha_nacimiento_arbitro'];
+    $lugar_nacimiento_jugador = $_POST['lugar_nacimiento_jugador'];
+    $nacionalidad_jugador = $_POST['nacionalidad_jugador'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
     $peso_jugador = $_POST['peso_jugador'];
     $estatura_jugador = $_POST['estatura_jugador'];
-    $foto_jugador = $_FILES['foto_arbitro'];
+    $foto_jugador = $_FILES['foto_jugador'];
     define('TAM_MAX', 1048576);
     $partes = explode('.', $foto_jugador['name']);
     $extension = $partes[count($partes)-1];
@@ -25,7 +25,7 @@ if(!empty($_POST)) {//Procesar el formulario
     if ($foto_jugador['error'] === 0){
         $resultado =  move_uploaded_file($foto_jugador['tmp_name'], 'img_jugadores/'.$nombre_generado);
     }
-    $id_posicion_jugador = $_POST['id_posicion_arbitro'];
+    $id_posicion_jugador = $_POST['id_posicion_jugador'];
     $validaciondorsal = $pdo->query("select * FROM golazo.equipo_jugador WHERE id_equipos = '{$idequipo}' and dorsal ='{$dorsal}' ");
     $validacion = [];
     foreach($validaciondorsal as $val){
@@ -37,7 +37,7 @@ if(!empty($_POST)) {//Procesar el formulario
         $mensaje[] = "verifique que todos los campos esten llenos";
     }
     if(empty($mensaje)){
-        $filas_afectadas = $pdo->exec("INSERT INTO jugador (nomb_arbitro, lugar_nacimiento_arbitro, nacionalidad_arbitro, fecha_nacimiento_arbitro, peso_jugador, estatura_jugador, foto_arbitro, id_posicion_arbitro) VALUES (n{$nomb_jugador}omb_arbitro, l{$lugar_nacimiento_jugador}ugar_nacimiento_arbitro, n{$nacionalidad_jugador}acionalidad_arbitro ,'{$fecha_nacimiento}', '{$peso_jugador}', '{$estatura_jugador}', '{$nombre_generado}', i{$id_posicion_jugador}d_posicion_arbitro)");
+        $filas_afectadas = $pdo->exec("INSERT INTO jugador (nomb_jugador, lugar_nacimiento_jugador, nacionalidad_jugador, fecha_nacimiento, peso_jugador, estatura_jugador, foto_jugador, id_posicion_jugador) VALUES ('{$nomb_jugador}', '{$lugar_nacimiento_jugador}', '{$nacionalidad_jugador}' ,'{$fecha_nacimiento}', '{$peso_jugador}', '{$estatura_jugador}', '{$nombre_generado}', '{$id_posicion_jugador}')");
         if ($filas_afectadas>= 1){
             $mensaje[]= "El Jugador Fue Creado";
             $idjugador = $pdo->query("select id_jugador FROM golazo.jugador order by id_jugador desc limit 1");
@@ -93,7 +93,7 @@ if(!empty($_POST)) {//Procesar el formulario
             <table style="border: black solid 1px; margin-top: -80px; width: 60%">
             <tr style="height: 50px">
                 <td><label for="nomb_jugador" style="margin: 0; padding: 0;">Nombre Completo del Jugador</label></td>
-                <td><input type="text" name="nomb_equipo" id="nomb_jugador" style="margin: 0; padding: 0;"></td>
+                <td><input type="text" name="nomb_jugador" id="nomb_jugador" style="margin: 0; padding: 0;"></td>
             </tr>
             <tr style="height: 50px">
                 <td><label for="numero" style="margin: 0; padding: 0; ">Numero de Jugador</label></td>

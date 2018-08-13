@@ -44,10 +44,10 @@ LOCK TABLES `amonestaciones` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `arbitro`
+-- Table structure for table `entrenador`
 --
 
-DROP TABLE IF EXISTS `arbitro`;
+DROP TABLE IF EXISTS `entrenador`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `arbitro` (
@@ -65,12 +65,12 @@ CREATE TABLE `arbitro` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `arbitro`
+-- Dumping data for table `entrenador`
 --
 
-LOCK TABLES `arbitro` WRITE;
-/*!40000 ALTER TABLE `arbitro` DISABLE KEYS */;
-/*!40000 ALTER TABLE `arbitro` ENABLE KEYS */;
+LOCK TABLES `entrenador` WRITE;
+/*!40000 ALTER TABLE `entrenador` DISABLE KEYS */;
+/*!40000 ALTER TABLE `entrenador` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

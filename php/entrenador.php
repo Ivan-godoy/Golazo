@@ -1,7 +1,6 @@
 <?php
 require_once '../conexion.php';
-$arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitro "
-    ." from arbrito", PDO::FETCH_ASSOC);
+$entrenadores = $pdo->query("Select *  from entrenador", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,11 +9,12 @@ $arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitr
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Arbitros</title>
+    <title>Golazo-Entrenadores</title>
 </head>
 <body>
 <header class="encabezado">
     <img src="../img/golazo.png" alt="" class="logo">
+    <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
     <nav class="navbar">
@@ -29,42 +29,32 @@ $arbitros = $pdo->query("Select id_arbrito, nom_arbitro, fecha_nacimiento_arbitr
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
             <li><a href="estadio.php"> Gestión de Estadios </a></li>
             <li><a href="equipos.php"> Gestión de Equipos </a></li>
-            <li><a href="temporada.php"> Gestión de Temporada </a></li>
+            <li><a href="temporada.php"> Gestipon de Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
 
         </ul>
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Árbitros</h1>
-            <input type="submit" value="Nuevo Arbitro" onclick=" location = '../inicio.php'">
+            <h1>Tabla de Entrenadores</h1>
+            <input type="submit" value="Nuevo Entrenador" onclick=" location = 'NuevoEntrenador.php'">
         </div>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Id_Arbitro</th>
-                <th>Nombre</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Eliminar</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="equipos" style="margin-left: 10%">
             <!----- La infotmacion ----->
-            <?php foreach ($arbitros as $arbitro): ?>
-                <tr>
-                    <td><a href="detalle.php?codigo=<?php echo $arbitro['id_arbrito']?>"><?php echo $arbitro['id_arbrito']?></a></td>
-                    <td><?php echo $arbitro['nom_arbitro']?></td>
-                    <td><?php echo $arbitro['fecha_nacimiento_arbitro']?></td>
-                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle.php?codigo=<?php echo $arbitro['id_arbrito']?> &operacion=eliminar'"></td>
-                </tr>
+            <?php foreach ($entrenadores as $entrenador): ?>
+                <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px;">
+                    <img src="<?php echo "img_entrenador/".$entrenador['foto_entrenador']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
+                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $entrenador['nom_entrenador'] . "<br>" ."Entrenador". "<br>". "POSICION"?></div>
+                    <input style="margin-left: 10%" type="submit" value="Eliminar" onclick="location='detalle_entrenador.php?codigo=<?php echo $entrenador['id_entrenador']?> &operacion=eliminar'">
+                </div>
+
             <?php endforeach;?>
-            </tbody>
-        </table>
+        </div>
     </section>
 
 </section>
 <footer class="pie">
-    <p>Copyright&copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
+    <p>Copyright &copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
 </footer>
 </body>
 </html>

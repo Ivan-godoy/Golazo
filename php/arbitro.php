@@ -13,7 +13,7 @@ $arbitros = $pdo->query("Select *  from arbitro", PDO::FETCH_ASSOC);
 </head>
 <body>
 <header class="encabezado">
-    <img src="../img/golazo.png" alt="" class="logo">
+    <img src="../img/golazo.png" alt="" class="logo" onclick=" location = '../inicio.php'">
     <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
@@ -44,7 +44,7 @@ $arbitros = $pdo->query("Select *  from arbitro", PDO::FETCH_ASSOC);
             <?php foreach ($arbitros as $arbitro): ?>
                 <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px;">
                     <img src="<?php echo "img_arbitros/".$arbitro['foto_arbitro']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
-                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $arbitro['nom_arbitro'] . "<br>" ."Jugadores". "<br>". "POSICION"?></div>
+                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $arbitro['nom_arbitro'] . "<br>" ."Arbitro". "<br>". "POSICION"?></div>
                     <input style="margin-left: 10%" type="submit" value="Eliminar" onclick="location='detalle_arbitro.php?codigo=<?php echo $arbitro['id_arbitro']?> &operacion=eliminar'">
                 </div>
 
