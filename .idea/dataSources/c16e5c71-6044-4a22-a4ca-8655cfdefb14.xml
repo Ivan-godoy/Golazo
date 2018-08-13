@@ -1262,14 +1262,14 @@ id_jugadores</RefColNames>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="309" parent="252" name="id_ciudad">
+    <column id="309" parent="252" name="id_estadio">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="310" parent="252" name="equipo_a_ciudad_idx">
-      <ColNames>id_ciudad</ColNames>
+    <index id="310" parent="252" name="equipos_a_estadios_idx">
+      <ColNames>id_estadio</ColNames>
       <Type>btree</Type>
     </index>
     <key id="311" parent="252" name="PRIMARY">
@@ -1277,11 +1277,11 @@ id_jugadores</RefColNames>
       <ColNames>id_equipo</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="312" parent="252" name="equipo_a_ciudad">
-      <ColNames>id_ciudad</ColNames>
+    <foreign-key id="312" parent="252" name="equipos_a_estadios">
+      <ColNames>id_estadio</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
-      <RefTableName>ciudad</RefTableName>
-      <RefColNames>id_ciudad</RefColNames>
+      <RefTableName>estadios</RefTableName>
+      <RefColNames>id_estadios</RefColNames>
     </foreign-key>
     <column id="313" parent="253" name="id_equipos">
       <Position>1</Position>
@@ -1301,158 +1301,164 @@ id_jugadores</RefColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="316" parent="253" name="jugador_jugador_fk_idx">
+    <column id="316" parent="253" name="dorsal">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="317" parent="253" name="jugador_jugador_fk_idx">
       <ColNames>id_jugadores</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="317" parent="253" name="PRIMARY">
+    <key id="318" parent="253" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_equipos
 id_jugadores</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="318" parent="253" name="equipo_jugador_fk">
+    <foreign-key id="319" parent="253" name="equipo_jugador_fk">
       <ColNames>id_equipos</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>equipo</RefTableName>
       <RefColNames>id_equipo</RefColNames>
     </foreign-key>
-    <foreign-key id="319" parent="253" name="jugador_jugador_fk">
+    <foreign-key id="320" parent="253" name="jugador_jugador_fk">
       <ColNames>id_jugadores</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>jugador</RefTableName>
       <RefColNames>id_jugador</RefColNames>
     </foreign-key>
-    <column id="320" parent="254" name="id_estadios">
+    <column id="321" parent="254" name="id_estadios">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="321" parent="254" name="nom_estadios">
+    <column id="322" parent="254" name="nom_estadios">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="322" parent="254" name="capacidad">
+    <column id="323" parent="254" name="capacidad">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="323" parent="254" name="id_ciudad">
+    <column id="324" parent="254" name="id_ciudad">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="324" parent="254" name="estadio_a_ciudad_idx">
+    <index id="325" parent="254" name="estadio_a_ciudad_idx">
       <ColNames>id_ciudad</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="325" parent="254" name="PRIMARY">
+    <key id="326" parent="254" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_estadios</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="326" parent="254" name="estadio_a_ciudad">
+    <foreign-key id="327" parent="254" name="estadio_a_ciudad">
       <ColNames>id_ciudad</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>ciudad</RefTableName>
       <RefColNames>id_ciudad</RefColNames>
     </foreign-key>
-    <column id="327" parent="255" name="id_fixture">
+    <column id="328" parent="255" name="id_fixture">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="328" parent="255" name="fecha">
+    <column id="329" parent="255" name="fecha">
       <Position>2</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="255" name="equipo_local">
+    <column id="330" parent="255" name="equipo_local">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="255" name="equipo_visitante">
+    <column id="331" parent="255" name="equipo_visitante">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="331" parent="255" name="id_temporada">
+    <column id="332" parent="255" name="id_temporada">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="332" parent="255" name="fix_a_equipoLoc_idx">
+    <index id="333" parent="255" name="fix_a_equipoLoc_idx">
       <ColNames>equipo_local</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="333" parent="255" name="fix_a_equipoVis_idx">
+    <index id="334" parent="255" name="fix_a_equipoVis_idx">
       <ColNames>equipo_visitante</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="334" parent="255" name="fix_a_temporada_idx">
+    <index id="335" parent="255" name="fix_a_temporada_idx">
       <ColNames>id_temporada</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="335" parent="255" name="PRIMARY">
+    <key id="336" parent="255" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_fixture</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="336" parent="255" name="fix_a_equipoLoc">
+    <foreign-key id="337" parent="255" name="fix_a_equipoLoc">
       <ColNames>equipo_local</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>equipo</RefTableName>
       <RefColNames>id_equipo</RefColNames>
     </foreign-key>
-    <foreign-key id="337" parent="255" name="fix_a_equipoVis">
+    <foreign-key id="338" parent="255" name="fix_a_equipoVis">
       <ColNames>equipo_visitante</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>equipo</RefTableName>
       <RefColNames>id_equipo</RefColNames>
     </foreign-key>
-    <foreign-key id="338" parent="255" name="fix_a_temporada">
+    <foreign-key id="339" parent="255" name="fix_a_temporada">
       <ColNames>id_temporada</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>temporada</RefTableName>
       <RefColNames>id_temporada</RefColNames>
     </foreign-key>
-    <column id="339" parent="256" name="id_partido_jugados_fk">
+    <column id="340" parent="256" name="id_partido_jugados_fk">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="340" parent="256" name="id_jugadores_fk">
+    <column id="341" parent="256" name="id_jugadores_fk">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="341" parent="256" name="id_equipos_fk">
+    <column id="342" parent="256" name="id_equipos_fk">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="342" parent="256" name="goles_encuentrojugador_fk_idx">
+    <index id="343" parent="256" name="goles_encuentrojugador_fk_idx">
       <ColNames>id_partido_jugados_fk
 id_jugadores_fk
 id_equipos_fk</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="343" parent="256" name="goles_encuentrojugador_fk">
+    <foreign-key id="344" parent="256" name="goles_encuentrojugador_fk">
       <ColNames>id_partido_jugados_fk
 id_jugadores_fk
 id_equipos_fk</ColNames>
@@ -1462,329 +1468,343 @@ id_equipos_fk</ColNames>
 id_Jugadores
 id_Equipos</RefColNames>
     </foreign-key>
-    <column id="344" parent="257" name="id_jugador">
+    <column id="345" parent="257" name="id_jugador">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="345" parent="257" name="nomb_jugador">
+    <column id="346" parent="257" name="nomb_jugador">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="346" parent="257" name="lugar_nacimiento_jugador">
+    <column id="347" parent="257" name="lugar_nacimiento_jugador">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="347" parent="257" name="nacionalidad_jugador">
+    <column id="348" parent="257" name="nacionalidad_jugador">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="348" parent="257" name="fecha_nacimiento">
+    <column id="349" parent="257" name="fecha_nacimiento">
       <Position>5</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="349" parent="257" name="peso_jugador">
+    <column id="350" parent="257" name="peso_jugador">
       <Position>6</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="350" parent="257" name="estatura_jugador">
+    <column id="351" parent="257" name="estatura_jugador">
       <Position>7</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="351" parent="257" name="foto_jugador">
+    <column id="352" parent="257" name="foto_jugador">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="352" parent="257" name="id_posicion_jugador">
+    <column id="353" parent="257" name="id_posicion_jugador">
       <Position>9</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="353" parent="257" name="jugador_a_posJug_idx">
+    <index id="354" parent="257" name="jugador_a_posJug_idx">
       <ColNames>id_posicion_jugador</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="354" parent="257" name="PRIMARY">
+    <key id="355" parent="257" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_jugador</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="355" parent="257" name="jugador_a_posJug">
+    <foreign-key id="356" parent="257" name="jugador_a_posJug">
       <ColNames>id_posicion_jugador</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>pos_jugador</RefTableName>
       <RefColNames>id_pos_jugador</RefColNames>
     </foreign-key>
-    <column id="356" parent="258" name="id_partido_arbitro">
+    <column id="357" parent="258" name="id_partido_arbitro">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="258" name="id_arbitro">
+    <column id="358" parent="258" name="id_arbitro">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="258" name="id_partido">
+    <column id="359" parent="258" name="id_partido">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="359" parent="258" name="par_arb_a_arbitro_idx">
+    <index id="360" parent="258" name="par_arb_a_arbitro_idx">
       <ColNames>id_arbitro</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="360" parent="258" name="par_arb_a_partidoJu_idx">
+    <index id="361" parent="258" name="par_arb_a_partidoJu_idx">
       <ColNames>id_partido</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="361" parent="258" name="PRIMARY">
+    <key id="362" parent="258" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_partido_arbitro</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="362" parent="258" name="par_arb_a_arbitro">
+    <foreign-key id="363" parent="258" name="par_arb_a_arbitro">
       <ColNames>id_arbitro</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>arbitro</RefTableName>
       <RefColNames>id_arbitro</RefColNames>
     </foreign-key>
-    <foreign-key id="363" parent="258" name="par_arb_a_partidoJu">
+    <foreign-key id="364" parent="258" name="par_arb_a_partidoJu">
       <ColNames>id_partido</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>partido_jugado</RefTableName>
       <RefColNames>id_partido_jugado</RefColNames>
     </foreign-key>
-    <column id="364" parent="259" name="id_partido_jugado">
+    <column id="365" parent="259" name="id_partido_jugado">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="365" parent="259" name="id_estadio">
+    <column id="366" parent="259" name="id_estadio">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="366" parent="259" name="id_fixture">
+    <column id="367" parent="259" name="id_fixture">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="367" parent="259" name="equipo_local">
+    <column id="368" parent="259" name="equipo_local">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="368" parent="259" name="equipo_visita">
+    <column id="369" parent="259" name="equipo_visita">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="369" parent="259" name="fecha">
+    <column id="370" parent="259" name="fecha">
       <Position>6</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="370" parent="259" name="par_jug_a_estadioa_idx">
+    <index id="371" parent="259" name="par_jug_a_estadioa_idx">
       <ColNames>id_estadio</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="371" parent="259" name="par_jug_a_fix_idx">
+    <index id="372" parent="259" name="par_jug_a_fix_idx">
       <ColNames>id_fixture</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="372" parent="259" name="par_jug_a_equipoLoc_idx">
+    <index id="373" parent="259" name="par_jug_a_equipoLoc_idx">
       <ColNames>equipo_local</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="373" parent="259" name="par_jug_a_equipoVis_idx">
+    <index id="374" parent="259" name="par_jug_a_equipoVis_idx">
       <ColNames>equipo_visita</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="374" parent="259" name="PRIMARY">
+    <key id="375" parent="259" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_partido_jugado</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="375" parent="259" name="par_jug_a_estadios">
+    <foreign-key id="376" parent="259" name="par_jug_a_estadios">
       <ColNames>id_estadio</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>estadios</RefTableName>
       <RefColNames>id_estadios</RefColNames>
     </foreign-key>
-    <foreign-key id="376" parent="259" name="par_jug_a_fix">
+    <foreign-key id="377" parent="259" name="par_jug_a_fix">
       <ColNames>id_fixture</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>fixture</RefTableName>
       <RefColNames>id_fixture</RefColNames>
     </foreign-key>
-    <foreign-key id="377" parent="259" name="par_jug_a_equipoLoc">
+    <foreign-key id="378" parent="259" name="par_jug_a_equipoLoc">
       <ColNames>equipo_local</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>equipo</RefTableName>
       <RefColNames>id_equipo</RefColNames>
     </foreign-key>
-    <foreign-key id="378" parent="259" name="par_jug_a_equipoVis">
+    <foreign-key id="379" parent="259" name="par_jug_a_equipoVis">
       <ColNames>equipo_visita</ColNames>
       <RefSchemaName>golazo</RefSchemaName>
       <RefTableName>equipo</RefTableName>
       <RefColNames>id_equipo</RefColNames>
     </foreign-key>
-    <column id="379" parent="260" name="id_pos_arbitro">
+    <column id="380" parent="260" name="id_pos_arbitro">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="380" parent="260" name="Descripcion">
+    <column id="381" parent="260" name="Descripcion">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="381" parent="260" name="PRIMARY">
+    <key id="382" parent="260" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_pos_arbitro</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="382" parent="261" name="id_pos_jugador">
+    <column id="383" parent="261" name="id_pos_jugador">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="383" parent="261" name="descripcion">
+    <column id="384" parent="261" name="descripcion">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="384" parent="261" name="PRIMARY">
+    <key id="385" parent="261" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_pos_jugador</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="385" parent="262" name="id_temporada">
+    <column id="386" parent="262" name="id_temporada">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="386" parent="262" name="fecha_inicio">
+    <column id="387" parent="262" name="fecha_inicio">
       <Position>2</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="387" parent="262" name="fecha_final">
+    <column id="388" parent="262" name="fecha_final">
       <Position>3</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="388" parent="262" name="PRIMARY">
+    <key id="389" parent="262" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_temporada</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="389" parent="263" name="id_tipo_amonestacion">
+    <column id="390" parent="263" name="id_tipo_amonestacion">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="390" parent="263" name="descripcion">
+    <column id="391" parent="263" name="descripcion">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="391" parent="263" name="PRIMARY">
+    <key id="392" parent="263" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_tipo_amonestacion</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="392" parent="264" name="id_usuarios">
+    <column id="393" parent="264" name="id_usuarios">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="393" parent="264" name="nombre">
+    <column id="394" parent="264" name="nombre">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="394" parent="264" name="apellido">
+    <column id="395" parent="264" name="apellido">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="395" parent="264" name="nombre_usuario">
+    <column id="396" parent="264" name="nombre_usuario">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="396" parent="264" name="clave">
+    <column id="397" parent="264" name="clave">
       <Position>5</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="397" parent="264" name="correo">
+    <column id="398" parent="264" name="correo">
       <Position>6</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="398" parent="264" name="PRIMARY">
+    <key id="399" parent="264" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_usuarios</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="399" parent="265" name="nombre_equipo_local">
+    <column id="400" parent="265" name="id_temporada">
       <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="401" parent="265" name="nombre_equipo_local">
+      <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="400" parent="265" name="nombre_equipo_visita">
-      <Position>2</Position>
+    <column id="402" parent="265" name="nombre_equipo_visita">
+      <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="403" parent="265" name="fecha">
+      <Position>4</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="404" parent="265" name="id_fixture">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
   </database-model>

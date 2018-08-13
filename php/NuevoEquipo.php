@@ -1,8 +1,8 @@
 <?php
 require_once '../conexion.php';
 $mensaje=[];
-$ciudades = $pdo->query("Select * "
-    ." from ciudad", PDO::FETCH_ASSOC);
+$estadios = $pdo->query("Select * "
+    ." from estadios", PDO::FETCH_ASSOC);
 if(!empty($_POST)) {//Procesar el formulario
     $nom_equipo = $_POST['nom_equipo'];
     $fecha_fundacion = $_POST['fecha_fundacion'];
@@ -15,12 +15,12 @@ if(!empty($_POST)) {//Procesar el formulario
     if ($logo['error'] === 0){
         $resultado =  move_uploaded_file($logo['tmp_name'], 'img_equipo/'.$nombre_generado);
     }
-    $id_ciudad = $_POST['ciudades'];
-    if (empty($nom_equipo_) && empty($fecha_fundacion) && empty($esquema) && empty($id_ciudad)){
+    $id_estadio = $_POST['estadios'];
+    if (empty($nom_equipo_) && empty($fecha_fundacion) && empty($esquema) && empty($id_estadio)){
         $mensaje[] = "Solo puede dejar libre la imagen a Subir!";
     }
     if(empty($mensaje)){
-        $filas_afectadas = $pdo->exec("INSERT INTO equipo (nom_equipo, fecha_fundacion, esquema_habitual, logo, id_ciudad) VALUES ('{$nom_equipo}', '{$fecha_fundacion}', '{$esquema}' ,'{$nombre_generado}', '{$id_ciudad}')");
+        $filas_afectadas = $pdo->exec("INSERT INTO equipo (nom_equipo, fecha_fundacion, esquema_habitual, logo, id_estadio) VALUES ('{$nom_equipo}', '{$fecha_fundacion}', '{$esquema}' ,'{$nombre_generado}', '{$id_estadio}')");
         if ($filas_afectadas>= 1){
             $mensaje[]= "El equipo Fue Creado";
         }else{
@@ -86,10 +86,10 @@ if(!empty($_POST)) {//Procesar el formulario
             </div>
             <br>
             <div class="seccion">
-                <label for="ciudades"> Ciudad de Equipo</label>
-                <select name="ciudades" id="ciudades">
-                    <?php foreach ($ciudades as $ciudad):?>
-                        <option value="<?php echo $ciudad['id_ciudad']?>"><?php echo $ciudad['nom_ciudad']?></option>
+                <label for="estadios"> Ciudad de Equipo</label>
+                <select name="estadios" id="estadios">
+                    <?php foreach ($estadios as $estadio):?>
+                        <option value="<?php echo $estadio['id_estadios']?>"><?php echo $estadio['nom_estadios']?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

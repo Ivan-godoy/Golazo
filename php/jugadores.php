@@ -5,8 +5,7 @@ if (!isset($_GET['codigo'])) {
     exit;
 }
 $idequipo = $_GET["codigo"];
-$equipo = $pdo->query("Select * "
-    ." from jugador ", PDO::FETCH_ASSOC);
+$jugadores = $pdo->query("Select * from jugador INNER JOIN equipo_jugador id_jugador on id_jugador = id_jugadores WHERE id_equipos = '{$idequipo}'", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +35,6 @@ $equipo = $pdo->query("Select * "
             <li><a href="equipos.php"> Gestión de Equipos </a></li>
             <li><a href="temporada.php"> Gestión de Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
-
         </ul>
     </nav>
     <section class="contenedor">
@@ -45,20 +43,16 @@ $equipo = $pdo->query("Select * "
             <input type="submit" value="Nuevo Jugador" onclick=" location = 'NuevoJugador.php?codigo=<?php echo $idequipo?>'">
             <input type="submit" value="Volver" onclick=" location = 'equipos.php'" style="margin-left: 10px">
         </div>
-            <p>Pito</p>
-        <!--<div class="contenedorjugadores">-->
+        <div class="equipos" style="margin-left: 10%">
             <!----- La infotmacion ----->
-            <?php foreach ($equipo as $equi): ?>
-
-                <!--<div class="jugadores">
-                    <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_equipo.php?codigo=<?php echo $equi['id_equipo']?> &operacion=eliminar'"></div>
-                    <img src="<?php echo "img_equipo/". $equi['logo']?>" alt="" width="25%" height="25%">
-                    <div class="fechas"><?php echo "Nombre del Equipo: " . $equi['nom_equipo'] . "<br>" ."Fecha de Fundación: ".$equi['fecha_fundacion'] . "<br>" ."Esquema Habitual: " .$equi['esquema_habitual']?></div>
-                </div>-->
+            <?php foreach ($jugadores as $juga): ?>
+                <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px;">
+                <img src="<?php echo "img_jugadores/".$juga['foto_jugador']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
+                <div style="margin-left: 30%;text-align: right"><?php echo $juga['nomb_jugador'] . "<br>" ."Jugadores". "<br>". "POSICION"?></div>
+                </div>
 
             <?php endforeach;?>
         </div>
-
     </section>
 
 </section>

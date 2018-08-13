@@ -11,6 +11,7 @@ $posicion = $pdo->query("Select * "
     ." from pos_jugador", PDO::FETCH_ASSOC);
 if(!empty($_POST)) {//Procesar el formulario
     $nomb_jugador = $_POST['nomb_equipo'];
+    $dorsal = $_POST['numero'];
     $lugar_nacimiento_jugador = $_POST['lugar_nacimiento_jugador'];
     $nacionalidad_jugador = $_POST['nacionalidad_jugador'];
     $fecha_nacimiento = $_POST['fecha_nacimiento'];
@@ -25,8 +26,15 @@ if(!empty($_POST)) {//Procesar el formulario
         $resultado =  move_uploaded_file($foto_jugador['tmp_name'], 'img_jugadores/'.$nombre_generado);
     }
     $id_posicion_jugador = $_POST['id_posicion_jugador'];
-    if (empty($nomb_jugador) || empty($lugar_nacimiento_jugador) || empty($nacionalidad_jugador) || empty($fecha_nacimiento) || empty($peso_jugador) || empty($estatura_jugador) || empty($id_posicion_jugador)){
-        $mensaje[] = "Solo puede dejar libre la Foto del jugador para Ingresar lo !";
+    $validaciondorsal = $pdo->query("select * FROM golazo.equipo_jugador WHERE id_equipos = '{$idequipo}' and dorsal ='{$dorsal}' ");
+    $validacion = [];
+    foreach($validaciondorsal as $val){
+        $validacion[] = $val[0];
+    }
+    if(count($validacion) > 0){
+        $mensaje[] = "el numero de de dorsal ya esta en uso ";
+    }elseif(empty($nomb_jugador) || empty($lugar_nacimiento_jugador) || empty($nacionalidad_jugador) || empty($fecha_nacimiento) || empty($peso_jugador) || empty($estatura_jugador) || empty($id_posicion_jugador )){
+        $mensaje[] = "verifique que todos los campos esten llenos";
     }
     if(empty($mensaje)){
         $filas_afectadas = $pdo->exec("INSERT INTO jugador (nomb_jugador, lugar_nacimiento_jugador, nacionalidad_jugador, fecha_nacimiento, peso_jugador, estatura_jugador, foto_jugador, id_posicion_jugador) VALUES ('{$nomb_jugador}', '{$lugar_nacimiento_jugador}', '{$nacionalidad_jugador}' ,'{$fecha_nacimiento}', '{$peso_jugador}', '{$estatura_jugador}', '{$nombre_generado}', '{$id_posicion_jugador}')");
@@ -36,7 +44,7 @@ if(!empty($_POST)) {//Procesar el formulario
             foreach ($idjugador as $idj){
                 $id[] = $idj[$idjugador];
             }
-            $equipo_jugador = $pdo->exec("INSERT INTO equipo_jugador (id_equipos, id_jugadores, estado) VALUES ('{$idequipo}','{$idj[0]}', '1')");
+            $equipo_jugador = $pdo->exec("INSERT INTO equipo_jugador (id_equipos, id_jugadores, estado, dorsal) VALUES ('{$idequipo}','{$idj[0]}', '1', '{$dorsal}')");
 
         }else{
             $mensaje[]= "El Jugador no fue Creado";
@@ -81,10 +89,18 @@ if(!empty($_POST)) {//Procesar el formulario
             <input type="submit" value="Volver" onclick=" location = 'equipos.php'">
         </div>
         <form action="" method="post" id="formulario" enctype="multipart/form-data">
-            <div class="seccion">
+            <div class="seccion" >
                 <label for="nomb_jugador">Nombre Completo del Jugador</label>
                 <input type="text" name="nomb_equipo" id="nomb_jugador">
             </div>
+            </tr>
+            <br>
+            <tr>
+            <div class="seccion">
+                <td><label for="numero" >Numero de Jugador</label></td>
+                <td><input type="number" name="numero" id="numero" min="1" max="99"></td>
+            </div>
+            </tr>
             <br>
             <div class="seccion">
                 <label for="lugar_nacimiento_jugador">Lugar de nacimiento del Jugador</label>
@@ -303,6 +319,7 @@ if(!empty($_POST)) {//Procesar el formulario
                 <input type="submit" value="Registrar Jugador">
                 <input type="reset" value="Limpiar">
             </div>
+            </table>
             <br>
             <?php
             if (!empty($mensaje)):
@@ -311,8 +328,8 @@ if(!empty($_POST)) {//Procesar el formulario
                     echo "<li>{$msj}</li>";
                 }
                 echo '</ul>';
-
             endif;
+            echo count($validacion);
             ?>
         </form>
     </section>
