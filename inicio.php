@@ -29,6 +29,13 @@ require_once 'conexion.php';
             <li><a href="php/estadio.php"> Gestión de Estadio </a></li>
             <li><a href="php/equipos.php"> Gestión de Equipos </a></li>
             <li><a href="php/temporada.php"> Gestión de Temporada </a></li>
+            <li><a href="#"> Tablas</a>
+                <ul>
+                    <li><a href="#">Tabla de Posiciones</a></li>
+                    <li><a href="#">Tabla de Goleadores</a></li>
+                </ul>
+            </li>
+            <li><a href="#"> Resultados </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
         </ul>
     </nav>

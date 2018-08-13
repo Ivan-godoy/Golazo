@@ -37,6 +37,13 @@ $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", P
             <li><a href="estadio.php"> Gestión de Estadios </a></li>
             <li><a href="equipos.php"> Gestión de Equipos </a></li>
             <li><a href="temporada.php"> Gestión de Temporada </a></li>
+            <li><a href="#"> Tablas</a>
+                <ul>
+                    <li><a href="#">Tabla de Posiciones</a></li>
+                    <li><a href="#">Tabla de Goleadores</a></li>
+                </ul>
+            </li>
+            <li><a href="#"> Resultados </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
         </ul>
     </nav>
