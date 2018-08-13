@@ -23,7 +23,7 @@ if(!empty($_POST)){//Procesar el formulario
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Arbitros</title>
+    <title>Golazo-Creacion-Ciudades</title>
 </head>
 <body>
 <header class="encabezado">

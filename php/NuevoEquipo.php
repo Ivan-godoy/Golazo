@@ -86,7 +86,7 @@ if(!empty($_POST)) {//Procesar el formulario
             </div>
             <br>
             <div class="seccion">
-                <label for="estadios"> Ciudad de Equipo</label>
+                <label for="estadios"> Estadio de Equipo</label>
                 <select name="estadios" id="estadios">
                     <?php foreach ($estadios as $estadio):?>
                         <option value="<?php echo $estadio['id_estadios']?>"><?php echo $estadio['nom_estadios']?></option>

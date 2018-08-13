@@ -1,7 +1,6 @@
 <?php
 require_once '../conexion.php';
-$ciudades = $pdo->query("Select * "
-    ." from ciudad", PDO::FETCH_ASSOC);
+$estadios = $pdo->query("Select * from estadios", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +9,12 @@ $ciudades = $pdo->query("Select * "
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Ciudades</title>
+    <title>Golazo-Creacion-Temporada</title>
 </head>
 <body>
 <header class="encabezado">
     <img src="../img/golazo.png" alt="" class="logo">
-    <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
+    <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
     <nav class="navbar">
@@ -28,6 +27,7 @@ $ciudades = $pdo->query("Select * "
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
+            <li><a href="php/estadio.php"> Gestión de Estadio </a></li>
             <li><a href="equipos.php"> Gestión de Equipos </a></li>
             <li><a href="temporada.php"> Gestión de Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
@@ -36,28 +36,23 @@ $ciudades = $pdo->query("Select * "
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Ciudades</h1>
-            <input type="submit" value="Nueva Ciudad" onclick=" location = 'NuevaCiudad.php'">
+            <h1>Estadios</h1>
+            <input type="submit" value="Nuevo Estadio" onclick=" location = 'NuevoEstadio.php'" style="margin: 0; margin-left: 75%">
         </div>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Codigo de la Ciudad</th>
-                <th>Nombre de la Ciudad</th>
-                <th>Eliminar</th>
-            </tr>
-            </thead>
-            <tbody>
+
+        <div class="temporadas">
             <!----- La infotmacion ----->
-            <?php foreach ($ciudades as $ciudad): ?>
-                <tr>
-                    <td><?php echo $ciudad['id_ciudad']?></td>
-                    <td><?php echo $ciudad['nom_ciudad']?></td>
-                    <td><input type="submit" value="Eliminar" onclick=" location = 'detalle_ciudad.php?codigo=<?php echo $ciudad['id_ciudad']?> &operacion=eliminar'"></td>
-                </tr>
+            <?php foreach ($estadios as $estadio): ?>
+
+                <div class="contentemporada">
+                    <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_estadio.php?codigo=<?php echo $estadio['id_estadios']?> &operacion=eliminar'"></div>
+                    <img src="../img/temporada.png" alt="" width="50%" height="50%" >
+                    <div class="fechas"><?php echo "Nombre del estadio: " . $estadio['nom_estadios'] . "<br>" ."Capacidad Maxima: ".$estadio['capacidad']?></div>
+                </div>
+
             <?php endforeach;?>
-            </tbody>
-        </table>
+        </div>
+
     </section>
 
 </section>

@@ -46,8 +46,8 @@ $equipo = $pdo->query("Select * "
                     <div class="contequipo">
                         <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_equipo.php?codigo=<?php echo $equi['id_equipo']?> &operacion=eliminar'"></div>
                         <img src="<?php echo "img_equipo/". $equi['logo']?>" alt="" width="60%" height="70%" style="margin-top: -100px" onclick="location='jugadores.php?codigo=<?php echo $equi['id_equipo']?>'">
-                        <div class="fechas"><?php echo "Nombre del Equipo: " . $equi['nom_equipo'] . "<br>" ."Fecha de Fundación: ".$equi['fecha_fundacion'] . "<br>" ."Esquema Habitual: " .$equi['esquema_habitual']?></div>
-                    </div>
+                        <!--<div class="fechas"><?php /*echo "Nombre del Equipo: " . $equi['nom_equipo'] . "<br>" ."Fecha de Fundación: ".$equi['fecha_fundacion'] . "<br>" ."Esquema Habitual: " .$equi['esquema_habitual']*/?></div>
+                    --></div>
 
                 <?php endforeach;?>
             </div>
