@@ -4,11 +4,12 @@ if (!isset($_GET['codigo'])) {
     header("Location: tabla_fixture.php");
     exit;
 }
-$idtemporada = $_GET["codigo"];
-$fixture = $pdo->query("Select * "
-    ." from encuentros WHERE id_temporada = $idtemporada", PDO::FETCH_ASSOC);
-?>
+$idfixture = $_GET["codigo"];
+$equipos = $pdo->query("Select * "
+    ." from encuentros WHERE id_fixture = $idfixture", PDO::FETCH_ASSOC);
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,11 +17,11 @@ $fixture = $pdo->query("Select * "
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Fixture</title>
+    <title>Golazo-Partido-Jugado</title>
 </head>
 <body>
 <header class="encabezado">
-    <img src="../img/golazo.png" alt="" class="logo">
+    <img src="../img/golazo.png" alt="" class="logo" onclick=" location = '../inicio.php'">
     <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
 </header>
 <section class="workspace">
@@ -42,36 +43,39 @@ $fixture = $pdo->query("Select * "
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Fixture</h1>
-            <input type="submit" value="Crear Fixture" onclick=" location = 'fixtures.php?codigo=<?php echo $idtemporada?> &operacion=crear'">
-            <input type="submit" value="Volver" onclick=" location = 'temporada.php'" style="margin: 1%">
+            <h1>Partido en Juego</h1>
         </div>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Equipo Local</th>
-                <th>VS</th>
-                <th>Equipo Visitante</th>
-                <th>Fecha</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!----- La infotmacion ----->
-            <?php foreach ($fixture as $fix): ?>
+
+        <div class="equipos">
+            <table border="1">
+                <thead>
                 <tr>
-                    <td><?php echo $fix['nombre_equipo_local']?></td>
+                    <th>Equipo Local</th>
+                    <th>VS</th>
+                    <th>Equipo Visitante</th>
+                </tr>
+                </thead>
+                <tbody>
+            <?php foreach ($equipos as $equi): ?>
+                <tr>
+                    <td><?php echo $equi['nombre_equipo_local']?></td>
                     <td><?php echo 'VS'?></td>
-                    <td><?php echo $fix['nombre_equipo_visita']?></td>
-                    <td><?php echo $fix['fecha']?></td>
-                    <td><div><input type="submit" value="Jugar Partido" onclick="location='partido_jugado.php?codigo=<?php echo $fix['id_fixture']?>'"></div></td>
+                    <td><?php echo $equi['nombre_equipo_visita']?></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 100px">0</td>
+                    <td><div style="font-size: 50px; height: 150px"><h1 style="height: 20px;  line-height: 50px;">-</h1></div></td>
+                    <td style="font-size: 100px">0</td>
                 </tr>
             <?php endforeach;?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+
     </section>
 
 </section>
-<footer class="pie" style="width: 1536px">
+<footer class="pie">
     <p>Copyright &copy; 2018 - Página creada por Grupo numero 1 Programación de Negocios - Todos los derechos reservados</p>
 </footer>
 </body>
