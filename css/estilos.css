@@ -192,6 +192,7 @@ input[type="number"]{
     border: none;
     border-bottom: #142450 solid 1px;
 }
+
 select{
     height: 30px;
     width: 300px;

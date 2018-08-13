@@ -31,6 +31,7 @@ $fixture = $pdo->query("Select * "
                 <ul>
                     <li><a href="arbitro.php">Árbitros</a></li>
                     <li><a href="entrenador.php"> Entrenador </a></li>
+                    <li><a href="usuarios.php">Usuarios </a></li>
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>

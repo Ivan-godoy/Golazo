@@ -1,6 +1,6 @@
 <?php
 require_once '../conexion.php';
-$entrenadores = $pdo->query("Select *  from entrenador", PDO::FETCH_ASSOC);
+$usuarios = $pdo->query("Select *  from usuarios", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,11 +9,11 @@ $entrenadores = $pdo->query("Select *  from entrenador", PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Entrenadores</title>
+    <title>Golazo-Usuarios</title>
 </head>
 <body>
 <header class="encabezado">
-    <img src="../img/golazo.png" alt="" class="logo">
+    <img src="../img/golazo.png" alt="" class="logo" onclick=" location = '../inicio.php'">
     <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
@@ -24,7 +24,7 @@ $entrenadores = $pdo->query("Select *  from entrenador", PDO::FETCH_ASSOC);
                 <ul>
                     <li><a href="arbitro.php">Árbitros</a></li>
                     <li><a href="entrenador.php"> Entrenador </a></li>
-                    <li><a href="usuarios.php">Usuarios </a></li>
+                    <li><a href="usuarios.php"> Usuarios </a></li>
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
@@ -44,16 +44,16 @@ $entrenadores = $pdo->query("Select *  from entrenador", PDO::FETCH_ASSOC);
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Entrenadores</h1>
-            <input type="submit" value="Nuevo Entrenador" onclick=" location = 'NuevoEntrenador.php'">
+            <h1>Tabla de Usuarios</h1>
+            <input type="submit" value="Nuevo Usuario" onclick=" location = 'NuevoUsuario.php'">
         </div>
-        <div class="equipos" style="margin-left: 10%">
+        <div class="equipos">
             <!----- La infotmacion ----->
-            <?php foreach ($entrenadores as $entrenador): ?>
-                <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px;">
-                    <img src="<?php echo "img_entrenador/".$entrenador['foto_entrenador']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
-                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $entrenador['nom_entrenador'] . "<br>" ."Entrenador". "<br>". "POSICION"?></div>
-                    <input style="margin-left: 10%" type="submit" value="Eliminar" onclick="location='detalle_entrenador.php?codigo=<?php echo $entrenador['id_entrenador']?> &operacion=eliminar'">
+            <?php foreach ($usuarios as $usuario): ?>
+                <div class="contequipo" style="height: 5%">
+                    <img src="../img/user.png" alt="" width="70%" height="80%" style="margin-top: -90px">
+                    <div class="fechas" style="font-size: 100%"><?php echo "Nombre del Usuario: " . $usuario['nombre'] . "<br>" . "E-mail: " . $usuario['correo'] ?></div>
+                    <div class="eliminar"><input style="margin: 0" type="submit" value="Eliminar" onclick="location='detalle_equipo.php?codigo=<?php echo $equi['id_equipo']?> &operacion=eliminar'"></div>
                 </div>
 
             <?php endforeach;?>

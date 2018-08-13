@@ -49,7 +49,6 @@ $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", P
     </nav>
     <section class="contenedor">
         <div class="general" style="display: block;">
-
             <br>
             <div>
                 <div class="equipos" style="margin: 0">
