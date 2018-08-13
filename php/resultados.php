@@ -1,7 +1,7 @@
 <?php
 require_once '../conexion.php';
-$temporadas = $pdo->query("Select * "
-    ." from temporada", PDO::FETCH_ASSOC);
+$ciudades = $pdo->query("Select * "
+    ." from ciudad", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@ $temporadas = $pdo->query("Select * "
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Temporada</title>
+    <title>Golazo-Posiciones</title>
 </head>
 <body>
 <header class="encabezado">
@@ -26,6 +26,7 @@ $temporadas = $pdo->query("Select * "
                     <li><a href="arbitro.php">Árbitros</a></li>
                     <li><a href="entrenador.php"> Entrenador </a></li>
                     <li><a href="usuarios.php">Usuarios </a></li>
+
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
@@ -36,33 +37,37 @@ $temporadas = $pdo->query("Select * "
                 <ul>
                     <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
-
                 </ul>
             </li>
             <li><a href="resultados.php"> Resultados </a></li>
-
 
         </ul>
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Temporada</h1>
-            <input type="submit" value="Nueva Temporada" onclick=" location = 'NuevaTemporada.php'">
+            <h1>Tabla de Resultados</h1>
         </div>
-
-                <div class="temporadas">
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Equipo Local</th>
+                <th>Goles Local</th>
+                <th>Goles Visita</th>
+                <th>Equipo Visita</th>
+            </tr>
+            </thead>
+            <tbody>
             <!----- La infotmacion ----->
-            <?php foreach ($temporadas as $temporada): ?>
-
-                <div class="contentemporada">
-                    <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_temporada.php?codigo=<?php echo $temporada['id_temporada']?> &operacion=eliminar'"></div>
-                    <img src="../img/temporada.png" alt="" width="50%" height="50%" onclick="location = 'tabla_fixture.php?codigo=<?php echo $temporada['id_temporada']?>'">
-                    <div class="fechas"><?php echo "Inicio " . $temporada['fecha_inicio'] . " / " ."Final ".$temporada['fecha_final']?></div>
-                </div>
-
+            <?php foreach ($ciudades as $ciudad): ?>
+                <tr>
+                    <td><?php echo $ciudad['id_ciudad']?></td>
+                    <td><?php echo $ciudad['nom_ciudad']?></td>
+                    <td><?php echo $ciudad['nom_ciudad']?></td>
+                    <td><?php echo $ciudad['nom_ciudad']?></td>
+                </tr>
             <?php endforeach;?>
-                </div>
-
+            </tbody>
+        </table>
     </section>
 
 </section>

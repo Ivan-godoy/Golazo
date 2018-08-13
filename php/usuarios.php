@@ -33,13 +33,11 @@ $usuarios = $pdo->query("Select *  from usuarios", PDO::FETCH_ASSOC);
             <li><a href="temporada.php"> Gestipon de Temporada </a></li>
             <li><a href="#"> Tablas</a>
                 <ul>
-                    <li><a href="#">Tabla de Posiciones</a></li>
-                    <li><a href="#">Tabla de Goleadores</a></li>
+                    <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
+                    <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
                 </ul>
             </li>
-            <li><a href="#"> Resultados </a></li>
-            <li><a href="#"> Item de Navegación 8 </a></li>
-
+            <li><a href="resultados.php"> Resultados </a></li>
         </ul>
     </nav>
     <section class="contenedor">
