@@ -12,12 +12,12 @@ $posicion = $pdo->query("Select * "
 if(!empty($_POST)) {//Procesar el formulario
     $nomb_jugador = $_POST['nomb_equipo'];
     $dorsal = $_POST['numero'];
-    $lugar_nacimiento_jugador = $_POST['lugar_nacimiento_jugador'];
-    $nacionalidad_jugador = $_POST['nacionalidad_jugador'];
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $lugar_nacimiento_jugador = $_POST['lugar_nacimiento_arbitro'];
+    $nacionalidad_jugador = $_POST['nacionalidad_arbitro'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento_arbitro'];
     $peso_jugador = $_POST['peso_jugador'];
     $estatura_jugador = $_POST['estatura_jugador'];
-    $foto_jugador = $_FILES['foto_jugador'];
+    $foto_jugador = $_FILES['foto_arbitro'];
     define('TAM_MAX', 1048576);
     $partes = explode('.', $foto_jugador['name']);
     $extension = $partes[count($partes)-1];
@@ -25,7 +25,7 @@ if(!empty($_POST)) {//Procesar el formulario
     if ($foto_jugador['error'] === 0){
         $resultado =  move_uploaded_file($foto_jugador['tmp_name'], 'img_jugadores/'.$nombre_generado);
     }
-    $id_posicion_jugador = $_POST['id_posicion_jugador'];
+    $id_posicion_jugador = $_POST['id_posicion_arbitro'];
     $validaciondorsal = $pdo->query("select * FROM golazo.equipo_jugador WHERE id_equipos = '{$idequipo}' and dorsal ='{$dorsal}' ");
     $validacion = [];
     foreach($validaciondorsal as $val){
@@ -37,7 +37,7 @@ if(!empty($_POST)) {//Procesar el formulario
         $mensaje[] = "verifique que todos los campos esten llenos";
     }
     if(empty($mensaje)){
-        $filas_afectadas = $pdo->exec("INSERT INTO jugador (nomb_jugador, lugar_nacimiento_jugador, nacionalidad_jugador, fecha_nacimiento, peso_jugador, estatura_jugador, foto_jugador, id_posicion_jugador) VALUES ('{$nomb_jugador}', '{$lugar_nacimiento_jugador}', '{$nacionalidad_jugador}' ,'{$fecha_nacimiento}', '{$peso_jugador}', '{$estatura_jugador}', '{$nombre_generado}', '{$id_posicion_jugador}')");
+        $filas_afectadas = $pdo->exec("INSERT INTO jugador (nomb_arbitro, lugar_nacimiento_arbitro, nacionalidad_arbitro, fecha_nacimiento_arbitro, peso_jugador, estatura_jugador, foto_arbitro, id_posicion_arbitro) VALUES (n{$nomb_jugador}omb_arbitro, l{$lugar_nacimiento_jugador}ugar_nacimiento_arbitro, n{$nacionalidad_jugador}acionalidad_arbitro ,'{$fecha_nacimiento}', '{$peso_jugador}', '{$estatura_jugador}', '{$nombre_generado}', i{$id_posicion_jugador}d_posicion_arbitro)");
         if ($filas_afectadas>= 1){
             $mensaje[]= "El Jugador Fue Creado";
             $idjugador = $pdo->query("select id_jugador FROM golazo.jugador order by id_jugador desc limit 1");
@@ -90,27 +90,22 @@ if(!empty($_POST)) {//Procesar el formulario
             <input type="submit" value="Volver" onclick=" location = 'equipos.php'">
         </div>
         <form action="" method="post" id="formulario" enctype="multipart/form-data">
-            <div class="seccion" >
-                <label for="nomb_jugador">Nombre Completo del Jugador</label>
-                <input type="text" name="nomb_equipo" id="nomb_jugador">
-            </div>
+            <table style="border: black solid 1px; margin-top: -80px; width: 60%">
+            <tr style="height: 50px">
+                <td><label for="nomb_jugador" style="margin: 0; padding: 0;">Nombre Completo del Jugador</label></td>
+                <td><input type="text" name="nomb_equipo" id="nomb_jugador" style="margin: 0; padding: 0;"></td>
             </tr>
-            <br>
-            <tr>
-            <div class="seccion">
-                <td><label for="numero" >Numero de Jugador</label></td>
-                <td><input type="number" name="numero" id="numero" min="1" max="99"></td>
-            </div>
+            <tr style="height: 50px">
+                <td><label for="numero" style="margin: 0; padding: 0; ">Numero de Jugador</label></td>
+                <td><input type="number" name="numero" id="numero" min="1" max="99" style="margin: 0; padding: 0; width: 300px"></td>
             </tr>
-            <br>
-            <div class="seccion">
-                <label for="lugar_nacimiento_jugador">Lugar de nacimiento del Jugador</label>
-                <input type="text" name="lugar_nacimiento_jugador" id="lugar_nacimiento_jugador">
-            </div>
-            <br>
-            <div class="seccion">
-                <label for="nacionalidad_jugador">Nacionalidad del Jugador</label>
-                <select name="nacionalidad_jugador" id="nacionalidad_jugador">
+            <tr style="height: 50px">
+                <td><label for="lugar_nacimiento_jugador" style="margin: 0; padding: 0;">Lugar de nacimiento del Jugador</label></td>
+                <td><input type="text" name="lugar_nacimiento_jugador" id="lugar_nacimiento_jugador"></td>
+            </tr>
+            <tr style="height: 50px">
+                <td><label for="nacionalidad_jugador" style="margin: 0; padding: 0;">Nacionalidad del Jugador</label></td>
+                <td><select name="nacionalidad_jugador" id="nacionalidad_jugador">
                     <option value="NAMIBIANA">NAMIBIANA</option>
                     <option value="ANGOLESA">ANGOLESA</option>
                     <option value="ARGELIANA">ARGELIANA</option>
@@ -283,43 +278,40 @@ if(!empty($_POST)) {//Procesar el formulario
                     <option value="MOLDOVIA,">MACEDONIA</option>
                     <option value="REPUBLICA">ESLOVENIA</option>
                     <option value="ESLOVAQUIA">ESLOVAQUIA</option>
-                </select>
-            </div>
+                </select></td>
+            </tr>
+
+            <tr style="height: 50px">
+                <td><label for="fecha_nacimineto" style="margin: 0; padding: 0; ">Fecha de Nacimiento</label></td>
+                <td><input type="date" name="fecha_nacimiento" id="fecha_nacimineto"></td>
+            </tr>
+
+            <tr style="height: 50px">
+                <td><label for="peso_jugador" style="margin: 0; padding: 0;">Peso del Jugador en lb</label></td>
+                <td><input type="number" step="0.01" name="peso_jugador" id="peso_jugador" placeholder="165.5" style="; width: 300px"></td>
+            </tr>
+
+            <tr style="height: 50px">
+                <td><label for="estatura_jugador" style="margin: 0; padding: 0; ">Estatura del Jugador en m</label></td>
+                <td><input type="number" step="0.01" name="estatura_jugador" id="estatura_jugador" placeholder="1.7" style="width: 300px"></td>
+            </tr>
+            <tr style="height: 50px">
+                <td><label for="foto_jugador" style="margin: 0; padding: 0; "> Foto del jugador</label></td>
+                <td><input type="file" name="foto_jugador" id="foto_jugador" accept="image/*" value=""></td>
+            </tr>
             <br>
-            <div class="seccion">
-                <label for="fecha_nacimineto">Fecha de Nacimiento</label>
-                <input type="date" name="fecha_nacimiento" id="fecha_nacimineto">
-            </div>
-            <br>
-            <div class="seccion">
-                <label for="peso_jugador">Peso del Jugador</label>
-                <input type="number" step="0.01" name="peso_jugador" id="peso_jugador" placeholder="165.5" style="margin-right: 0">
-                <label for="peso_jugador">lb</label>
-            </div>
-            <br>
-            <div class="seccion">
-                <label for="estatura_jugador">Estatura del Jugador</label>
-                <input type="number" step="0.01" name="estatura_jugador" id="estatura_jugador" placeholder="165.5">
-                <label for="estatura_jugador">m</label>
-            </div>
-            <div class="seccion" style="margin-top: 20px">
-                <label for="foto_jugador"> Foto del jugador</label>
-                <input type="file" name="foto_jugador" id="foto_jugador" accept="image/*" value="">
-            </div>
-            <br>
-            <div class="seccion">
-                <label for="id_posicion_jugador"> Posicion en la que Juega</label>
-                <select name="id_posicion_jugador" id="id_posicion_jugador">
+            <tr style="height: 50px">
+                <td><label for="id_posicion_jugador" style="margin: 0; padding: 0; "> Posicion en la que Juega</label></td>
+                <td><select name="id_posicion_jugador" id="id_posicion_jugador">
                     <?php foreach ($posicion as $pos):?>
                         <option value="<?php echo $pos['id_pos_jugador']?>"><?php echo $pos['descripcion']?></option>
                     <?php endforeach; ?>
-                </select>
-            </div>
-            <br>
-            <div class="botones">
-                <input type="submit" value="Registrar Jugador">
-                <input type="reset" value="Limpiar">
-            </div>
+                </select></td>
+            </tr>
+            <tr style="height: 50px">
+                <td colspan="2"><input type="submit" value="Registrar Jugador">
+                <input type="reset" value="Limpiar"></td>
+            </tr>
             </table>
             <br>
             <?php
@@ -330,7 +322,6 @@ if(!empty($_POST)) {//Procesar el formulario
                 }
                 echo '</ul>';
             endif;
-            echo count($validacion);
             ?>
         </form>
     </section>

@@ -1,7 +1,6 @@
 <?php
 require_once '../conexion.php';
-$arbitros = $pdo->query("Select id_arbitro, nom_arbitro, fecha_nacimeinto_arbitro "
-    ." from arbitro", PDO::FETCH_ASSOC);
+$arbitros = $pdo->query("Select *  from arbitro", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +9,12 @@ $arbitros = $pdo->query("Select id_arbitro, nom_arbitro, fecha_nacimeinto_arbitr
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Arbitros</title>
+    <title>Golazo-Arbitros</title>
 </head>
 <body>
 <header class="encabezado">
     <img src="../img/golazo.png" alt="" class="logo">
-    <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
+    <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
     <nav class="navbar">
@@ -40,27 +39,17 @@ $arbitros = $pdo->query("Select id_arbitro, nom_arbitro, fecha_nacimeinto_arbitr
             <h1>Tabla de Árbitros</h1>
             <input type="submit" value="Nuevo Arbitro" onclick=" location = 'NuevoArbitro.php'">
         </div>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Id_Arbitro</th>
-                <th>Nombre</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Eliminar</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="equipos" style="margin-left: 10%">
             <!----- La infotmacion ----->
             <?php foreach ($arbitros as $arbitro): ?>
-                <tr>
-                    <td><a href="detalle_ciudad.php?codigo=<?php echo $arbitro['id_arbitro']?>"><?php echo $arbitro['id_arbitro']?></a></td>
-                    <td><?php echo $arbitro['nom_arbitro']?></td>
-                    <td><?php echo $arbitro['fecha_nacimiento_arbitro']?></td>
-                    <td><input type="submit" value="Eliminar" onclick="Location= 'detalle_ciudad.php?codigo=<?php echo $arbitro['id_arbitro']?> &operacion=eliminar'"></td>
-                </tr>
+                <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px;">
+                    <img src="<?php echo "img_arbitros/".$arbitro['foto_arbitro']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
+                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $arbitro['nom_arbitro'] . "<br>" ."Jugadores". "<br>". "POSICION"?></div>
+                    <input style="margin-left: 10%" type="submit" value="Eliminar" onclick="location='detalle_.php?codigo=<?php echo $arbitro['id_arbitro']?> &operacion=eliminar'">
+                </div>
+
             <?php endforeach;?>
-            </tbody>
-        </table>
+        </div>
     </section>
 
 </section>

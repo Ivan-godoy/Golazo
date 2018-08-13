@@ -310,7 +310,7 @@ CREATE TABLE `jugador` (
   `foto_jugador` varchar(45) DEFAULT NULL,
   `id_posicion_jugador` int(11) NOT NULL,
   PRIMARY KEY (`id_jugador`),
-  KEY `jugador_a_posJug_idx` (`id_posicion_jugador`),
+  KEY `jugador_a_posJug_idx` (`id_posicion_arbitro`),
   CONSTRAINT `jugador_a_posJug` FOREIGN KEY (`id_posicion_jugador`) REFERENCES `pos_jugador` (`id_pos_jugador`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

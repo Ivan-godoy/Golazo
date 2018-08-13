@@ -44,11 +44,11 @@ $equipo = $pdo->query("Select * "
             <div class="equipos">
                 <!----- La infotmacion ----->
                 <?php foreach ($equipo as $equi): ?>
-                    <div class="contequipo">
-                        <div class="eliminar"><input type="submit" value="Eliminar" onclick="location='detalle_equipo.php?codigo=<?php echo $equi['id_equipo']?> &operacion=eliminar'"></div>
-                        <img src="<?php echo "img_equipo/". $equi['logo']?>" alt="" width="60%" height="70%" style="margin-top: -100px" onclick="location='jugadores.php?codigo=<?php echo $equi['id_equipo']?>'">
-                        <!--<div class="fechas"><?php /*echo "Nombre del Equipo: " . $equi['nom_equipo'] . "<br>" ."Fecha de Fundación: ".$equi['fecha_fundacion'] . "<br>" ."Esquema Habitual: " .$equi['esquema_habitual']*/?></div>
-                    --></div>
+                    <div class="contequipo" style="height: 5%">
+                        <img src="<?php echo "img_equipo/". $equi['logo']?>" alt="" width="70%" height="80%" style="margin-top: -90px" onclick="location='jugadores.php?codigo=<?php echo $equi['id_equipo']?>'">
+                        <div class="fechas" style="font-size: 100%"><?php echo "Nombre del Equipo: " . $equi['nom_equipo'] ?></div>
+                        <div class="eliminar"><input style="margin: 0" type="submit" value="Eliminar" onclick="location='detalle_equipo.php?codigo=<?php echo $equi['id_equipo']?> &operacion=eliminar'"></div>
+                    </div>
 
                 <?php endforeach;?>
             </div>
