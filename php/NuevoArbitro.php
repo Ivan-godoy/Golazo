@@ -43,6 +43,7 @@ if(!empty($_POST)){//Procesar el formulario
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
             <li><a href="equipos.php"> Gestion de Equipos </a></li>
+            <li><a href="estadio.php"> Gestión de Estadios </a></li>
             <li><a href="temporada.php"> Gestion de Temporada </a></li>
             <li><a href="#"> Item de Navegación 8 </a></li>
         </ul>
