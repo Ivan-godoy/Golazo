@@ -12,7 +12,7 @@ foreach ($id_partido_jugado as $id){
     $info_partido_jugado = $id['id_partido_jugado'];
 }
 
-$datos = $pdo->query("SELECT fixture.equipo_local,encuentros.nombre_equipo_local,equipo.id_estadio, fixture.equipo_visitante, encuentros.nombre_equipo_visita ,encuentros.fecha, encuentros.id_fixture, encuentros.id_temporada from encuentros "
+$datos = $pdo->query("SELECT encuentros.id_temporada,fixture.equipo_local,encuentros.nombre_equipo_local,equipo.id_estadio, fixture.equipo_visitante, encuentros.nombre_equipo_visita ,encuentros.fecha, encuentros.id_fixture, encuentros.id_temporada from encuentros "
     ." INNER JOIN fixture on encuentros.id_fixture = fixture.id_fixture INNER JOIN equipo on nombre_equipo_local = nom_equipo WHERE fixture.id_fixture = '{$idfixture}'", PDO::FETCH_ASSOC);
 
 $resultados = $pdo->query("SELECT * FROM mostrar_resultados WHERE id_partido_jugado = '{$id['id_partido_jugado']}' ;", PDO::FETCH_ASSOC);
