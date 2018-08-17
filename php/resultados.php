@@ -1,7 +1,6 @@
 <?php
 require_once '../conexion.php';
-$ciudades = $pdo->query("Select * "
-    ." from ciudad", PDO::FETCH_ASSOC);
+$resultados = $pdo->query("SELECT * FROM golazo.mostrar_resultados", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,12 +57,12 @@ $ciudades = $pdo->query("Select * "
             </thead>
             <tbody>
             <!----- La infotmacion ----->
-            <?php foreach ($ciudades as $ciudad): ?>
+            <?php foreach ($resultados as $resultado): ?>
                 <tr>
-                    <td><?php echo $ciudad['id_ciudad']?></td>
-                    <td><?php echo $ciudad['nom_ciudad']?></td>
-                    <td><?php echo $ciudad['nom_ciudad']?></td>
-                    <td><?php echo $ciudad['nom_ciudad']?></td>
+                    <td><?php echo $resultado['equipo_local']?></td>
+                    <td><?php echo $resultado['goles_local']?></td>
+                    <td><?php echo $resultado['goles_visitante']?></td>
+                    <td><?php echo $resultado['equipo_local']?></td>
                 </tr>
             <?php endforeach;?>
             </tbody>
