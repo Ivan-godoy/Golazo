@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="golazo@localhost" uuid="c16e5c71-6044-4a22-a4ca-8655cfdefb14">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    <data-source name="golazo@localhost" uuid="60e96683-6868-4c22-9581-b393f6894853">
+      <database-info product="MySQL" version="5.5.5-10.1.32-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
       <introspection-schemas>*:golazo</introspection-schemas>
     </data-source>
   </component>

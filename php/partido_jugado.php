@@ -5,14 +5,18 @@ if (!isset($_GET['codigo'])) {
     exit;
 }
 $idfixture = $_GET["codigo"];
-
+$id_temp = [];
+$id_temporada = $pdo -> query("Select id_temporada from encuentros");
+foreach ($id_temporada as $temp){
+    $id_temp[] = $temp;
+}
 $id_partido_jugado = $id_partido_jugado = $pdo->query("Select id_partido_jugado from partido_jugado where id_fixture = '{$idfixture}'", PDO::FETCH_ASSOC);
 $info_partido_jugado = [];
 foreach ($id_partido_jugado as $id){
     $info_partido_jugado = $id['id_partido_jugado'];
 }
 
-$datos = $pdo->query("SELECT fixture.equipo_local,encuentros.nombre_equipo_local,equipo.id_estadio, fixture.equipo_visitante, encuentros.nombre_equipo_visita ,encuentros.fecha, encuentros.id_fixture, encuentros.id_temporada from encuentros "
+$datos = $pdo->query("SELECT fixture.id_temporada,  fixture.equipo_local,encuentros.nombre_equipo_local,equipo.id_estadio, fixture.equipo_visitante, encuentros.nombre_equipo_visita ,encuentros.fecha, encuentros.id_fixture, encuentros.id_temporada from encuentros "
     ." INNER JOIN fixture on encuentros.id_fixture = fixture.id_fixture INNER JOIN equipo on nombre_equipo_local = nom_equipo WHERE fixture.id_fixture = '{$idfixture}'", PDO::FETCH_ASSOC);
 
 $resultados = $pdo->query("SELECT * FROM mostrar_resultados WHERE id_partido_jugado = '{$id['id_partido_jugado']}' ;", PDO::FETCH_ASSOC);
@@ -168,6 +172,7 @@ if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
                 <ul>
                     <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
+                    <li><a href="tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
 
                 </ul>
             </li>
@@ -179,7 +184,9 @@ if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
     <section class="contenedor">
         <div class="general">
             <h1>Partido en Juego</h1>
-            <input type="submit" value="Jugar" onclick="location='jugar.php?cod=<?php echo $idfixture?>'">
+            <input type="submit" value="Volver" onclick="location='tabla_fixture.php?codigo=<?php echo $temp['id_temporada']?>'" style="width: 6%;margin: 0; padding: 0; margin-left: 60%">
+            <input type="submit" value="Jugar" onclick="location='jugar.php?cod=<?php echo $idfixture?>'" style="margin: 0; margin-left: 1%; width: 6%;">
+
         </div>
 
         <div class="equipos">
@@ -312,11 +319,6 @@ if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
             </table>
         </div>
         <br>
-
-
-
-
-
 
     </section>
 

@@ -88,6 +88,7 @@ if(!empty($_POST)) {//Procesar el formulario
                 <ul>
                     <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
+                    <li><a href="tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
 
                 </ul>
             </li>

@@ -5,8 +5,14 @@ if (!isset($_GET['codigo'])) {
     exit;
 }
 $idequipo = $_GET["codigo"];
+$nombre = [];
 $jugadores = $pdo->query("select descripcion, dorsal, nomb_jugador, foto_jugador from equipo_jugador inner join pos_jugador on id_jugadores = id_pos_jugador inner join jugador on id_jugadores = id_jugador  WHERE id_equipos = '{$idequipo}'", PDO::FETCH_ASSOC);
 $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", PDO::FETCH_ASSOC);
+$equipo2 = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", PDO::FETCH_ASSOC);
+foreach ($equipo2 as $equi){
+    $nombre[] = $equi;
+}
+$encuentros = $pdo ->query("SELECT nombre_equipo_local, nombre_equipo_visita, fecha FROM golazo.encuentros inner join equipo on encuentros.nombre_equipo_local = equipo.nom_equipo where nombre_equipo_local = '{$equi['nom_equipo']}' or nombre_equipo_visita = '{$equi['nom_equipo']}' and fecha >= curdate() limit 5");
 
 ?>
 <!DOCTYPE html>
@@ -41,6 +47,7 @@ $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", P
                 <ul>
                     <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
+                    <li><a href="tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
                 </ul>
             </li>
             <li><a href="resultados.php"> Resultados </a></li>
@@ -52,6 +59,7 @@ $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", P
             <div>
                 <div class="equipos" style="margin: 0; width: 98%">
                     <!----- La infotmacion ----->
+
                     <?php foreach ($equipo as $equi): ?>
                             <img src="<?php echo "img_equipo/".$equi['logo']?>" alt="" style="width: 35%; height: 270px;">
                             <div style="text-align: left"><?php echo"<h1 style='margin: 0'>Informacion del Equipo</h1>". "Nombre del Equipo: ". $equi['nom_equipo'] . "<br>" ."Fecha de Fundación: ".$equi['fecha_fundacion']. "<br>". "Esquema Habitual: " . $equi['esquema_habitual'] ?></div>
@@ -59,6 +67,30 @@ $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", P
                     <input type="submit" value="Volver a Equipos" onclick=" location = 'equipos.php'" style="margin-left: 21%">
                 </div>
             </div>
+        </div>
+        <div class="general" style="height: auto">
+            <h1>Encuentros</h1>
+            <br>
+            <br>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Nombre del Equipo Local</th>
+                    <th>Nombre del Equipo Visita</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!----- La infotmacion ----->
+                <?php foreach ($encuentros as $encuentro): ?>
+                    <tr>
+                        <td><?php echo $encuentro['nombre_equipo_local']?></td>
+                        <td><?php echo $encuentro['nombre_equipo_visita']?></td>
+                        <td><?php echo $encuentro['fecha']?></td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
         </div>
         <div class="general">
             <h1>Jugadores</h1>

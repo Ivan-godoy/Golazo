@@ -34,6 +34,7 @@ require_once 'conexion.php';
                 <ul>
                     <li><a href="php/tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="php/tabla_goleadores.php">Tabla de Goleadores</a></li>
+                    <li><a href="php/tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
                 </ul>
             </li>
             <li><a href="php/resultados.php"> Resultados </a></li>
