@@ -31,36 +31,109 @@ foreach ($datos as $infogoles){
 }
 $mensaje = [];
 $id = [];
-if (empty($_POST['id_jugador_local']) && empty($_POST['id_jugador_visita'])) {
+if (empty($_POST['id_jugador_local']) && empty($_POST['id_jugador_visita'])&& empty($_POST['id_jugador_local_ama'])&& empty($_POST['id_jugador_visita_ama'])&& empty($_POST['id_jugador_local_ama2'])&& empty($_POST['id_jugador_visita_ama2'])&& empty($_POST['id_jugador_local_roj'])&& empty($_POST['id_jugador_local_roj'])&& empty($_POST['id_jugador_visita_roj'])&& empty($_POST['id_jugador_local_roj2'])&& empty($_POST['id_jugador_visita_roj2'])) {
     $mensaje[] = "Debe de seleccionar El Jugador";
-} else {
-    if (!empty($_POST) && $_POST['id_jugador_local']) {
-        $id_jugador = $_POST['id_jugador_local'];
-//        }
-        if (empty($mensaje)) {
-//            $encuentro_jugador = $pdo->exec("INSERT INTO encuentro_jugador (id_partidos_jugados, id_Jugadores, id_Equipos) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}')");
-            $goles = $pdo->exec("INSERT INTO goles (id_partido_jugados_fk, id_jugadores_fk, id_equipos_fk) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}')");
-            $mensaje[] = "Se registro exitosamente";
-            header("Location: partido_jugado.php?codigo=$idfixture?");
-        } else {
-            $mensaje[] = "El Hubo problemas en la conexion";
-        }
-    } elseif (!empty($_POST) && $_POST['id_jugador_visita']) {
-        $id_jugador = $_POST['id_jugador_visita'];
-//        if (empty($id_jugador)) {
-//            $mensaje[] = "Debe de seleccionar El Jugador";
-//        }
-        if (empty($mensaje)) {
-//            $encuentro_jugador = $pdo->exec("INSERT INTO encuentro_jugador (id_partidos_jugados, id_Jugadores, id_Equipos) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}')");
-            $goles = $pdo->exec("INSERT INTO goles (id_partido_jugados_fk, id_jugadores_fk, id_equipos_fk) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}')");
-            $mensaje[] = "Se registro exitosamente";
-            header("Location: partido_jugado.php?codigo=$idfixture?");
-        } else {
-            $mensaje[] = "El Hubo problemas en la conexion";
-        }
+}
+if (!empty($_POST) && $_POST['id_jugador_local']) {
+    $id_jugador = $_POST['id_jugador_local'];
+    if (empty($mensaje)) {
+        $goles = $pdo->exec("INSERT INTO goles (id_partido_jugados_fk, id_jugadores_fk, id_equipos_fk) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}')");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
     }
 }
-
+if (!empty($_POST) && $_POST['id_jugador_visita']) {
+    $id_jugador = $_POST['id_jugador_visita'];
+    if (empty($mensaje)) {
+        $goles = $pdo->exec("INSERT INTO goles (id_partido_jugados_fk, id_jugadores_fk, id_equipos_fk) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}')");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
+if (!empty($_POST) && $_POST['id_jugador_local_ama']) {
+    $id_jugador = $_POST['id_jugador_local_ama'];
+    if (empty($mensaje)) {
+        $amarilla = $pdo->exec("INSERT INTO golazo.amonestaciones (id_partidos_jug, id_jugadore_fk, id_equipos_fk,id_amonestaciones) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}',2)");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
+if (!empty($_POST) && $_POST['id_jugador_visita_ama']) {
+    $id_jugador = $_POST['id_jugador_visita_ama'];
+    if (empty($mensaje)) {
+        $amarilla = $pdo->exec("INSERT INTO golazo.amonestaciones (id_partidos_jug, id_jugadore_fk, id_equipos_fk,id_amonestaciones) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}',2)");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
+if (!empty($_POST) && $_POST['id_jugador_local_ama2']) {
+    $id_jugador = $_POST['id_jugador_local_ama2'];
+    if (empty($mensaje)) {
+        $amarilla = $pdo->exec("INSERT INTO golazo.amonestaciones (id_partidos_jug, id_jugadore_fk, id_equipos_fk,id_amonestaciones) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}',2)");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
+if (!empty($_POST) && $_POST['id_jugador_visita_ama2']) {
+    $id_jugador = $_POST['id_jugador_visita_ama2'];
+    if (empty($mensaje)) {
+        $amarilla = $pdo->exec("INSERT INTO golazo.amonestaciones (id_partidos_jug, id_jugadore_fk, id_equipos_fk,id_amonestaciones) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}',2)");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
+if (!empty($_POST) && $_POST['id_jugador_local_roj']) {
+    $id_jugador = $_POST['id_jugador_local_roj'];
+    if (empty($mensaje)) {
+        $amarilla = $pdo->exec("INSERT INTO golazo.amonestaciones (id_partidos_jug, id_jugadore_fk, id_equipos_fk,id_amonestaciones) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}',1)");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
+if (!empty($_POST) && $_POST['id_jugador_visita_roj']) {
+    $id_jugador = $_POST['id_jugador_visita_roj'];
+    if (empty($mensaje)) {
+        $amarilla = $pdo->exec("INSERT INTO golazo.amonestaciones (id_partidos_jug, id_jugadore_fk, id_equipos_fk,id_amonestaciones) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}',1)");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
+if (!empty($_POST) && $_POST['id_jugador_local_roj2']) {
+    $id_jugador = $_POST['id_jugador_local_roj2'];
+    if (empty($mensaje)) {
+        $amarilla = $pdo->exec("INSERT INTO golazo.amonestaciones (id_partidos_jug, id_jugadore_fk, id_equipos_fk,id_amonestaciones) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}',1)");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
+if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
+    $id_jugador = $_POST['id_jugador_visita_roj2'];
+    if (empty($mensaje)) {
+        $amarilla = $pdo->exec("INSERT INTO golazo.amonestaciones (id_partidos_jug, id_jugadore_fk, id_equipos_fk,id_amonestaciones) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}',1)");
+        $mensaje[] = "Se registro exitosamente";
+        header("Location: partido_jugado.php?codigo=$idfixture?");
+    } else {
+        $mensaje[] = "El Hubo problemas en la conexion";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,21 +252,21 @@ if (empty($_POST['id_jugador_local']) && empty($_POST['id_jugador_visita'])) {
                                 <?php endforeach; ?>
                             </select>
 
-                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+                            <input style="height: 100px;width: 100px;margin: 0px;background-color: yellow;color: black" type="submit" value="Amarilla">
 
                         </form>
                     </td>
                     <td></td>
                     <td>
                         <form action="" method="post">
-                            <select name="id_jugador_visita" id="id_jugador_visita">
+                            <select name="id_jugador_visita_ama2" id="id_jugador_visita_ama2">
                                 <option value="0"></option>
                                 <?php foreach ($amarillas2 as $ama):?>
                                     <option value="<?php echo $ama['id_jugador']?>"><?php echo $ama['nomb_jugador']?></option>
                                 <?php endforeach; ?>
                             </select>
 
-                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+                            <input style="height: 100px;width: 100px;margin: 0px;background-color: yellow;color: black" type="submit" value="Amarilla">
 
                         </form>
                     </td>
@@ -206,27 +279,27 @@ if (empty($_POST['id_jugador_local']) && empty($_POST['id_jugador_visita'])) {
 
                     <td>
                         <form action="" method="post">
-                            <select name="id_jugador_local" id="id_jugador_local">
+                            <select name="id_jugador_local_roj" id="id_jugador_local_roj">
                                 <option value="0"></option>
                                 <?php foreach ($rojas as $roj):?>
                                     <option value="<?php echo $roj['id_jugador']?>"><?php echo $roj['nomb_jugador']?></option>
                                 <?php endforeach; ?>
                             </select>
 
-                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+                            <input style="height: 100px;width: 100px;margin: 0px;background-color: red" type="submit" value="Roja">
 
                         </form>
                     </td>
                     <td></td>
                     <td>
                         <form action="" method="post">
-                            <select name="id_jugador_visita" id="id_jugador_visita">
+                            <select name="id_jugador_visita_roj2" id="id_jugador_visita_roj2">
                                 <option value="0"></option>
                                 <?php foreach ($rojas2 as $roj):?>
                                     <option value="<?php echo $roj['id_jugador']?>"><?php echo $roj['nomb_jugador']?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+                            <input style="height: 100px;width: 100px;margin: 0px;background-color: red" type="submit" value="Roja">
 
                         </form>
                     </td>
