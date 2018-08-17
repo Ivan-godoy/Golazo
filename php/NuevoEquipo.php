@@ -55,8 +55,16 @@ if(!empty($_POST)) {//Procesar el formulario
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
             <li><a href="equipos.php"> Gestion de Equipos </a></li>
-            <li><a href="temporada.php"> Gestión de Temporada </a></li>
-            <li><a href="#"> Item de Navegación 8 </a></li>
+            <li><a href="estadio.php"> Gestión de Estadios </a></li>
+            <li><a href="temporada.php"> Gestion de Temporada </a></li>
+            <li><a href="#"> Tablas</a>
+                <ul>
+                    <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
+                    <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
+                    <li><a href="tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
+                </ul>
+            </li>
+            <li><a href="resultados.php"> Resultados </a></li>
         </ul>
     </nav>
     <section class="contenedor">

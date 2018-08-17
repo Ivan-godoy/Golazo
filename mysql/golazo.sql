@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: golazo
+-- Host: 127.0.0.1    Database: golazo
 -- ------------------------------------------------------
--- Server version	5.7.19-log
+-- Server version	5.5.5-10.1.32-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,20 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Temporary view structure for view `amarillas`
+--
+
+DROP TABLE IF EXISTS `amarillas`;
+/*!50001 DROP VIEW IF EXISTS `amarillas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `amarillas` AS SELECT 
+ 1 AS `nomb_jugador`,
+ 1 AS `nom_equipo`,
+ 1 AS `amarillas`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `amonestaciones`
@@ -61,7 +75,7 @@ CREATE TABLE `arbitro` (
   PRIMARY KEY (`id_arbitro`),
   KEY `arbitro_a_tipoArbitro_idx` (`id_posicion_arbitro`),
   CONSTRAINT `arbitro_a_tipoArbitro` FOREIGN KEY (`id_posicion_arbitro`) REFERENCES `pos_arbitro` (`id_pos_arbitro`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +84,7 @@ CREATE TABLE `arbitro` (
 
 LOCK TABLES `arbitro` WRITE;
 /*!40000 ALTER TABLE `arbitro` DISABLE KEYS */;
+INSERT INTO `arbitro` VALUES (1,'Marcelo','HONDUREÃ‘A','La Ceiba, Atlantida, Honduras','2018-08-13','1534187661_1313.jpg',2),(2,'Fiochi','ARGELIANA','La Ceiba, Atlantida, Honduras','2018-08-14','1534187692_1584.jpg',3),(3,'Columbus','ANGOLESA','La Ceiba, Atlantida, Honduras','2018-08-14','1534187725_1518.jpg',2),(4,'Kebel Lopez Chino','HONDUREÃ‘A','La Ceiba, Atlantida, Honduras','2018-08-17','1534498689_1915.jpg',5),(5,'Kebel Lopez Chino','ARGELIANA','La Ceiba','2018-08-17','1534498801_1620.jpg',2),(6,'Juan Ramon Soto','HONDUREÃ‘A','La Ceiba, Atlantida, Honduras','2018-08-17','1534502173_1419.jpg',3);
 /*!40000 ALTER TABLE `arbitro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +99,7 @@ CREATE TABLE `ciudad` (
   `id_ciudad` int(11) NOT NULL AUTO_INCREMENT,
   `nom_ciudad` varchar(45) NOT NULL,
   PRIMARY KEY (`id_ciudad`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +108,7 @@ CREATE TABLE `ciudad` (
 
 LOCK TABLES `ciudad` WRITE;
 /*!40000 ALTER TABLE `ciudad` DISABLE KEYS */;
-INSERT INTO `ciudad` VALUES (6,'La ceiba'),(7,'La Masica'),(8,'San Pedro Sula');
+INSERT INTO `ciudad` VALUES (9,'La Ceiba'),(10,'San Pedro Sula'),(11,'Tegucigalpa'),(12,'Tocoa'),(13,'Progreso');
 /*!40000 ALTER TABLE `ciudad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +136,6 @@ CREATE TABLE `encuentro_jugador` (
 
 LOCK TABLES `encuentro_jugador` WRITE;
 /*!40000 ALTER TABLE `encuentro_jugador` DISABLE KEYS */;
-INSERT INTO `encuentro_jugador` VALUES (32,8,11);
 /*!40000 ALTER TABLE `encuentro_jugador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +173,7 @@ CREATE TABLE `entrenador` (
   PRIMARY KEY (`id_entrenador`),
   KEY `entrenado_a_equipo_idx` (`id_equipo`),
   CONSTRAINT `entrenado_a_equipo` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id_equipo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,6 +182,7 @@ CREATE TABLE `entrenador` (
 
 LOCK TABLES `entrenador` WRITE;
 /*!40000 ALTER TABLE `entrenador` DISABLE KEYS */;
+INSERT INTO `entrenador` VALUES (1,'Kebel','HONDUREÃ‘A','La Masica Atlantida','2018-08-14','1534491436_1050.jpg',4),(2,'Kebel Armando Andrades','HONDUREÃ‘A','La Masica Atlantida','2018-08-17','1534494675_1091.jpg',3);
 /*!40000 ALTER TABLE `entrenador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +203,7 @@ CREATE TABLE `equipo` (
   PRIMARY KEY (`id_equipo`),
   KEY `euipo_a_estadio_idx` (`id_estadio`),
   CONSTRAINT `euipo_a_estadio` FOREIGN KEY (`id_estadio`) REFERENCES `estadios` (`id_estadios`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +212,7 @@ CREATE TABLE `equipo` (
 
 LOCK TABLES `equipo` WRITE;
 /*!40000 ALTER TABLE `equipo` DISABLE KEYS */;
-INSERT INTO `equipo` VALUES (3,'Roma','1970-05-21','4-4-2','1534130681_1483.png',1),(4,'Juventus','2018-08-30','4-3-3','1534130999_1330.png',2),(5,'Lazio','2018-08-30','2-3-8','1534131021_1664.png',1),(6,'Napoli','2018-08-16','3-4-3','1534131062_1679.png',2),(7,'Parma','2018-04-11','5-3-2','1534131100_1918.png',2),(8,'Sampdoria','2018-08-16','4-3-3','1534131153_1062.png',3),(9,'Inter Milan','2018-08-16','3-3-4','1534131189_1338.png',1),(10,'Fiorentina','2018-08-16','5-3-3','1534131233_1210.png',1),(11,'Empoli','2018-08-15','4-3-3','1534131262_1408.png',2),(12,'Chievo','2018-07-30','3-2-1','1534131291_1300.png',3);
+INSERT INTO `equipo` VALUES (1,'Chievo','2018-08-19','3-2-4','1534188039_1194.png',5),(2,'Empoli','2018-08-20','3-2-4','1534188078_1119.png',5),(3,'Fiorentina','2018-08-21','3-2-4','1534188107_1777.png',6),(4,'Inter','2018-08-21','3-2-4','1534188129_1371.png',4),(5,'Juventus','2012-05-20','5-4-2','1534188152_1595.png',5),(6,'Lazio','1998-09-05','3-2-4','1534188172_1957.png',5);
 /*!40000 ALTER TABLE `equipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +241,7 @@ CREATE TABLE `equipo_jugador` (
 
 LOCK TABLES `equipo_jugador` WRITE;
 /*!40000 ALTER TABLE `equipo_jugador` DISABLE KEYS */;
-INSERT INTO `equipo_jugador` VALUES (3,10,'1',7),(6,11,'1',9),(9,9,'1',5),(11,8,'1',7),(11,12,'1',1);
+INSERT INTO `equipo_jugador` VALUES (1,1,'1',2),(1,2,'1',5),(1,3,'1',9),(1,4,'1',8),(1,5,'1',7),(1,6,'1',10);
 /*!40000 ALTER TABLE `equipo_jugador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +260,7 @@ CREATE TABLE `estadios` (
   PRIMARY KEY (`id_estadios`),
   KEY `estadio_a_ciudad_idx` (`id_ciudad`),
   CONSTRAINT `estadio_a_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +269,7 @@ CREATE TABLE `estadios` (
 
 LOCK TABLES `estadios` WRITE;
 /*!40000 ALTER TABLE `estadios` DISABLE KEYS */;
-INSERT INTO `estadios` VALUES (1,'Bernabeu','1500000',6),(2,'Camp Nou','2500000',7),(3,'Morazan','28247155',8);
+INSERT INTO `estadios` VALUES (4,'Zamorano','15020',11),(5,'Bernaveus','15896',12),(6,'Chapecoence','15981',13);
 /*!40000 ALTER TABLE `estadios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +293,7 @@ CREATE TABLE `fixture` (
   CONSTRAINT `fix_a_equipoLoc` FOREIGN KEY (`equipo_local`) REFERENCES `equipo` (`id_equipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fix_a_equipoVis` FOREIGN KEY (`equipo_visitante`) REFERENCES `equipo` (`id_equipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fix_a_temporada` FOREIGN KEY (`id_temporada`) REFERENCES `temporada` (`id_temporada`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=567 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,7 +302,7 @@ CREATE TABLE `fixture` (
 
 LOCK TABLES `fixture` WRITE;
 /*!40000 ALTER TABLE `fixture` DISABLE KEYS */;
-INSERT INTO `fixture` VALUES (477,'2018-08-30',6,4,1),(478,'2018-08-30',7,10,1),(479,'2018-08-30',11,9,1),(480,'2018-08-31',8,5,1),(481,'2018-08-31',12,3,1),(482,'2018-09-04',7,6,1),(483,'2018-09-04',11,4,1),(484,'2018-09-04',8,10,1),(485,'2018-09-05',12,9,1),(486,'2018-09-05',5,3,1),(487,'2018-09-09',11,7,1),(488,'2018-09-09',8,6,1),(489,'2018-09-09',12,4,1),(490,'2018-09-10',5,10,1),(491,'2018-09-10',9,3,1),(492,'2018-09-14',8,11,1),(493,'2018-09-14',12,7,1),(494,'2018-09-14',5,6,1),(495,'2018-09-15',9,4,1),(496,'2018-09-15',10,3,1),(497,'2018-09-19',12,8,1),(498,'2018-09-19',5,11,1),(499,'2018-09-19',9,7,1),(500,'2018-09-20',10,6,1),(501,'2018-09-20',4,3,1),(502,'2018-09-24',5,12,1),(503,'2018-09-24',9,8,1),(504,'2018-09-24',10,11,1),(505,'2018-09-25',4,7,1),(506,'2018-09-25',6,3,1),(507,'2018-09-29',9,5,1),(508,'2018-09-29',10,12,1),(509,'2018-09-29',4,8,1),(510,'2018-09-30',6,11,1),(511,'2018-09-30',7,3,1),(512,'2018-10-04',10,9,1),(513,'2018-10-04',4,5,1),(514,'2018-10-04',6,12,1),(515,'2018-10-05',7,8,1),(516,'2018-10-05',11,3,1),(517,'2018-10-09',4,10,1),(518,'2018-10-09',6,9,1),(519,'2018-10-09',7,5,1),(520,'2018-10-10',11,12,1),(521,'2018-10-10',8,3,1),(522,'2018-10-14',4,6,1),(523,'2018-10-14',10,7,1),(524,'2018-10-14',9,11,1),(525,'2018-10-15',5,8,1),(526,'2018-10-15',3,12,1),(527,'2018-10-19',6,7,1),(528,'2018-10-19',4,11,1),(529,'2018-10-19',10,8,1),(530,'2018-10-20',9,12,1),(531,'2018-10-20',3,5,1),(532,'2018-10-24',7,11,1),(533,'2018-10-24',6,8,1),(534,'2018-10-24',4,12,1),(535,'2018-10-25',10,5,1),(536,'2018-10-25',3,9,1),(537,'2018-10-29',11,8,1),(538,'2018-10-29',7,12,1),(539,'2018-10-29',6,5,1),(540,'2018-10-30',4,9,1),(541,'2018-10-30',3,10,1),(542,'2018-11-03',8,12,1),(543,'2018-11-03',11,5,1),(544,'2018-11-03',7,9,1),(545,'2018-11-04',6,10,1),(546,'2018-11-04',3,4,1),(547,'2018-11-08',12,5,1),(548,'2018-11-08',8,9,1),(549,'2018-11-08',11,10,1),(550,'2018-11-09',7,4,1),(551,'2018-11-09',3,6,1),(552,'2018-11-13',5,9,1),(553,'2018-11-13',12,10,1),(554,'2018-11-13',8,4,1),(555,'2018-11-14',11,6,1),(556,'2018-11-14',3,7,1),(557,'2018-11-18',9,10,1),(558,'2018-11-18',5,4,1),(559,'2018-11-18',12,6,1),(560,'2018-11-19',8,7,1),(561,'2018-11-19',3,11,1),(562,'2018-11-23',10,4,1),(563,'2018-11-23',9,6,1),(564,'2018-11-23',5,7,1),(565,'2018-11-24',12,11,1),(566,'2018-11-24',3,8,1);
+INSERT INTO `fixture` VALUES (1,'2018-07-20',5,2,1),(2,'2018-07-20',6,1,1),(3,'2018-07-21',3,4,1),(4,'2018-07-25',6,5,1),(5,'2018-07-25',3,2,1),(6,'2018-07-26',1,4,1),(7,'2018-07-30',3,6,1),(8,'2018-07-30',1,5,1),(9,'2018-07-31',2,4,1),(10,'2018-08-04',1,3,1),(11,'2018-08-04',2,6,1),(12,'2018-08-05',5,4,1),(13,'2018-08-09',2,1,1),(14,'2018-08-09',5,3,1),(15,'2018-08-10',6,4,1),(16,'2018-08-14',2,5,1),(17,'2018-08-14',1,6,1),(18,'2018-08-15',4,3,1),(19,'2018-08-19',5,6,1),(20,'2018-08-19',2,3,1),(21,'2018-08-20',4,1,1),(22,'2018-08-24',6,3,1),(23,'2018-08-24',5,1,1),(24,'2018-08-25',4,2,1),(25,'2018-08-29',3,1,1),(26,'2018-08-29',6,2,1),(27,'2018-08-30',4,5,1),(28,'2018-09-03',1,2,1),(29,'2018-09-03',3,5,1),(30,'2018-09-04',4,6,1);
 /*!40000 ALTER TABLE `fixture` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,7 +328,6 @@ CREATE TABLE `goles` (
 
 LOCK TABLES `goles` WRITE;
 /*!40000 ALTER TABLE `goles` DISABLE KEYS */;
-INSERT INTO `goles` VALUES (32,8,11),(32,8,11);
 /*!40000 ALTER TABLE `goles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,7 +351,7 @@ CREATE TABLE `jugador` (
   PRIMARY KEY (`id_jugador`),
   KEY `jugador_a_posJug_idx` (`id_posicion_jugador`),
   CONSTRAINT `jugador_a_posJug` FOREIGN KEY (`id_posicion_jugador`) REFERENCES `pos_jugador` (`id_pos_jugador`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,7 +360,7 @@ CREATE TABLE `jugador` (
 
 LOCK TABLES `jugador` WRITE;
 /*!40000 ALTER TABLE `jugador` DISABLE KEYS */;
-INSERT INTO `jugador` VALUES (8,'adan','ksdfj','sdlkfj','1998-02-02',15,15,'asdf',3),(9,'jose','fasdf','dsaf','1998-03-01',14,14,'sdafas',2),(10,'Leumin Trochez','La Masica ','DEL SAHARA','2018-07-30',0.85,0.86,'1534155741_1559.',20),(11,'julian','San Juan','BOTSWANESA','2018-08-01',0.71,0.42,'1534155812_1452.',11),(12,'juan','san jose ','bots','2018-05-05',0.21,25.1,'sdfasdfas',3);
+INSERT INTO `jugador` VALUES (1,'Jeumin Armando Padroni','La Ceiba, Atlantida, Honduras','HONDUREÃ‘A','2018-08-23',155.5,1.7,'1534445731_1290.jpg',14),(2,'Diego Godoy','La Ceiba, Atlantida, Honduras','HONDUREÃ‘A','2018-08-16',189.5,1.7,'1534482840_1481.jpg',2),(3,'Kebel Armando Sagastume','La Ceiba, Atlantida, Honduras','HONDUREÃ‘A','2018-08-16',189.5,1.7,'1534483755_1096.jpg',17),(4,'Edgardo Jose Argueta','La Ceiba, Atlantida, Honduras','HONDUREÃ‘A','2018-08-17',180,1.75,'1534484019_1456.jpg',16),(5,'Ledin Alvarado','La Ceiba, Atlantida, Honduras','HONDUREÃ‘A','2018-08-14',200,1.75,'1534488440_1540.jpg',17),(6,'Edgardo Argueta Sagastume','La Ceiba, Atlantida, Honduras','HONDUREÃ‘A','2016-10-30',205.5,1.8,'1534498919_1372.jpg',18);
 /*!40000 ALTER TABLE `jugador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +431,7 @@ CREATE TABLE `partido_jugado` (
   CONSTRAINT `par_jug_a_equipoVis` FOREIGN KEY (`equipo_visita`) REFERENCES `equipo` (`id_equipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `par_jug_a_estadios` FOREIGN KEY (`id_estadio`) REFERENCES `estadios` (`id_estadios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `par_jug_a_fix` FOREIGN KEY (`id_fixture`) REFERENCES `fixture` (`id_fixture`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -426,7 +440,7 @@ CREATE TABLE `partido_jugado` (
 
 LOCK TABLES `partido_jugado` WRITE;
 /*!40000 ALTER TABLE `partido_jugado` DISABLE KEYS */;
-INSERT INTO `partido_jugado` VALUES (32,2,479,11,9,'2018-08-30');
+INSERT INTO `partido_jugado` VALUES (1,5,1,5,2,'2018-07-20');
 /*!40000 ALTER TABLE `partido_jugado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -513,6 +527,34 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `rojas`
+--
+
+DROP TABLE IF EXISTS `rojas`;
+/*!50001 DROP VIEW IF EXISTS `rojas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `rojas` AS SELECT 
+ 1 AS `nomb_jugador`,
+ 1 AS `nom_equipo`,
+ 1 AS `amarillas`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `tabla_goleadores`
+--
+
+DROP TABLE IF EXISTS `tabla_goleadores`;
+/*!50001 DROP VIEW IF EXISTS `tabla_goleadores`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `tabla_goleadores` AS SELECT 
+ 1 AS `nomb_jugador`,
+ 1 AS `nom_equipo`,
+ 1 AS `goles`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `tabla_posiciones`
 --
 
@@ -552,7 +594,7 @@ CREATE TABLE `temporada` (
 
 LOCK TABLES `temporada` WRITE;
 /*!40000 ALTER TABLE `temporada` DISABLE KEYS */;
-INSERT INTO `temporada` VALUES (1,'2018-08-30','2018-08-31');
+INSERT INTO `temporada` VALUES (1,'2018-07-20','2018-09-28');
 /*!40000 ALTER TABLE `temporada` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -595,7 +637,7 @@ CREATE TABLE `usuarios` (
   `clave` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
   PRIMARY KEY (`id_usuarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -604,9 +646,27 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'leumin','trochez','root','1234','leotroche20@gmail.com');
+INSERT INTO `usuarios` VALUES (1,'leumin','trochez','root','1234','leotroche20@gmail.com'),(2,'root','root','root','root','root@gmail.com'),(3,'Ivan','Godoy','godoy24','kellorkc24','ivangodoy24@gmail.com');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `amarillas`
+--
+
+/*!50001 DROP VIEW IF EXISTS `amarillas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `amarillas` AS select `jugador`.`nomb_jugador` AS `nomb_jugador`,`equipo`.`nom_equipo` AS `nom_equipo`,count(0) AS `amarillas` from ((`amonestaciones` join `jugador` on((`amonestaciones`.`id_jugadore_fk` = `jugador`.`id_jugador`))) join `equipo` on((`equipo`.`id_equipo` = `amonestaciones`.`id_equipos_fk`))) where (`amonestaciones`.`id_amonestaciones` = 2) group by `jugador`.`nomb_jugador` order by count(0) desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
 -- Final view structure for view `encuentros`
@@ -675,7 +735,43 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `resultados_1` AS select `fix`.`id_partido_jugado` AS `id_partido_jugado`,`fix`.`equipo_local` AS `equipo_local`,(select count(0) from `goles` where ((`fix`.`id_partido_jugado` = `fix`.`id_partido_jugado`) and (`goles`.`id_equipos_fk` = `fix`.`equipo_local`))) AS `resultado_local`,`fix`.`equipo_visita` AS `equipo_visita`,(select count(0) from `goles` where ((`fix`.`id_partido_jugado` = `fix`.`id_partido_jugado`) and (`goles`.`id_equipos_fk` = `fix`.`equipo_visita`))) AS `resultado_visita` from `partido_jugado` `fix` */;
+/*!50001 VIEW `resultados_1` AS select `fix`.`id_partido_jugado` AS `id_partido_jugado`,`fix`.`equipo_local` AS `equipo_local`,(select count(0) from `goles` where ((`goles`.`id_partido_jugados_fk` = `fix`.`id_partido_jugado`) and (`goles`.`id_equipos_fk` = `fix`.`equipo_local`))) AS `resultado_local`,`fix`.`equipo_visita` AS `equipo_visita`,(select count(0) from `goles` where ((`goles`.`id_partido_jugados_fk` = `fix`.`id_partido_jugado`) and (`goles`.`id_equipos_fk` = `fix`.`equipo_visita`))) AS `resultado_visita` from `partido_jugado` `fix` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `rojas`
+--
+
+/*!50001 DROP VIEW IF EXISTS `rojas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `rojas` AS select `jugador`.`nomb_jugador` AS `nomb_jugador`,`equipo`.`nom_equipo` AS `nom_equipo`,count(0) AS `amarillas` from ((`amonestaciones` join `jugador` on((`amonestaciones`.`id_jugadore_fk` = `jugador`.`id_jugador`))) join `equipo` on((`equipo`.`id_equipo` = `amonestaciones`.`id_equipos_fk`))) where (`amonestaciones`.`id_amonestaciones` = 1) group by `jugador`.`nomb_jugador` order by count(0) desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `tabla_goleadores`
+--
+
+/*!50001 DROP VIEW IF EXISTS `tabla_goleadores`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `tabla_goleadores` AS select `jugador`.`nomb_jugador` AS `nomb_jugador`,`equipo`.`nom_equipo` AS `nom_equipo`,count(0) AS `goles` from ((`goles` join `jugador` on((`goles`.`id_jugadores_fk` = `jugador`.`id_jugador`))) join `equipo` on((`equipo`.`id_equipo` = `goles`.`id_equipos_fk`))) group by `jugador`.`nomb_jugador` order by count(0) desc */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -693,7 +789,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `tabla_posiciones` AS select distinct `equipo`.`nom_equipo` AS `nombre_equipo`,((select count(0) from `resultados` where ((`resultados`.`equipo_local` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_local` = 3))) + (select count(0) from `resultados` where ((`resultados`.`equipo_visita` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_visitante` = 3)))) AS `PG`,((select count(0) from `resultados` where ((`resultados`.`equipo_local` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_local` = 1))) + (select count(0) from `resultados` where ((`resultados`.`equipo_visita` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_visitante` = 1)))) AS `PE`,((select count(0) from `resultados` where ((`resultados`.`equipo_local` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_local` = 0))) + (select count(0) from `resultados` where ((`resultados`.`equipo_visita` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_visitante` = 0)))) AS `PP`,(select count(0) from `resultados` where ((`resultados`.`equipo_local` = `equipo`.`id_equipo`) or (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) AS `PJ`,((select sum(`resultados`.`goles_local`) from `resultados` where (`resultados`.`equipo_local` = `equipo`.`id_equipo`)) + (select sum(`resultados`.`goles_visitante`) from `resultados` where (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) AS `GF`,((select sum(`resultados`.`goles_visitante`) from `resultados` where (`resultados`.`equipo_local` = `equipo`.`id_equipo`)) + (select sum(`resultados`.`goles_local`) from `resultados` where (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) AS `GC`,((select sum(`resultados`.`puntos_del_local`) from `resultados` where (`resultados`.`equipo_local` = `equipo`.`id_equipo`)) + (select sum(`resultados`.`puntos_del_visitante`) from `resultados` where (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) AS `PTS` from (`equipo` join `resultados` on(((`equipo`.`id_equipo` = `resultados`.`equipo_local`) or (`equipo`.`id_equipo` = `resultados`.`equipo_visita`)))) order by `PTS` desc,`GF` desc */;
+/*!50001 VIEW `tabla_posiciones` AS select distinct `equipo`.`nom_equipo` AS `nombre_equipo`,((select count(0) from `resultados` where ((`resultados`.`equipo_local` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_local` = 3))) + (select count(0) from `resultados` where ((`resultados`.`equipo_visita` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_visitante` = 3)))) AS `PG`,((select count(0) from `resultados` where ((`resultados`.`equipo_local` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_local` = 1))) + (select count(0) from `resultados` where ((`resultados`.`equipo_visita` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_visitante` = 1)))) AS `PE`,((select count(0) from `resultados` where ((`resultados`.`equipo_local` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_local` = 0))) + (select count(0) from `resultados` where ((`resultados`.`equipo_visita` = `equipo`.`id_equipo`) and (`resultados`.`puntos_del_visitante` = 0)))) AS `PP`,(select count(0) from `resultados` where ((`resultados`.`equipo_local` = `equipo`.`id_equipo`) or (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) AS `PJ`,((select coalesce(sum(`resultados`.`goles_local`),0) from `resultados` where (`resultados`.`equipo_local` = `equipo`.`id_equipo`)) + (select coalesce(sum(`resultados`.`goles_visitante`),0) from `resultados` where (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) AS `GF`,((select coalesce(sum(`resultados`.`goles_visitante`),0) from `resultados` where (`resultados`.`equipo_local` = `equipo`.`id_equipo`)) + (select coalesce(sum(`resultados`.`goles_local`),0) from `resultados` where (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) AS `GC`,((select coalesce(sum(`resultados`.`puntos_del_local`),0) from `resultados` where (`resultados`.`equipo_local` = `equipo`.`id_equipo`)) + (select coalesce(sum(`resultados`.`puntos_del_visitante`),0) from `resultados` where (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) AS `PTS` from (`equipo` join `resultados` on(((`equipo`.`id_equipo` = `resultados`.`equipo_local`) or (`equipo`.`id_equipo` = `resultados`.`equipo_visita`)))) order by ((select coalesce(sum(`resultados`.`puntos_del_local`),0) from `resultados` where (`resultados`.`equipo_local` = `equipo`.`id_equipo`)) + (select coalesce(sum(`resultados`.`puntos_del_visitante`),0) from `resultados` where (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) desc,((select coalesce(sum(`resultados`.`goles_local`),0) from `resultados` where (`resultados`.`equipo_local` = `equipo`.`id_equipo`)) + (select coalesce(sum(`resultados`.`goles_visitante`),0) from `resultados` where (`resultados`.`equipo_visita` = `equipo`.`id_equipo`))) desc */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -707,4 +803,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-13 12:52:53
+-- Dump completed on 2018-08-17  9:30:22

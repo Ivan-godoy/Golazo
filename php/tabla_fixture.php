@@ -42,7 +42,7 @@ $fixture = $pdo->query("Select * "
                 <ul>
                     <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
-
+                    <li><a href="tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
                 </ul>
             </li>
             <li><a href="resultados.php"> Resultados </a></li>
@@ -63,6 +63,7 @@ $fixture = $pdo->query("Select * "
                 <th>VS</th>
                 <th>Equipo Visitante</th>
                 <th>Fecha</th>
+                <th>Jugar Partido</th>
             </tr>
             </thead>
             <tbody>

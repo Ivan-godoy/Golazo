@@ -29,14 +29,14 @@ $estadios = $pdo->query("Select * from estadios", PDO::FETCH_ASSOC);
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
-            <li><a href="php/estadio.php"> Gestión de Estadio </a></li>
+            <li><a href="php/estadio.php"> Gestión de Estadios </a></li>
             <li><a href="equipos.php"> Gestión de Equipos </a></li>
             <li><a href="temporada.php"> Gestión de Temporada </a></li>
             <li><a href="#"> Tablas</a>
                 <ul>
                     <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
-
+                    <li><a href="tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
                 </ul>
             </li>
             <li><a href="resultados.php"> Resultados </a></li>

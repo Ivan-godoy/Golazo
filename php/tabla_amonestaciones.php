@@ -1,6 +1,7 @@
 <?php
 require_once '../conexion.php';
-$resultados = $pdo->query("SELECT * FROM golazo.mostrar_resultados", PDO::FETCH_ASSOC);
+$amarillas= $pdo->query("SELECT * FROM golazo.amarillas", PDO::FETCH_ASSOC);
+$rojas= $pdo->query("SELECT * FROM golazo.rojas", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +10,12 @@ $resultados = $pdo->query("SELECT * FROM golazo.mostrar_resultados", PDO::FETCH_
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Resultados</title>
+    <title>Golazo-Amonestaciones</title>
 </head>
 <body>
 <header class="encabezado">
     <img src="../img/golazo.png" alt="" class="logo" onclick=" location = '../inicio.php'">
-    <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
+    <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
     <nav class="navbar">
@@ -37,33 +38,57 @@ $resultados = $pdo->query("SELECT * FROM golazo.mostrar_resultados", PDO::FETCH_
                     <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
                     <li><a href="tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
+
                 </ul>
             </li>
             <li><a href="resultados.php"> Resultados </a></li>
+
 
         </ul>
     </nav>
     <section class="contenedor">
         <div class="general">
-            <h1>Tabla de Resultados</h1>
+            <h1>Amarillas</h1>
         </div>
         <table border="1">
             <thead>
             <tr>
-                <th>Equipo Local</th>
-                <th>Goles Local</th>
-                <th>Goles Visita</th>
-                <th>Equipo Visita</th>
+                <th>Nombre del Jugador</th>
+                <th>Nombre del Equipo</th>
+                <th>Amarillas</th>
             </tr>
             </thead>
             <tbody>
             <!----- La infotmacion ----->
-            <?php foreach ($resultados as $resultado): ?>
+            <?php foreach ($amarillas as $amarilla): ?>
                 <tr>
-                    <td><?php echo $resultado['equipo_local']?></td>
-                    <td><?php echo $resultado['goles_local']?></td>
-                    <td><?php echo $resultado['goles_visitante']?></td>
-                    <td><?php echo $resultado['equipo_local']?></td>
+                    <td><?php echo $amarilla['nomb_jugador']?></td>
+                    <td><?php echo $amarilla['nom_equipo']?></td>
+                    <td><?php echo $amarilla['amarillas']?></td>
+                </tr>
+            <?php endforeach;?>
+            </tbody>
+        </table>
+    </section>
+    <section class="contenedor">
+        <div class="general">
+            <h1>Rojas</h1>
+        </div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Nombre del Jugador</th>
+                <th>Nombre del Equipo</th>
+                <th>Rojas</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!----- La infotmacion ----->
+            <?php foreach ($rojas as $roja): ?>
+                <tr>
+                    <td><?php echo $roja['nomb_jugador']?></td>
+                    <td><?php echo $roja['nom_equipo']?></td>
+                    <td><?php echo $roja['amarillas']?></td>
                 </tr>
             <?php endforeach;?>
             </tbody>

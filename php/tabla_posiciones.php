@@ -36,6 +36,8 @@ $posiciones= $pdo->query("SELECT * FROM golazo.tabla_posiciones", PDO::FETCH_ASS
                 <ul>
                     <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
                     <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
+                    <li><a href="tabla_amonestaciones.php">Tabla de Amonestaciones</a></li>
+
                 </ul>
             </li>
             <li><a href="resultados.php"> Resultados </a></li>
