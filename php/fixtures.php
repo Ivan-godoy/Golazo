@@ -35,11 +35,15 @@ if (isset($_GET['operacion']) && $_GET['operacion'] == 'crear'){
                 $resultado[$equipoVisita][$x] = $equipoLocal;
 
                 if ($i > $mitad_equipos / 2) {
-                    $dias += 1;
+                    $contador = 1;
+                    $dias += $contador;
+                    $nuevafecha = strtotime($dias . 'day', strtotime($fecha2));
+                    $nuevafecha = date('Y-m-j', $nuevafecha);
+                    $dias -= 1;
+                }else {
+                    $nuevafecha = strtotime($dias . 'day', strtotime($fecha2));
+                    $nuevafecha = date('Y-m-j', $nuevafecha);
                 }
-                $nuevafecha = strtotime($dias . 'day', strtotime($fecha2));
-                $nuevafecha = date('Y-m-j', $nuevafecha);
-
                 $guardar = $pdo->exec("INSERT INTO fixture(fecha, equipo_local, equipo_visitante, Id_temporada) "
                     . " VALUES ('{$nuevafecha}','{$resultado[$equipoLocal][$x]}','{$resultado[$equipoVisita][$x]}','{$idtemporada}')");
                 $partidos[] = [$resultado[$equipoLocal][$x], $resultado[$equipoVisita][$x]];
@@ -53,10 +57,15 @@ if (isset($_GET['operacion']) && $_GET['operacion'] == 'crear'){
                 $resultado[$equipoVisita][$x] = $equipoLocal;
 
                 if ($i > $mitad_equipos / 2) {
-                    $dias += 1;
+                    $contador = 1;
+                    $dias += $contador;
+                    $nuevafecha = strtotime($dias . 'day', strtotime($fecha2));
+                    $nuevafecha = date('Y-m-j', $nuevafecha);
+                    $dias -= 1;
+                }else {
+                    $nuevafecha = strtotime($dias . 'day', strtotime($fecha2));
+                    $nuevafecha = date('Y-m-j', $nuevafecha);
                 }
-                $nuevafecha = strtotime($dias . 'day', strtotime($fecha2));
-                $nuevafecha = date('Y-m-j', $nuevafecha);
                 $guardar = $pdo->exec("INSERT INTO fixture(fecha, equipo_local, equipo_visitante, Id_temporada) "
                     . " VALUES ('{$nuevafecha}','{$resultado[$equipoVisita][$x]}','{$resultado[$equipoLocal][$x]}','{$idtemporada}')");
                 $partidos[] = [$resultado[$equipoVisita][$x], $resultado[$equipoLocal][$x]];

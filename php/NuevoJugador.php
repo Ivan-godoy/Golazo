@@ -7,8 +7,10 @@ if (!isset($_GET['codigo'])) {
 $idequipo = $_GET["codigo"];
 $mensaje=[];
 $id=[];
+
 $posicion = $pdo->query("Select * "
     ." from pos_jugador", PDO::FETCH_ASSOC);
+
 if(!empty($_POST)) {//Procesar el formulario
     $nomb_jugador = $_POST['nomb_jugador'];
     $dorsal = $_POST['numero'];
@@ -32,9 +34,9 @@ if(!empty($_POST)) {//Procesar el formulario
         $validacion[] = $val[0];
     }
     if(count($validacion) > 0){
-        $mensaje[] = "el numero de de dorsal ya esta en uso ";
+        $mensaje[] = "El numero de de dorsal ya esta en uso ";
     }elseif(empty($nomb_jugador) || empty($lugar_nacimiento_jugador) || empty($nacionalidad_jugador) || empty($fecha_nacimiento) || empty($peso_jugador) || empty($estatura_jugador) || empty($id_posicion_jugador )){
-        $mensaje[] = "verifique que todos los campos esten llenos";
+        $mensaje[] = "Verifique que todos los campos esten llenos";
     }
     if(empty($mensaje)){
         $filas_afectadas = $pdo->exec("INSERT INTO jugador (nomb_jugador, lugar_nacimiento_jugador, nacionalidad_jugador, fecha_nacimiento, peso_jugador, estatura_jugador, foto_jugador, id_posicion_jugador) VALUES ('{$nomb_jugador}', '{$lugar_nacimiento_jugador}', '{$nacionalidad_jugador}' ,'{$fecha_nacimiento}', '{$peso_jugador}', '{$estatura_jugador}', '{$nombre_generado}', '{$id_posicion_jugador}')");
