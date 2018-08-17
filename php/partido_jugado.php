@@ -5,9 +5,61 @@ if (!isset($_GET['codigo'])) {
     exit;
 }
 $idfixture = $_GET["codigo"];
-$equipos = $pdo->query("Select * "
-    ." from encuentros WHERE id_fixture = $idfixture", PDO::FETCH_ASSOC);
 
+$id_partido_jugado = $id_partido_jugado = $pdo->query("Select id_partido_jugado from partido_jugado where id_fixture = '{$idfixture}'", PDO::FETCH_ASSOC);
+$info_partido_jugado = [];
+foreach ($id_partido_jugado as $id){
+    $info_partido_jugado = $id['id_partido_jugado'];
+}
+
+$datos = $pdo->query("SELECT fixture.equipo_local,encuentros.nombre_equipo_local,equipo.id_estadio, fixture.equipo_visitante, encuentros.nombre_equipo_visita ,encuentros.fecha, encuentros.id_fixture, encuentros.id_temporada from encuentros "
+    ." INNER JOIN fixture on encuentros.id_fixture = fixture.id_fixture INNER JOIN equipo on nombre_equipo_local = nom_equipo WHERE fixture.id_fixture = '{$idfixture}'", PDO::FETCH_ASSOC);
+
+$resultados = $pdo->query("SELECT * FROM mostrar_resultados WHERE id_partido_jugado = '{$id['id_partido_jugado']}' ;", PDO::FETCH_ASSOC);
+
+$equipos = $pdo->query("Select * from equipo", PDO::FETCH_ASSOC);
+
+$info = [];
+foreach ($datos as $infogoles){
+    $info[] = $infogoles;
+    $ingreso_goles = $pdo->query("SELECT nom_equipo,id_equipo,nomb_jugador,id_jugador from equipo_jugador inner join equipo on id_equipos = id_equipo inner join jugador on id_jugadores = id_jugador where id_equipos = '{$infogoles['equipo_local']}'", PDO::FETCH_ASSOC);
+    $ingreso_goles2 = $pdo->query("SELECT nom_equipo,id_equipo,nomb_jugador,id_jugador from equipo_jugador inner join equipo on id_equipos = id_equipo inner join jugador on id_jugadores = id_jugador where id_equipos = '{$infogoles['equipo_visitante']}'", PDO::FETCH_ASSOC);
+    $amarillas = $pdo->query("SELECT nom_equipo,id_equipo,nomb_jugador,id_jugador from equipo_jugador inner join equipo on id_equipos = id_equipo inner join jugador on id_jugadores = id_jugador where id_equipos = '{$infogoles['equipo_local']}'", PDO::FETCH_ASSOC);
+    $amarillas2 = $pdo->query("SELECT nom_equipo,id_equipo,nomb_jugador,id_jugador from equipo_jugador inner join equipo on id_equipos = id_equipo inner join jugador on id_jugadores = id_jugador where id_equipos = '{$infogoles['equipo_visitante']}'", PDO::FETCH_ASSOC);
+    $rojas = $pdo->query("SELECT nom_equipo,id_equipo,nomb_jugador,id_jugador from equipo_jugador inner join equipo on id_equipos = id_equipo inner join jugador on id_jugadores = id_jugador where id_equipos = '{$infogoles['equipo_local']}'", PDO::FETCH_ASSOC);
+    $rojas2 = $pdo->query("SELECT nom_equipo,id_equipo,nomb_jugador,id_jugador from equipo_jugador inner join equipo on id_equipos = id_equipo inner join jugador on id_jugadores = id_jugador where id_equipos = '{$infogoles['equipo_visitante']}'", PDO::FETCH_ASSOC);
+}
+$mensaje = [];
+$id = [];
+if (empty($_POST['id_jugador_local']) && empty($_POST['id_jugador_visita'])) {
+    $mensaje[] = "Debe de seleccionar El Jugador";
+} else {
+    if (!empty($_POST) && $_POST['id_jugador_local']) {
+        $id_jugador = $_POST['id_jugador_local'];
+//        }
+        if (empty($mensaje)) {
+//            $encuentro_jugador = $pdo->exec("INSERT INTO encuentro_jugador (id_partidos_jugados, id_Jugadores, id_Equipos) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}')");
+            $goles = $pdo->exec("INSERT INTO goles (id_partido_jugados_fk, id_jugadores_fk, id_equipos_fk) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_local"]}')");
+            $mensaje[] = "Se registro exitosamente";
+            header("Location: partido_jugado.php?codigo=$idfixture?");
+        } else {
+            $mensaje[] = "El Hubo problemas en la conexion";
+        }
+    } elseif (!empty($_POST) && $_POST['id_jugador_visita']) {
+        $id_jugador = $_POST['id_jugador_visita'];
+//        if (empty($id_jugador)) {
+//            $mensaje[] = "Debe de seleccionar El Jugador";
+//        }
+        if (empty($mensaje)) {
+//            $encuentro_jugador = $pdo->exec("INSERT INTO encuentro_jugador (id_partidos_jugados, id_Jugadores, id_Equipos) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}')");
+            $goles = $pdo->exec("INSERT INTO goles (id_partido_jugados_fk, id_jugadores_fk, id_equipos_fk) VALUES ('{$info_partido_jugado}', '{$id_jugador}', '{$info[0]["equipo_visitante"]}')");
+            $mensaje[] = "Se registro exitosamente";
+            header("Location: partido_jugado.php?codigo=$idfixture?");
+        } else {
+            $mensaje[] = "El Hubo problemas en la conexion";
+        }
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -54,6 +106,7 @@ $equipos = $pdo->query("Select * "
     <section class="contenedor">
         <div class="general">
             <h1>Partido en Juego</h1>
+            <input type="submit" value="Jugar" onclick="location='jugar.php?cod=<?php echo $idfixture?>'">
         </div>
 
         <div class="equipos">
@@ -66,21 +119,131 @@ $equipos = $pdo->query("Select * "
                 </tr>
                 </thead>
                 <tbody>
-            <?php foreach ($equipos as $equi): ?>
+                <?php foreach ($info as $inf): ?>
+                    <tr>
+                        <td style="text-align: center;font-size: 25px"><?php echo $inf['nombre_equipo_local']?></td>
+                        <td style="text-align: center;font-size: 25px"><?php echo 'VS'?></td>
+                        <td style="text-align: center;font-size: 25px"><?php echo $inf['nombre_equipo_visita']?></td>
+                    </tr>
+                <?php endforeach;?>
+                <?php foreach ($resultados as $results):?>
                 <tr>
-                    <td><?php echo $equi['nombre_equipo_local']?></td>
-                    <td><?php echo 'VS'?></td>
-                    <td><?php echo $equi['nombre_equipo_visita']?></td>
-                </tr>
-                <tr>
-                    <td style="font-size: 100px">0</td>
+
+                    <td style="font-size: 100px"><?php echo $results['goles_local']?></td>
                     <td><div style="font-size: 50px; height: 150px"><h1 style="height: 20px;  line-height: 50px;">-</h1></div></td>
-                    <td style="font-size: 100px">0</td>
+                    <td style="font-size: 100px"><?php echo $results['goles_visitante']?></td>
+                    <?php endforeach;?>
                 </tr>
-            <?php endforeach;?>
+                <tr style="height: auto">
+
+                    <td>
+                        <form action="" method="post">
+                            <select name="id_jugador_local" id="id_jugador_local">
+                                <option value="0"></option>
+                                <?php foreach ($ingreso_goles as $ing):?>
+                                    <option value="<?php echo $ing['id_jugador']?>"><?php echo $ing['nomb_jugador']?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+
+                        </form>
+                    </td>
+                    <td></td>
+                    <td>
+                        <form action="" method="post">
+                            <select name="id_jugador_visita" id="id_jugador_visita">
+                                <option value="0"></option>
+                                <?php foreach ($ingreso_goles2 as $ing):?>
+                                    <option value="<?php echo $ing['id_jugador']?>"><?php echo $ing['nomb_jugador']?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+
+                        </form>
+                    </td>
+                    <td>
+
+                    </td>
+
+                </tr>
+                <tr style="height: auto">
+
+                    <td>
+                        <form action="" method="post">
+                            <select name="id_jugador_local_ama" id="id_jugador_local_ama">
+                                <option value="0"></option>
+                                <?php foreach ($amarillas as $ama):?>
+                                    <option value="<?php echo $ama['id_jugador']?>"><?php echo $ama['nomb_jugador']?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+
+                        </form>
+                    </td>
+                    <td></td>
+                    <td>
+                        <form action="" method="post">
+                            <select name="id_jugador_visita" id="id_jugador_visita">
+                                <option value="0"></option>
+                                <?php foreach ($amarillas2 as $ama):?>
+                                    <option value="<?php echo $ama['id_jugador']?>"><?php echo $ama['nomb_jugador']?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+
+                        </form>
+                    </td>
+                    <td>
+
+                    </td>
+
+                </tr>
+                <tr style="height: auto">
+
+                    <td>
+                        <form action="" method="post">
+                            <select name="id_jugador_local" id="id_jugador_local">
+                                <option value="0"></option>
+                                <?php foreach ($rojas as $roj):?>
+                                    <option value="<?php echo $roj['id_jugador']?>"><?php echo $roj['nomb_jugador']?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+
+                        </form>
+                    </td>
+                    <td></td>
+                    <td>
+                        <form action="" method="post">
+                            <select name="id_jugador_visita" id="id_jugador_visita">
+                                <option value="0"></option>
+                                <?php foreach ($rojas2 as $roj):?>
+                                    <option value="<?php echo $roj['id_jugador']?>"><?php echo $roj['nomb_jugador']?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <input style="height: 100px;width: 100px;margin: 0px" type="submit" value="GOL!">
+
+                        </form>
+                    </td>
+                    <td>
+
+                    </td>
+
+                </tr>
                 </tbody>
             </table>
         </div>
+        <br>
+
+
+
+
+
 
     </section>
 

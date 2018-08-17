@@ -51,23 +51,12 @@ if(!empty($_POST)) {//Procesar el formulario
                 <ul>
                     <li><a href="arbitro.php">Árbitros</a></li>
                     <li><a href="entrenador.php"> Entrenador </a></li>
-                    <li><a href="usuarios.php">Usuarios </a></li>
-
                 </ul>
             </li>
             <li><a href="ciudad.php"> Gestión de Ciudades </a></li>
-            <li><a href="estadio.php"> Gestión de Estadios </a></li>
             <li><a href="equipos.php"> Gestion de Equipos </a></li>
             <li><a href="temporada.php"> Gestión de Temporada </a></li>
-            <li><a href="#"> Tablas</a>
-                <ul>
-                    <li><a href="tabla_posiciones.php">Tabla de Posiciones</a></li>
-                    <li><a href="tabla_goleadores.php">Tabla de Goleadores</a></li>
-
-                </ul>
-            </li>
-            <li><a href="resultados.php"> Resultados </a></li>
-
+            <li><a href="#"> Item de Navegación 8 </a></li>
         </ul>
     </nav>
     <section class="contenedor">
@@ -97,7 +86,7 @@ if(!empty($_POST)) {//Procesar el formulario
             </div>
             <br>
             <div class="seccion">
-                <label for="estadios"> Estadio de Equipo</label>
+                <label for="estadios"> Ciudad de Equipo</label>
                 <select name="estadios" id="estadios">
                     <?php foreach ($estadios as $estadio):?>
                         <option value="<?php echo $estadio['id_estadios']?>"><?php echo $estadio['nom_estadios']?></option>
