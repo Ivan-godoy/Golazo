@@ -183,7 +183,7 @@ if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
         </div>
 
         <div class="equipos">
-            <table border="1">
+            <table border="1" style="margin: -3% auto auto -10%;">
                 <thead>
                 <tr>
                     <th>Equipo Local</th>
@@ -252,7 +252,7 @@ if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
                                 <?php endforeach; ?>
                             </select>
 
-                            <input style="height: 100px;width: 100px;margin: 0px;background-color: yellow;color: black" type="submit" value="Amarilla">
+                            <input style="height: 100px;width: 100px;margin: 0px;background-color: #ffdb23;color: black" type="submit" value="Amarilla" class="amarilla">
 
                         </form>
                     </td>
@@ -266,7 +266,7 @@ if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
                                 <?php endforeach; ?>
                             </select>
 
-                            <input style="height: 100px;width: 100px;margin: 0px;background-color: yellow;color: black" type="submit" value="Amarilla">
+                            <input style="height: 100px;width: 100px;margin: 0px;background-color: #ffdb23;color: black" type="submit" value="Amarilla" class="amarilla">
 
                         </form>
                     </td>
@@ -286,7 +286,7 @@ if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
                                 <?php endforeach; ?>
                             </select>
 
-                            <input style="height: 100px;width: 100px;margin: 0px;background-color: red" type="submit" value="Roja">
+                            <input style="height: 100px;width: 100px;margin: 0px;background-color: #c32005" type="submit" value="Roja" class="roja">
 
                         </form>
                     </td>
@@ -299,7 +299,7 @@ if (!empty($_POST) && $_POST['id_jugador_visita_roj2']) {
                                     <option value="<?php echo $roj['id_jugador']?>"><?php echo $roj['nomb_jugador']?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <input style="height: 100px;width: 100px;margin: 0px;background-color: red" type="submit" value="Roja">
+                            <input style="height: 100px;width: 100px;margin: 0px;background-color: #c32005" type="submit" value="Roja" class="roja">
 
                         </form>
                     </td>
