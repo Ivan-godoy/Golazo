@@ -76,7 +76,7 @@ if(!empty($_POST)) {//Procesar el formulario
     <section class="contenedor">
         <div class="general">
             <h1>Creacion de Arbitros</h1>
-            <input type="submit" value="Volver" onclick=" location = 'entrenador.php'">
+            <input type="submit" value="Volver" onclick=" location = 'arbitro.php'">
         </div>
         <form action="" method="post" id="formulario" enctype="multipart/form-data">
             <table style="border: black solid 1px; margin-top: -80px; width: 60%">
