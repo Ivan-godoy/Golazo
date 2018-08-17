@@ -236,8 +236,8 @@ table tbody{
     display: inline-flex;
 }
 .equipos{
-    max-width: 960px;
-    width: 90%;
+
+    width: 95%;
     height: auto;
     font-size: 125%;
     margin: auto;

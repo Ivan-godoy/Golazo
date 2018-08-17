@@ -16,7 +16,7 @@ if(!empty($_POST)) {//Procesar el formulario
         $resultado =  move_uploaded_file($logo['tmp_name'], 'img_equipo/'.$nombre_generado);
     }
     $id_estadio = $_POST['estadios'];
-    if (empty($nom_equipo_) && empty($fecha_fundacion) && empty($esquema) && empty($id_estadio)){
+    if (empty($nom_equipo_) || empty($fecha_fundacion) || empty($esquema) || empty($id_estadio)){
         $mensaje[] = "Solo puede dejar libre la imagen a Subir!";
     }
     if(empty($mensaje)){
@@ -36,7 +36,7 @@ if(!empty($_POST)) {//Procesar el formulario
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Arbitros</title>
+    <title>Golazo-Creacion-Equipo</title>
 </head>
 <body>
 <header class="encabezado">

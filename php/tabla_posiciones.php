@@ -13,7 +13,7 @@ $posiciones= $pdo->query("SELECT * FROM golazo.tabla_posiciones", PDO::FETCH_ASS
 </head>
 <body>
 <header class="encabezado">
-    <img src="../img/golazo.png" alt="" class="logo">
+    <img src="../img/golazo.png" alt="" class="logo" onclick=" location = '../inicio.php'">
     <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
@@ -64,7 +64,7 @@ $posiciones= $pdo->query("SELECT * FROM golazo.tabla_posiciones", PDO::FETCH_ASS
             <!----- La infotmacion ----->
             <?php foreach ($posiciones as $posicion): ?>
                 <tr>
-                    <td><?php echo $posicion['nom_equipo']?></td>
+                    <td><?php echo $posicion['nombre_equipo']?></td>
                     <td><?php echo $posicion['PG']?></td>
                     <td><?php echo $posicion['PE']?></td>
                     <td><?php echo $posicion['PP']?></td>

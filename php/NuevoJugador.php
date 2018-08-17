@@ -98,21 +98,21 @@ if(!empty($_POST)) {//Procesar el formulario
             <input type="submit" value="Volver" onclick=" location = 'equipos.php'">
         </div>
         <form action="" method="post" id="formulario" enctype="multipart/form-data">
-            <table style="border: black solid 1px; margin-top: -80px; width: 60%">
+            <table style="border: black solid 1px; margin-top: -80px; width: 80%">
             <tr style="height: 50px">
-                <td><label for="nomb_jugador" style="margin: 0; padding: 0;">Nombre Completo del Jugador</label></td>
+                <td style="align-content: center"><label for="nomb_jugador">Nombre Completo del Jugador</label></td>
                 <td><input type="text" name="nomb_jugador" id="nomb_jugador" style="margin: 0; padding: 0;"></td>
             </tr>
             <tr style="height: 50px">
-                <td><label for="numero" style="margin: 0; padding: 0; ">Numero de Jugador</label></td>
+                <td><label for="numero" >Numero de Jugador</label></td>
                 <td><input type="number" name="numero" id="numero" min="1" max="99" style="margin: 0; padding: 0; width: 300px"></td>
             </tr>
             <tr style="height: 50px">
-                <td><label for="lugar_nacimiento_jugador" style="margin: 0; padding: 0;">Lugar de nacimiento del Jugador</label></td>
+                <td><label for="lugar_nacimiento_jugador" >Lugar de nacimiento del Jugador</label></td>
                 <td><input type="text" name="lugar_nacimiento_jugador" id="lugar_nacimiento_jugador"></td>
             </tr>
             <tr style="height: 50px">
-                <td><label for="nacionalidad_jugador" style="margin: 0; padding: 0;">Nacionalidad del Jugador</label></td>
+                <td><label for="nacionalidad_jugador" >Nacionalidad del Jugador</label></td>
                 <td><select name="nacionalidad_jugador" id="nacionalidad_jugador">
                     <option value="NAMIBIANA">NAMIBIANA</option>
                     <option value="ANGOLESA">ANGOLESA</option>
@@ -290,26 +290,26 @@ if(!empty($_POST)) {//Procesar el formulario
             </tr>
 
             <tr style="height: 50px">
-                <td><label for="fecha_nacimineto" style="margin: 0; padding: 0; ">Fecha de Nacimiento</label></td>
+                <td><label for="fecha_nacimineto" >Fecha de Nacimiento</label></td>
                 <td><input type="date" name="fecha_nacimiento" id="fecha_nacimineto"></td>
             </tr>
 
             <tr style="height: 50px">
-                <td><label for="peso_jugador" style="margin: 0; padding: 0;">Peso del Jugador en lb</label></td>
+                <td><label for="peso_jugador" >Peso del Jugador en lb</label></td>
                 <td><input type="number" step="0.01" name="peso_jugador" id="peso_jugador" placeholder="165.5" style="; width: 300px"></td>
             </tr>
 
             <tr style="height: 50px">
-                <td><label for="estatura_jugador" style="margin: 0; padding: 0; ">Estatura del Jugador en m</label></td>
+                <td><label for="estatura_jugador" >Estatura del Jugador en m</label></td>
                 <td><input type="number" step="0.01" name="estatura_jugador" id="estatura_jugador" placeholder="1.7" style="width: 300px"></td>
             </tr>
             <tr style="height: 50px">
-                <td><label for="foto_jugador" style="margin: 0; padding: 0; "> Foto del jugador</label></td>
+                <td><label for="foto_jugador"> Foto del jugador</label></td>
                 <td><input type="file" name="foto_jugador" id="foto_jugador" accept="image/*" value=""></td>
             </tr>
             <br>
             <tr style="height: 50px">
-                <td><label for="id_posicion_jugador" style="margin: 0; padding: 0; "> Posicion en la que Juega</label></td>
+                <td><label for="id_posicion_jugador" > Posicion en la que Juega</label></td>
                 <td><select name="id_posicion_jugador" id="id_posicion_jugador">
                     <?php foreach ($posicion as $pos):?>
                         <option value="<?php echo $pos['id_pos_jugador']?>"><?php echo $pos['descripcion']?></option>

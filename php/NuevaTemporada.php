@@ -4,7 +4,7 @@ $mensaje=[];
 if(!empty($_POST)){//Procesar el formulario
     $inicial = $_POST['fecha_inicial'];
     $final = $_POST['fecha_final'];
-    if (empty($inicial) && empty($final)){
+    if (empty($inicial) || empty($final)){
         $mensaje[] = "Todos los campos son Obligatorios!";
     }
     if(empty($mensaje)){
@@ -24,7 +24,7 @@ if(!empty($_POST)){//Procesar el formulario
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Arbitros</title>
+    <title>Golazo-Creacion-Temporada</title>
 </head>
 <body>
 <header class="encabezado">

@@ -50,13 +50,13 @@ $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", P
         <div class="general" style="display: block;">
             <br>
             <div>
-                <div class="equipos" style="margin: 0">
+                <div class="equipos" style="margin: 0; width: 98%">
                     <!----- La infotmacion ----->
                     <?php foreach ($equipo as $equi): ?>
                             <img src="<?php echo "img_equipo/".$equi['logo']?>" alt="" style="width: 35%; height: 270px;">
                             <div style="text-align: left"><?php echo"<h1 style='margin: 0'>Informacion del Equipo</h1>". "Nombre del Equipo: ". $equi['nom_equipo'] . "<br>" ."Fecha de Fundación: ".$equi['fecha_fundacion']. "<br>". "Esquema Habitual: " . $equi['esquema_habitual'] ?></div>
                     <?php endforeach;?>
-                    <input type="submit" value="Volver a Equipos" onclick=" location = 'equipos.php'" style="margin-left: 10%">
+                    <input type="submit" value="Volver a Equipos" onclick=" location = 'equipos.php'" style="margin-left: 21%">
                 </div>
             </div>
         </div>
@@ -64,12 +64,13 @@ $equipo = $pdo->query("Select * from equipo  WHERE id_equipo = '{$idequipo}'", P
             <h1>Jugadores</h1>
             <input type="submit" value="Nuevo Jugador" onclick=" location = 'NuevoJugador.php?codigo=<?php echo $idequipo?>'">
         </div>
-        <div class="equipos" style="margin-left: 10%">
+        <div style="width: 96%; margin-left: 1%; margin-top: 1%; padding: 0; margin-right: -10%;display: flex; flex-flow: row wrap;">
             <!----- La infotmacion ----->
             <?php foreach ($jugadores as $juga): ?>
-                <div class="contequipo" style="font-size: 70%; width: 350px; display: flex; margin: 10px; height: 150px">
+                <div class="contequipo" style="width: 23%; display: flex; margin: 1%; height: 150px">
                 <img src="<?php echo "img_jugadores/".$juga['foto_jugador']?>" alt="" style="width: 35%; height: 90%; background-color: #142450; margin: 10px">
-                <div style="text-align: right"><?php echo"<br>"."Nombre: ". $juga['nomb_jugador'] . "<br> <br>" ."Descripcion: ".$juga['descripcion']. "<br><br>". "# " . $juga['dorsal']?></div>
+                <div style="text-align: right; width: 75%; margin: 1%; font-size: 75%; height: 100%"><div style="height: 50%"><?php echo"<br>"."Nombre: ". $juga['nomb_jugador'] . "<br> <br>" ."Posición: ".$juga['descripcion']?></div><div style="height: 50%"><P style="padding: 0;font-weight: bold; font-size: 215%"><?php echo  "# " . $juga['dorsal']?></P></div>
+                </div>
                 </div>
 
             <?php endforeach;?>

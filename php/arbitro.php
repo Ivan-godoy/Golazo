@@ -1,6 +1,6 @@
 <?php
 require_once '../conexion.php';
-$arbitros = $pdo->query("Select *  from arbitro", PDO::FETCH_ASSOC);
+$arbitros = $pdo->query("select nom_arbitro, Descripcion, foto_arbitro from arbitro inner join pos_arbitro  on arbitro.id_posicion_arbitro = pos_arbitro.id_pos_arbitro", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,9 +50,9 @@ $arbitros = $pdo->query("Select *  from arbitro", PDO::FETCH_ASSOC);
         <div class="equipos" style="margin-left: 10%">
             <!----- La infotmacion ----->
             <?php foreach ($arbitros as $arbitro): ?>
-                <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px;">
-                    <img src="<?php echo "img_arbitros/".$arbitro['foto_arbitro']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
-                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $arbitro['nom_arbitro'] . "<br>" ."Arbitro"?></div>
+                <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px; height: 150px; font-weight: lighter">
+                    <img src="<?php echo "img_arbitros/".$arbitro['foto_arbitro']?>" alt="" style="margin: 5px;width: 35%; height: 95%; background-color: #142450">
+                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $arbitro['nom_arbitro'] . "<br> <br>" ."Posición: "?> <h4><?php echo $arbitro['Descripcion'] ?> </h4></div>
                     <input style="margin-left: 10%" type="submit" value="Eliminar" onclick="location='detalle_arbitro.php?codigo=<?php echo $arbitro['id_arbitro']?> &operacion=eliminar'">
                 </div>
 

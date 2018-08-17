@@ -27,7 +27,7 @@ require_once 'conexion.php';
                 </ul>
             </li>
             <li><a href="php/ciudad.php"> Gestión de Ciudades </a></li>
-            <li><a href="php/estadio.php"> Gestión de Estadio </a></li>
+            <li><a href="php/estadio.php"> Gestión de Estadios </a></li>
             <li><a href="php/equipos.php"> Gestión de Equipos </a></li>
             <li><a href="php/temporada.php"> Gestión de Temporada </a></li>
             <li><a href="#"> Tablas</a>

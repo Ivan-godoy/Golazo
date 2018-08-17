@@ -6,7 +6,7 @@ if(!empty($_POST)){//Procesar el formulario
     $nom_estadios = $_POST['nom_estadios'];
     $capacidad = $_POST['capacidad'];
     $id_ciudad = $_POST['ciudades'];
-    if (empty($nom_estadios) && empty($capacidad) && empty($id_ciudad)){
+    if (empty($nom_estadios) || empty($capacidad) || empty($id_ciudad)){
         $mensaje[] = "Todos los campos son Obligatorios!";
     }
     if(empty($mensaje)){

@@ -10,7 +10,7 @@ $equipo = $pdo->query("Select * "
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Equipos</title>
+    <title>Golazo-Equipos</title>
 </head>
 <body>
 <header class="encabezado">

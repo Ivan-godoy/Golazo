@@ -10,11 +10,11 @@ $temporadas = $pdo->query("Select * "
     <link rel="stylesheet" href="../css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
     <link rel="icon" href="../img/icon.png">
-    <title>Golazo-Creacion-Temporada</title>
+    <title>Golazo-Temporada</title>
 </head>
 <body>
 <header class="encabezado">
-    <img src="../img/golazo.png" alt="" class="logo">
+    <img src="../img/golazo.png" alt="" class="logo" onclick=" location = '../inicio.php'">
     <input type="submit" value="Cerrar Sesión" onclick=" location = 'NuevaCiudad.php'" class="cerrar">
 </header>
 <section class="workspace">

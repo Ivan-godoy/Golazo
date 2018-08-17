@@ -1,7 +1,7 @@
 <?php
 require_once '../conexion.php';
 if (!isset($_GET['codigo'])) {
-    header("Location: equipos.php");
+    header("Location: jugador.php");
     exit;
 }
 $idequipo = $_GET["codigo"];

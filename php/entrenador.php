@@ -1,6 +1,7 @@
 <?php
 require_once '../conexion.php';
-$entrenadores = $pdo->query("Select *  from entrenador", PDO::FETCH_ASSOC);
+$entrenadores = $pdo->query(/*"Select *  from entrenador"*/"select nom_entrenador, nom_equipo, foto_entrenador from entrenador inner join equipo on equipo.id_equipo = entrenador.id_equipo", PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@ $entrenadores = $pdo->query("Select *  from entrenador", PDO::FETCH_ASSOC);
 </head>
 <body>
 <header class="encabezado">
-    <img src="../img/golazo.png" alt="" class="logo">
+    <img src="../img/golazo.png" alt="" class="logo" onclick="location='../inicio.php'">
     <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
@@ -50,9 +51,9 @@ $entrenadores = $pdo->query("Select *  from entrenador", PDO::FETCH_ASSOC);
         <div class="equipos" style="margin-left: 10%">
             <!----- La infotmacion ----->
             <?php foreach ($entrenadores as $entrenador): ?>
-                <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px;">
-                    <img src="<?php echo "img_entrenador/".$entrenador['foto_entrenador']?>" alt="" style="width: 35%; height: 100px; background-color: #142450">
-                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $entrenador['nom_entrenador'] . "<br>" ."Entrenador". "<br>". "POSICION"?></div>
+                <div class="contequipo" style="font-size: 70%; width: 300px; display: flex; margin: 10px; height: 150px">
+                    <img src="<?php echo "img_entrenador/".$entrenador['foto_entrenador']?>" alt="" style="margin: 9px;width: 30%; height: 90%; background-color: #142450">
+                    <div style="margin: 0;text-align: left"><?php echo"Nombre: ". $entrenador['nom_entrenador'] . "<br> <br>" . "Equipo: " . $entrenador['nom_equipo']?></div>
                     <input style="margin-left: 10%" type="submit" value="Eliminar" onclick="location='detalle_entrenador.php?codigo=<?php echo $entrenador['id_entrenador']?> &operacion=eliminar'">
                 </div>
 

@@ -1,7 +1,7 @@
 <?php
 require_once '../conexion.php';
 if (!isset($_GET['codigo'])) {
-    header("Location: entrenador.php");
+    header("Location: arbitro.php");
     exit;
 }
 $idarbitro = $_GET["codigo"];

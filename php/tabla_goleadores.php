@@ -1,7 +1,6 @@
 <?php
 require_once '../conexion.php';
-$ciudades = $pdo->query("Select * "
-    ." from ciudad", PDO::FETCH_ASSOC);
+$goleadores = $pdo->query("Select *  from tabla_goleadores", PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +13,7 @@ $ciudades = $pdo->query("Select * "
 </head>
 <body>
 <header class="encabezado">
-    <img src="../img/golazo.png" alt="" class="logo">
+    <img src="../img/golazo.png" alt="" class="logo" onclick=" location = '../inicio.php'">
     <input type="submit" value="Cerrar Sesión" onclick=" location = '../cerrar.php'" class="cerrar">
 </header>
 <section class="workspace">
@@ -51,18 +50,18 @@ $ciudades = $pdo->query("Select * "
         <table border="1">
             <thead>
             <tr>
-                <th>Codigo de la Ciudad</th>
-                <th>Nombre de la Ciudad</th>
-                <th>Eliminar</th>
+                <th>Nombre del Equipo</th>
+                <th>Nombre del Jugador</th>
+                <th>Goles</th>
             </tr>
             </thead>
             <tbody>
             <!----- La infotmacion ----->
-            <?php foreach ($ciudades as $ciudad): ?>
+            <?php foreach ($goleadores as $goleador): ?>
                 <tr>
-                    <td><?php echo $ciudad['id_ciudad']?></td>
-                    <td><?php echo $ciudad['nom_ciudad']?></td>
-                    <td><input type="submit" value="Eliminar" onclick=" location = 'detalle_ciudad.php?codigo=<?php echo $ciudad['id_ciudad']?> &operacion=eliminar'"></td>
+                    <td><?php echo $goleador['nomb_jugador']?></td>
+                    <td><?php echo $goleador['nom_equipo']?></td>
+                    <td><?php echo $goleador['goles']?></td>
                 </tr>
             <?php endforeach;?>
             </tbody>
